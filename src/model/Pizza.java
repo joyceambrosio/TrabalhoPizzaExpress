@@ -13,28 +13,53 @@ import java.util.ArrayList;
  */
 public class Pizza extends Produto {
 
-    private ArrayList<Produto> ingredientes;
+    private ArrayList<Insumo> ingredientes;
     private String receita;
+    private String categoria;
 
     public Pizza(String receita, String nome, double preco) {
         super(nome, preco);
         setReceita(receita);
+        setCategoria();
     }
 
-    public Pizza(ArrayList<Produto> ingredientes, String receita, String nome, double preco) {
+    public Pizza(int id, String nome, double preco, String receita) {
+        super(id, nome, preco);
+        this.receita = receita;
+        this.ingredientes = null;
+        setCategoria();
+    }
+
+    public Pizza(ArrayList<Insumo> ingredientes, String receita, String nome, double preco) {
         super(nome, preco);
         setIngredientes(ingredientes);
-        setReceita(receita);
+        setCategoria();
+    }
+
+    public Pizza(ArrayList<Insumo> ingredientes, String receita, String categoria, int id, String nome, double preco) {
+        super(id, nome, preco);
+        this.ingredientes = ingredientes;
+        this.receita = receita;
+        this.categoria = categoria;
     }
 
     public Pizza() {
     }
 
-    public ArrayList<Produto> getIngredientes() {
+    public void setCategoria() {
+        this.categoria = "Pizza";
+    }
+
+    @Override
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public ArrayList<Insumo> getIngredientes() {
         return ingredientes;
     }
 
-    public void setIngredientes(ArrayList<Produto> ingredientes) {
+    public void setIngredientes(ArrayList<Insumo> ingredientes) {
         if (ingredientes != null) {
             this.ingredientes = ingredientes;
         }
@@ -78,8 +103,11 @@ public class Pizza extends Produto {
     //Testar
     @Override
     public String toString() {
-        return "Nome Pizza: " + nome + " Preço: " + preco + "\nReceita: " + receita + " Produtos: " + ingredientes.toString();
-
+//        String ingrediente = "";
+//        for (Insumo i : ingredientes){
+//            ingrediente = ingrediente + "\n" + i.toString();
+//        }
+        return "Pizza{" + ", receita=" + receita + ", categoria=" + categoria  + '}';
     }
 
 }

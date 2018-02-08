@@ -11,8 +11,32 @@ package model;
  */
 public class Insumo extends Produto {
 
+    private String categoria;
+    private String unidade;
+    private String quantidade;
+
     public Insumo(String nome, double preco) {
         super(nome, preco);
+        setCategoria();
+    }
+
+    public Insumo(int id, String nome, double preco, String unidade, String quantidade) {
+        super(id, nome, preco);
+        this.quantidade = quantidade;
+        this.unidade = unidade;
+        setCategoria();
+    }
+
+    public void setCategoria() {
+        this.categoria = "Insumo";
+    }
+
+    public String getUnidade() {
+        return unidade;
+    }
+
+    public String getQuantidade() {
+        return quantidade;
     }
 
     public Insumo() {
@@ -20,6 +44,11 @@ public class Insumo extends Produto {
 
     public Insumo(String nome) {
         super(nome);
+    }
+
+    @Override
+    public String getCategoria() {
+        return categoria;
     }
 
     @Override
@@ -42,6 +71,7 @@ public class Insumo extends Produto {
         super.setPreco(preco);
     }
 
+    @Override
     public void imprimir() {
         System.out.println("Insumo: " + "nome = " + nome + ", preco = " + preco);
     }

@@ -51,8 +51,6 @@ public class Administrador extends Funcionario {
     public static void setProdutos(ArrayList<Produto> produtos) {
         Administrador.produtos = produtos;
     }
-    
-    
 
     public void adicionarFuncionario(Funcionario funcionario) {
         funcionarios.add(funcionario);
@@ -91,7 +89,7 @@ public class Administrador extends Funcionario {
 
     @Override
     public String toString() {
-        return this.getNome() + " " +  this.getNomeUsuario() + " " + this.cargo;
+        return this.getNome() + " " + this.getNomeUsuario() + " " + this.cargo;
     }
 
 }

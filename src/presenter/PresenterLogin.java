@@ -5,8 +5,12 @@
  */
 package presenter;
 
+import colections.Funcionarios;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
 import javax.swing.JOptionPane;
 import view.Login;
 import view.Menu;
@@ -18,11 +22,20 @@ import view.Menu;
 public class PresenterLogin {
 
     private Login view;
+   
 
     public PresenterLogin(Login view) {
         this.view = view;
 
         validarLogin();
+        
+        URL caminhoImagem = this.getClass().getClassLoader().getResource("icones/PizzaIcone.png");
+        Image iconeTitulo = Toolkit.getDefaultToolkit().getImage(caminhoImagem);
+        view.setIconImage(iconeTitulo);
+
+        //Tirar isso depois
+        view.getjTextFieldNomeUsuario().setText("Administrador");
+        view.getjPasswordFieldSenha().setText("123456789");
 
         view.setLocationRelativeTo(null);
         view.setVisible(true);
@@ -32,23 +45,35 @@ public class PresenterLogin {
         view.getjButtonEntrar().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (view.getjTextFieldNomeUsuario().getText().equals("")) {
-                    JOptionPane.showMessageDialog(view, "Por favor, informar o login do usuário.");
-                } else if (view.getjPasswordFieldSenha().getText().equals("")) {
-                    JOptionPane.showMessageDialog(view, "Por favor, informar a senha.");
+
+                String usuario = view.getjTextFieldNomeUsuario().getText();
+                String senha = view.getjPasswordFieldSenha().getText();
+
+                if (usuario.equals("") || senha.equals("")) {
+                    if (usuario.equals("")) {
+                        JOptionPane.showMessageDialog(view, "Por favor, informar o login do usuário.");
+                    }
+                    if (senha.equals("")) {
+                        JOptionPane.showMessageDialog(view, "Por favor, informar a senha.");
+                    }
+                } else if (Funcionarios.getInstancia().funcionarioValido(usuario)) {
+                    //verifica login e senha e chama a tela main
+                    if (Funcionarios.getInstancia().getFuncionario(usuario).getSenha().equals(senha)) {
+                        System.out.println(Funcionarios.getInstancia().getFuncionario(usuario).getSenha());
+                        System.out.println(Funcionarios.getInstancia().getFuncionario(usuario).getNomeUsuario());
+                        view.setVisible(false);
+                        view.dispose();
+                        PresenterMenu.getInstancia();
+                    } else {
+                        JOptionPane.showMessageDialog(view, "Login ou senha estão incorretos.");
+                    }
+
                 } else {
                     JOptionPane.showMessageDialog(view, "Login ou senha estão incorretos.");
-                    
-                }
-
-//Controle de acesso
-                    view.setVisible(false);
-                    view.dispose();
-
-                    PresenterMenu menu = new PresenterMenu(new Menu());
                 }
             }
-        );
+
+        });
 
     }
 

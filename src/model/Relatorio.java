@@ -10,7 +10,7 @@ package model;
  * @author Natalia
  */
 public class Relatorio {
-    
+
     private int mes;
     private int ano;
     private String semana;
@@ -24,18 +24,10 @@ public class Relatorio {
 
     public Relatorio() {
     }
-    
-    
-    public void gererRelatorio(String semana, int mes, int ano){
-       // System.out.println("Relatório referente a semana "+semana+" do mês: " + mes + " ano:" + ano);
-       // System.out.println("Em construção.... aguarde em breve");
+
+    public void gererRelatorio(String semana, int mes, int ano) {
+        // System.out.println("Relatório referente a semana "+semana+" do mês: " + mes + " ano:" + ano);
+        // System.out.println("Em construção.... aguarde em breve");
     }
-    
-   
-    
-    
-    
-    
-    
-    
+
 }

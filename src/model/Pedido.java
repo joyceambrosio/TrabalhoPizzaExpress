@@ -13,26 +13,44 @@ import java.util.ArrayList;
  */
 public class Pedido {
 
+    private static int uniqueId = 0;
+    private int id;
     private Cliente cliente;
     private Funcionario entregador;
     private ArrayList<Produto> produtos;
     private String statusPedido;
+
     //atributo estático em pedido
     private static int numTotalPedido;
 
+    public Pedido() {
+    }
+
+    public Pedido(Cliente cliente, Funcionario entregador) {
+        id = uniqueId;
+        uniqueId++;
+        setCliente(cliente);
+        alterarEntregador(entregador);
+        setStatusPedido("Aberto");
+    }
+
     public Pedido(Cliente cliente, Funcionario entregador, ArrayList<Produto> produtos, String statusPedido) {
+        id = uniqueId;
+        uniqueId++;
+        System.out.println(uniqueId);
+        System.out.println(uniqueId);
         setCliente(cliente);
         alterarEntregador(entregador);
         setProdutos(produtos);
         setStatusPedido(statusPedido);
     }
 
-    public Pedido(Cliente cliente, Funcionario entregador) {
-        setCliente(cliente);
-        alterarEntregador(entregador);
+    public int getIdPedido() {
+        return this.id;
     }
 
-    public Pedido() {
+    public void setEntregador(Funcionario entregador) {
+        this.entregador = entregador;
     }
 
     public static int getNumTotalPedido() {
@@ -43,10 +61,9 @@ public class Pedido {
         Pedido.numTotalPedido = numTotalPedido;
     }
 
-    
     public void addProduto(Produto produto) {
         produtos.add(produto);
-        numTotalPedido ++;
+        numTotalPedido++;
     }
 
     public void removerProduto(Produto produto) {
@@ -55,6 +72,43 @@ public class Pedido {
 
     public void alterarProduto(Produto produto, int i) {
         produtos.set(i, produto);
+    }
+
+    //Aberto > Em Produção > Em  Entrega > Concluido
+    public boolean nextStatusPedido() {
+        if (this.statusPedido.equals(" ")) {
+            setStatusPedido("Aberto");
+            return true;
+        } else if (this.statusPedido.equals("Aberto")) {
+            setStatusPedido("Em produção");
+            return true;
+        } else if (this.statusPedido.equals("Em produção")) {
+            setStatusPedido("Em entrega");
+            return true;
+        } else if (this.statusPedido.equals("Em entrega")) {
+            setStatusPedido("Concluído");
+            return true;
+        }
+        return false;
+    }
+
+    public boolean lastStatusPedido() {
+        if (this.statusPedido.equals(" ")) {
+            setStatusPedido("Aberto");
+            return true;
+        } else if (this.statusPedido.equals("Concluído")) {
+            setStatusPedido("Em entrega");
+            return true;
+        } else if (this.statusPedido.equals("Em entrega")) {
+            setStatusPedido("Em produção");
+            return true;
+        } else if (this.statusPedido.equals("Em produção")) {
+            setStatusPedido("Aberto");
+            return true;
+        } else if (this.statusPedido.equals("Aberto")) {
+            return false;
+        }
+        return false;
     }
 
     public void statusDoPedido() {
@@ -72,9 +126,10 @@ public class Pedido {
     }
 
     //método estático para verificar a quantidade de número de pedidos
-    public static void consultarNumeroTotalDePedidos(){
+    public static void consultarNumeroTotalDePedidos() {
         System.out.println(numTotalPedido);
     }
+
     public Funcionario getEntregador() {
         return entregador;
     }
@@ -103,7 +158,14 @@ public class Pedido {
     public void setStatusPedido(String statusPedido) {
         if (!statusPedido.equals(" ")) {
             this.statusPedido = statusPedido;
+        } else {
+            this.statusPedido = "Aberto";
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Pedido{" + "id=" + id + ", cliente=" + cliente + ", entregador=" + entregador + ", produtos=" + produtos + ", statusPedido=" + statusPedido + '}';
     }
 
 }

@@ -5,6 +5,7 @@
  */
 package colections;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import model.Administrador;
 import model.Atendente;
@@ -27,21 +28,21 @@ import model.Produto;
  */
 public class Seed {
 
-    private static ArrayList<Pedido> pedidos;
-    private static ArrayList<Produto> produtos;
-    private static ArrayList<Funcionario> funcionarios;
+//    private Pedidos pedidos = Pedidos.getInstancia();
+//    private Produtos produtos = Produtos.getInstancia();
+    private Funcionarios funcionarios = Funcionarios.getInstancia();
+//    private Clientes clientes = Clientes.getInstancia();
     private static ArrayList<Login> logins;
-    private static ArrayList<Cliente> clientes;
 
     public Seed() {
-        this.pedidos = new ArrayList<>();
-        this.produtos = new ArrayList<>();
-        this.funcionarios = new ArrayList<>();
+//        this.pedidos = new ArrayList<>();
+//        this.produtos = new ArrayList<>();
+//        this.funcionarios = new ArrayList<>();
         this.logins = new ArrayList<>();
-        this.clientes = new ArrayList<>();
+//        this.clientes = new ArrayList<>();
     }
 
-    public void addSeeds() {
+    public void addSeeds() throws SQLException {
         //Cadastrando funcionários e logins
         Funcionario f1 = new Administrador("Administrador", "123456789", new Cargo("Administrador", 8000, false), "Francisco Jaquin");
         funcionarios.add(f1);
@@ -67,54 +68,50 @@ public class Seed {
         Produto produto1 = new Insumo("Vinho tinto", 3.00);
         Produto produto2 = new Insumo("Maracujá", 0.5);
 
-        Bebida bebida1 = new Bebida("Chopp", 5.50);
-        Bebida bebida2 = new Bebida("Cerveja", 4.50);
+//        Produto bebida1 = new Bebida("Chopp", 5.50);
+//        Produto bebida2 = new Bebida("Cerveja", 4.50);
 
         Produto pizza1 = new Pizza("Monta a pizza e assa", "Pizza margarita", 29.90);
         Produto pizza2 = new Pizza("Monta a pizza e assa", "Pizza de brócolis", 29.90);
 
-        produtos.add(produto1);
-        produtos.add(produto2);
-        produtos.add(bebida1);
-        produtos.add(bebida2);
-        produtos.add(pizza1);
-        produtos.add(pizza2);
-        produtos.add(new Insumo("Trigo", 2.50));
-
-        //Cadastrando clientes no sistema
-        Cliente c1 = new Cliente("José", new Endereco("Rua das palmeiras", "Centro", "Guaçuí", "ES", "29560-000", 123));
-        clientes.add(c1);
-        Cliente c2 = new Cliente("Laura", new Endereco("Beco dos paulistas", "Jardim da penha", "Guaçuí", "ES", "29560-000", 1));
-        clientes.add(c2);
-        Cliente c3 = new Cliente("Valentina", new Endereco("Av. José Alexandre", "Centro", "Guaçuí", "ES", "29560-000", 2));
-        clientes.add(c3);
-        Cliente c4 = new Cliente("Enzo", new Endereco("Rua José Beato", "Quincas Machado", "Guaçuí", "ES", "29560-000", 3));
-        clientes.add(c4);
-        Cliente c5 = new Cliente("Pedro", new Endereco("Rua Emiliana Emiry ", "Centro", "Guaçuí", "ES", "29560-000", 4));
-        clientes.add(c5);
-
-        //Cadastrando Pedidos
-        pedidos.add(new Pedido(c1, f2));
-        pedidos.add(new Pedido(c2, f2));
-        pedidos.add(new Pedido(c3, f2));
-        pedidos.add(new Pedido(c4, f2));
-        pedidos.add(new Pedido(c5, f2));
-
-        System.out.println("Logins cadastrados: " + logins.size());
-        System.out.println("Funcionários cadastrados: " + funcionarios.size());
-        System.out.println("Clientes cadastrados: " + clientes.size());
-        System.out.println("Produtos cadastrados: " + produtos.size());
-        System.out.println("Pedidos realizados: " + pedidos.size());
-
+//        produtos.add(produto1);
+//        produtos.add(produto2);
+//        produtos.add(bebida1);
+//        produtos.add(bebida2);
+//        produtos.add(pizza1);
+//        produtos.add(pizza2);
+//        produtos.add(new Insumo("Trigo", 2.50));
+//
+//        Cadastrando clientes no sistema
+//        Cliente c1 = new Cliente("José", new Endereco("Rua das palmeiras", "Centro", "Guaçuí", "ES", "29560-000", "123"));
+//        clientes.add(c1);
+//        Cliente c2 = new Cliente("Laura", new Endereco("Beco dos paulistas", "Jardim da penha", "Guaçuí", "ES", "29560-000", "1"));
+//        clientes.add(c2);
+//        Cliente c3 = new Cliente("Valentina", new Endereco("Av. José Alexandre", "Centro", "Guaçuí", "ES", "29560-000", "2"));
+//        clientes.add(c3);
+//        Cliente c4 = new Cliente("Enzo", new Endereco("Rua José Beato", "Quincas Machado", "Guaçuí", "ES", "29560-000", "3"));
+//        clientes.add(c4);
+//        Cliente c5 = new Cliente("Pedro", new Endereco("Rua Emiliana Emiry ", "Centro", "Guaçuí", "ES", "29560-000", "4"));
+//        clientes.add(c5);
+//        Cadastrando Pedidos
+//        pedidos.add(new Pedido(c1, f2));
+//        pedidos.add(new Pedido(c2, f2));
+//        pedidos.add(new Pedido(c3, f2));
+//        pedidos.add(new Pedido(c4, f2));
+//        pedidos.add(new Pedido(c5, f2));
+//        System.out.println("Logins cadastrados: " + logins.size());
+////        System.out.println("Funcionários cadastrados: " + funcionarios.size());
+//        System.out.println("Clientes cadastrados: " + clientes.size());
+//        System.out.println("Produtos cadastrados: " + produtos.size());
+//        System.out.println("Pedidos realizados: " + pedidos.size());
         //Upcasting
-        System.out.println("UPCAST");
-        //insumo -> produto
-        ((Produto) produto1).imprimir();
-        //Downcast
-        System.out.println("DOWNCAST");
-        //produto -> insumo
-        ((Bebida) bebida2).imprimir();
-
+//        System.out.println("UPCAST");
+//        //insumo -> produto
+//        ((Produto) produto1).imprimir();
+//        //Downcast
+//        System.out.println("DOWNCAST");
+//        //produto -> insumo
+//        ((Bebida) bebida2).imprimir();
     }
 
 }

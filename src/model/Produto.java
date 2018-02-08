@@ -11,8 +11,16 @@ package model;
  */
 public class Produto {
 
+    int id;
     protected String nome;
     protected double preco;
+    private String categoria;
+
+    public Produto(int id, String nome, double preco) {
+        this.id = id;
+        this.nome = nome;
+        this.preco = preco;
+    }
 
     public Produto(String nome, double preco) {
         this.nome = nome;
@@ -23,9 +31,19 @@ public class Produto {
     }
 
     public Produto(String nome) {
-
         this.nome = nome;
+    }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getCategoria() {
+        return this.categoria;
     }
 
     public String getNome() {
@@ -54,6 +72,7 @@ public class Produto {
 
     @Override
     public String toString() {
-        return "Produto{" + "nome=" + nome + ", preco=" + preco + '}';
+        return "Produto{" + "id=" + ", nome=" + nome + ", preco=" + preco + ", categoria=" + categoria + '}';
     }
+
 }

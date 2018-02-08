@@ -28,8 +28,8 @@ public class Cargo {
         setCargo(cargo);
         setSalario(salario);
     }
-    
-    public Cargo(String cargo, boolean comissao){
+
+    public Cargo(String cargo, boolean comissao) {
         setCargo(cargo);
         setComissao(comissao);
     }

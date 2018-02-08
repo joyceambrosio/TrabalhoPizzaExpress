@@ -24,14 +24,14 @@ public class Atendente extends Funcionario {
 
     @Override
     public void imprimeInformacoesFuncionario() {
-        System.out.println("Nome Funcionario: " + super.getNome()+ " Usuário: " + getNomeUsuario() + " Senha: " + super.getSenha()+
-                "\nCargo: " + super.getCargo().getCargo()+ " Salário: " + super.getCargo().getSalario()+" Comissão: Não comissionado" );
-        
+        System.out.println("Nome Funcionario: " + super.getNome() + " Usuário: " + getNomeUsuario() + " Senha: " + super.getSenha()
+                + "\nCargo: " + super.getCargo().getCargo() + " Salário: " + super.getCargo().getSalario() + " Comissão: Não comissionado");
+
     }
 
     @Override
     public String toString() {
-        return this.getNome() + " " +  this.getNomeUsuario() + " " + this.cargo;
+        return this.getNome() + " " + this.getNomeUsuario() + " " + this.cargo;
     }
-    
+
 }

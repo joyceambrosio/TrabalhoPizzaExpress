@@ -12,10 +12,10 @@ import java.util.ArrayList;
  * @author Natalia
  */
 public class Login {
-    
+
     private String login;
     private String senha;
-    
+
     public String getLogin() {
         return login;
     }
@@ -24,23 +24,21 @@ public class Login {
         this.login = login;
         this.senha = senha;
     }
-    
-    
-    
+
     public void setLogin(String login) {
         if (!login.equals(" ")) {
             this.login = login;
         }
     }
-    
+
     public String getSenha() {
         return senha;
     }
-    
+
     public void setSenha(String senha) {
         if (!senha.equals(" ")) {
             this.senha = senha;
         }
     }
-    
+
 }

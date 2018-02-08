@@ -11,15 +11,15 @@ package model;
  */
 public class Endereco {
 
-    private String logradouro, bairro, cidade, estado, cep, pontoDeReferencia;
-    private int numero;
+    private int id;
+    private String logradouro, bairro, cidade, estado, cep, pontoDeReferencia, numero;
 
     public Endereco() {
 
     }
 
-    public Endereco(String logradouro, String bairro, String cidade, String estado, String cep, int numero) {
-        setLogradouro(logradouro); 
+    public Endereco(String logradouro, String bairro, String cidade, String estado, String cep, String numero) {
+        setLogradouro(logradouro);
         setBairro(bairro);
         setCidade(cidade);
         setEstado(estado);
@@ -27,7 +27,7 @@ public class Endereco {
         setNumero(numero);
     }
 
-    public Endereco(String logradouro, String bairro, String cidade, String estado, String cep, String pontoDeReferencia, int numero) {
+    public Endereco(String logradouro, String bairro, String cidade, String estado, String cep, String pontoDeReferencia, String numero) {
         setLogradouro(logradouro);
         setBairro(bairro);
         setCidade(cidade);
@@ -35,6 +35,29 @@ public class Endereco {
         setCep(cep);
         setPontoDeReferencia(pontoDeReferencia);
         setNumero(numero);
+    }
+
+    public Endereco(int idEndereco, String logradouro, String bairro, String cidade, String estado, String cep, String pontoDeReferencia, String numero) {
+        this.id = idEndereco;
+        setLogradouro(logradouro);
+        setBairro(bairro);
+        setCidade(cidade);
+        setEstado(estado);
+        setCep(cep);
+        setPontoDeReferencia(pontoDeReferencia);
+        setNumero(numero);
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getEnderecoCompleto() {
+        return logradouro + ", " + numero + ", " + bairro + ", " + pontoDeReferencia;
     }
 
     public String getLogradouro() {
@@ -97,12 +120,12 @@ public class Endereco {
         }
     }
 
-    public int getNumero() {
+    public String getNumero() {
         return numero;
     }
 
-    public void setNumero(int numero) {
-        if (numero >= 0) {
+    public void setNumero(String numero) {
+        if (!numero.equals("")) {
             this.numero = numero;
         }
     }

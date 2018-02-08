@@ -11,6 +11,8 @@ package model;
  */
 public abstract class Funcionario {
 
+    private static int uniqueId = 0;
+    private int id;
     protected String nome;
     protected String nomeUsuario;
     protected String senha;
@@ -18,6 +20,9 @@ public abstract class Funcionario {
     protected Pedido pedido;
 
     public Funcionario(String nomeUsuario, String senha, Cargo cargo, String nome) {
+        id = uniqueId;
+        uniqueId++;
+        setNome(nome);
         setNomeUsuario(nomeUsuario);
         setSenha(senha);
         setCargo(cargo);
@@ -29,6 +34,10 @@ public abstract class Funcionario {
     public Funcionario(String nomeUsuario, String senha) {
         setNomeUsuario(nomeUsuario);
         setSenha(senha);
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getNomeUsuario() {
@@ -83,6 +92,6 @@ public abstract class Funcionario {
 
     @Override
     public abstract String toString();
-    
+
     public abstract void imprimeInformacoesFuncionario();
 }

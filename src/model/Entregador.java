@@ -22,8 +22,6 @@ public class Entregador extends Funcionario {
         super(nomeUsuario, senha);
     }
 
-    
-    
     @Override
     public void imprimeInformacoesFuncionario() {
         System.out.println("Nome Funcionario: " + super.getNome() + " Usuário: " + getNomeUsuario() + " Senha: " + super.getSenha()
@@ -33,7 +31,7 @@ public class Entregador extends Funcionario {
 
     @Override
     public String toString() {
-        return this.getNome() + " " +  this.getNomeUsuario() + " " + this.cargo;
+        return this.getNome() + " " + this.getNomeUsuario() + " " + this.cargo;
     }
 
 }
