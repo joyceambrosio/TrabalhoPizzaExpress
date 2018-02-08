@@ -485,6 +485,27 @@ END;
 //
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS getFuncionariosAll;
+DELIMITER //
+CREATE PROCEDURE getFuncionariosAll(
+)
+BEGIN
+	SELECT 
+    f.idFuncionario,
+    f.nome,
+    f.usuario,
+    f.senha,
+    c.idCargo,
+    c.nome, 
+    c.salario,
+    c.comissao
+FROM Funcionario f INNER JOIN Cargo c
+	ON f.idCargo = c.idCargo
+WHERE f.ativo = 1;
+END;
+//
+DELIMITER ;
+
 -- ------------------------------ PEDIDO - ADD UPDATE DELETE -----------------------------
 
 DROP PROCEDURE IF EXISTS addPedido;
