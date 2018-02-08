@@ -485,9 +485,9 @@ END;
 //
 DELIMITER ;
 
-DROP PROCEDURE IF EXISTS getFuncionariosAll;
+DROP PROCEDURE IF EXISTS getFuncionarios;
 DELIMITER //
-CREATE PROCEDURE getFuncionariosAll(
+CREATE PROCEDURE getFuncionarios(
 )
 BEGIN
 	SELECT 
