@@ -5,6 +5,7 @@
  */
 package colections;
 
+import dao.DaoFuncionario;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import model.Administrador;
@@ -43,10 +44,14 @@ public class Seed {
     }
 
     public void addSeeds() throws SQLException {
+        DaoFuncionario dao = new DaoFuncionario();
+
+        funcionarios.addAll(dao.getFuncionarios());
+
         //Cadastrando funcionários e logins
 //        Funcionario f1 = new Administrador("Administrador", "123456789", new Cargo("Administrador", 8000, false), "Francisco Jaquin");
 //        funcionarios.add(f1);
-//        logins.add(new Login("Administrador", "123456789"));
+        logins.add(new Login("Administrador", "123456789"));
 //
 //        Funcionario f2 = new Atendente("carlosAlmeida", "123456", new Cargo("Atendente", 980, false), "Carlos Almeida");
 //        funcionarios.add(f2);
@@ -70,7 +75,6 @@ public class Seed {
 
 //        Produto bebida1 = new Bebida("Chopp", 5.50);
 //        Produto bebida2 = new Bebida("Cerveja", 4.50);
-
         Produto pizza1 = new Pizza("Monta a pizza e assa", "Pizza margarita", 29.90);
         Produto pizza2 = new Pizza("Monta a pizza e assa", "Pizza de brócolis", 29.90);
 

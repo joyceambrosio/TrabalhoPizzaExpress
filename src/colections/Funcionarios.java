@@ -81,4 +81,8 @@ public class Funcionarios {
         }
     }
 
+    public void addAll(ArrayList<Funcionario> atualizar){
+       funcionarios.addAll(atualizar);
+    }
+    
 }
