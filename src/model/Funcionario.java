@@ -27,6 +27,15 @@ public abstract class Funcionario {
         this.pedido = pedido;
     }
 
+    public Funcionario(String nome, String nomeUsuario, String senha, Cargo cargo) {
+        this.nome = nome;
+        this.nomeUsuario = nomeUsuario;
+        this.senha = senha;
+        this.cargo = cargo;
+    }
+    
+    
+
 
     public int getId() {
         return id;

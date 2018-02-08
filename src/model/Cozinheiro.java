@@ -15,7 +15,9 @@ public class Cozinheiro extends Funcionario {
         super(id, nome, nomeUsuario, senha, cargo);
     }
 
- 
+    public Cozinheiro(String nome, String nomeUsuario, String senha, Cargo cargo) {
+        super(nome, nomeUsuario, senha, cargo);
+    }
 
     @Override
     public void imprimeInformacoesFuncionario() {

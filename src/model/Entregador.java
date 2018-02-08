@@ -15,8 +15,10 @@ public class Entregador extends Funcionario {
         super(id, nome, nomeUsuario, senha, cargo);
     }
 
-  
-    
+    public Entregador(String nome, String nomeUsuario, String senha, Cargo cargo) {
+        super(nome, nomeUsuario, senha, cargo);
+    }
+
     @Override
     public void imprimeInformacoesFuncionario() {
         System.out.println("Nome Funcionario: " + super.getNome() + " Usuário: " + getNomeUsuario() + " Senha: " + super.getSenha()

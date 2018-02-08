@@ -14,7 +14,10 @@ public class Atendente extends Funcionario {
     public Atendente(int id, String nome, String nomeUsuario, String senha, Cargo cargo) {
         super(id, nome, nomeUsuario, senha, cargo);
     }
- 
+
+    public Atendente(String nome, String nomeUsuario, String senha, Cargo cargo) {
+        super(nome, nomeUsuario, senha, cargo);
+    }
 
     @Override
     public void imprimeInformacoesFuncionario() {

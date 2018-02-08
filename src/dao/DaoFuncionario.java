@@ -40,9 +40,11 @@ public class DaoFuncionario {
             statement.setString(2, novoFunc.getNomeUsuario());
             statement.setString(3, novoFunc.getNome());
             statement.setString(4, novoFunc.getSenha());
+
             statement.execute();
 
             resultSet = statement.getResultSet();
+
             Funcionario funcionario = null;
 
             int idCargo = novoFunc.getCargo().getIdCargo();
@@ -62,11 +64,13 @@ public class DaoFuncionario {
                 funcionario = new Administrador(idCargo, nomeFuncionario, nomeUsuario, senha, cargo);
             }
 
-            funcionario.setId(resultSet.getInt(1));
-            statement.close();
-
+            if (resultSet.next()) {
+                funcionario.setId(resultSet.getInt(1));
+            }
+            
             funcionarios.add(funcionario);
 
+            statement.close();
         }
     }
 
