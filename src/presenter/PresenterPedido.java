@@ -46,7 +46,7 @@ public class PresenterPedido {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    PresenterCadastrarPedido presenterPedido = new PresenterCadastrarPedido();
+                    PresenterCadastrarPedido presenterPedido = PresenterCadastrarPedido.getInstancia();
                 } catch (SQLException ex) {
                     Logger.getLogger(PresenterMenu.class.getName()).log(Level.SEVERE, null, ex);
                 }

@@ -10,6 +10,8 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -27,20 +29,45 @@ public class PresenterModificaCliente {
 
     private Cliente cliente;
     private CadastrarCliente view;
+    private static PresenterModificaCliente instancia;
 
-    public PresenterModificaCliente(Cliente cliente) {
-        this.cliente = cliente;
+    private PresenterModificaCliente(Cliente c) {
+
+        this.cliente = c;
         this.view = new CadastrarCliente();
         configuraExibicao();
         modificarCliente();
-        
-        
+        instancia = null;
+
         URL caminhoImagem = this.getClass().getClassLoader().getResource("icones/PizzaIcone.png");
         Image iconeTitulo = Toolkit.getDefaultToolkit().getImage(caminhoImagem);
         view.setIconImage(iconeTitulo);
         view.setLocationRelativeTo(null);
+        view.setTitle("Modificar Cliente");
+
+        this.view.addWindowListener(new WindowAdapter() {
+            @SuppressWarnings("override")
+            public void windowClosing(WindowEvent evt) {
+                instancia = null;
+                view.dispose();
+            }
+        });
+
         view.setVisible(true);
 
+    }
+
+    public static PresenterModificaCliente getInstancia(Cliente c) {
+        if (instancia == null) {
+            instancia = new PresenterModificaCliente(c);
+            return instancia;
+        }
+
+        return instancia;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
     private void configuraExibicao() {
@@ -83,6 +110,7 @@ public class PresenterModificaCliente {
                     }
 
                     JOptionPane.showMessageDialog(view, "Cliente modificado com sucesso");
+                    instancia = null;
                     view.dispose();
 
                 }

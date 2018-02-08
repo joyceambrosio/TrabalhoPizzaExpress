@@ -16,12 +16,12 @@ import javax.swing.JTextField;
  *
  * @author Aluno
  */
-public class CadastrarProdutoView extends javax.swing.JFrame {
+public class CadastrarProduto extends javax.swing.JFrame {
 
     /**
      * Creates new form CadastrarProdutoView
      */
-    public CadastrarProdutoView() {
+    public CadastrarProduto() {
         initComponents();
     }
 
@@ -113,7 +113,7 @@ public class CadastrarProdutoView extends javax.swing.JFrame {
 
         jRadioButton1.setText("jRadioButton1");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setText("Nome do Produto");

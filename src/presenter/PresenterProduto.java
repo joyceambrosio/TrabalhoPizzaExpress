@@ -66,7 +66,7 @@ public class PresenterProduto {
         view.getjButtonNovoProduto().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                PresenterCadastarProduto presenterCadastroProduto = new PresenterCadastarProduto();
+                PresenterCadastarProduto presenterCadastroProduto = PresenterCadastarProduto.getInstancia();
             }
         });
     }

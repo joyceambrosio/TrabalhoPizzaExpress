@@ -33,7 +33,7 @@ public class PresenterCadastrarCliente {
         this.view = new CadastrarCliente();
                
         cadastrarCliente();
-        configurarTela();
+        
   
         this.view.addWindowListener(new WindowAdapter() {
             @SuppressWarnings("override")
@@ -42,6 +42,8 @@ public class PresenterCadastrarCliente {
                 view.dispose();
             }
         });
+        
+        configurarTela();
     }
 
     public static PresenterCadastrarCliente getInstancia() {

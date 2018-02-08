@@ -9,8 +9,13 @@ import colections.Clientes;
 import colections.Funcionarios;
 import colections.Pedidos;
 import colections.Produtos;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -33,18 +38,41 @@ public class PresenterCadastrarPedido {
     private CadastrarPedido view;
     private Pedido pedidoTemp;
     protected ArrayList<Produto> produtosPedido;
+    private static PresenterCadastrarPedido instancia;
 
-    PresenterCadastrarPedido() throws SQLException {
+    private PresenterCadastrarPedido() throws SQLException {
         view = new CadastrarPedido();
         produtosPedido = new ArrayList<>();
         fechar();
         populaCliente();
-        populaProduto();
         populaEntregador();
         adicionaProdutoPedido();
         adicionaPedido();
+
+        populaProduto();
+
+        this.view.addWindowListener(new WindowAdapter() {
+            @SuppressWarnings("override")
+            public void windowClosing(WindowEvent evt) {
+                instancia = null;
+                view.dispose();
+            }
+        });
+
+        URL caminhoImagem = this.getClass().getClassLoader().getResource("icones/PizzaIcone.png");
+        Image iconeTitulo = Toolkit.getDefaultToolkit().getImage(caminhoImagem);
+        view.setIconImage(iconeTitulo);
+        view.setTitle("Cadastrar Pedido");
         view.setLocationRelativeTo(null);
         view.setVisible(true);
+    }
+
+    public static PresenterCadastrarPedido getInstancia() throws SQLException {
+        if (instancia == null) {
+            return instancia = new PresenterCadastrarPedido();
+        }
+
+        return instancia;
     }
 
     public void populaCliente() {
@@ -106,6 +134,8 @@ public class PresenterCadastrarPedido {
                     Produto p = Produtos.getInstancia().getProdutoByNome(nomeProduto);
                     produtosPedido.add(p);
                     populaTabelaPedido();
+                    instancia = null;
+                    view.dispose();
                 } catch (SQLException ex) {
                     Logger.getLogger(PresenterCadastrarPedido.class.getName()).log(Level.SEVERE, null, ex);
                 }

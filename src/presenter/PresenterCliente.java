@@ -9,7 +9,6 @@ import colections.Clientes;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -87,7 +86,8 @@ public class PresenterCliente {
                     Cliente c = Clientes.getInstancia().getClienteById(idCliente);
 
                     if (c != null) {
-                        PresenterModificaCliente presenterModificaCliente = new PresenterModificaCliente(c);
+                        PresenterModificaCliente presenterModificaCliente = PresenterModificaCliente.getInstancia(c);
+                       
                     }
 
                 }
