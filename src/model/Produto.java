@@ -16,10 +16,7 @@ public class Produto {
     protected double preco;
     private String categoria;
 
-    public Produto(int id, String nome, double preco) {
-        this.id = id;
-        this.nome = nome;
-        this.preco = preco;
+    public Produto() {
     }
 
     public Produto(String nome, double preco) {
@@ -27,13 +24,20 @@ public class Produto {
         this.preco = preco;
     }
 
-    public Produto() {
+    public Produto(int id, String nome, double preco) {
+        this.id = id;
+        this.nome = nome;
+        this.preco = preco;
     }
 
     public Produto(String nome) {
         this.nome = nome;
     }
 
+    public void setCategoria() {
+        this.categoria = "Produto";
+    }
+    
     public void setId(int id) {
         this.id = id;
     }

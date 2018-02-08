@@ -32,9 +32,15 @@ public class DaoProduto {
 
     public boolean addProduto(Produto produto) throws SQLException {
         if (produto.getCategoria().equals("Comida")) {
-            addProdutoComida((Pizza) produto);
+            addComida((Pizza) produto);
             return true;
         }
+
+        if (produto.getCategoria().equals("Bebida")) {
+            addBebida((Bebida) produto);
+            return true;
+        }
+
         if (produto.getCategoria().equals("Insumo")) {
             addInsumo((Insumo) produto);
             return true;
@@ -54,7 +60,7 @@ public class DaoProduto {
             resultSet = statement.getResultSet();
 
             if (resultSet.next()) {
-                System.out.println("Add Bebida chamado com sucesso");
+                //System.out.println("Add Bebida chamado com sucesso");
                 idComida = resultSet.getInt(1);
             }
             statement.close();
@@ -63,7 +69,7 @@ public class DaoProduto {
 
     }
 
-    public int addProdutoComida(Pizza produto) throws SQLException {
+    public int addComida(Pizza produto) throws SQLException {
         conexao = ConexaoBDMySQL.getInstancia();
 
         try (CallableStatement statement = conexao.getConexao().prepareCall("{call addComida(?, ?, ?)}")) {
@@ -76,7 +82,7 @@ public class DaoProduto {
             resultSet = statement.getResultSet();
 
             if (resultSet.next()) {
-                System.out.println("Add Pizza chamado com sucesso");
+                //System.out.println("Add Pizza chamado com sucesso");
                 idComida = resultSet.getInt(1);
             }
             statement.close();
@@ -112,7 +118,7 @@ public class DaoProduto {
             resultSet = statement.getResultSet();
 
             if (resultSet.next()) {
-                System.out.println("Add Insumo chamado com sucesso");
+                //System.out.println("Add Insumo chamado com sucesso");
                 idComida = resultSet.getInt(1);
             }
             statement.close();
@@ -139,8 +145,7 @@ public class DaoProduto {
                 int idCategoria = resultSet.getInt(5);
                 String categoria = resultSet.getString(6);
 
-                System.out.println(idProduto + nome + preco + receita + idCategoria + categoria);
-
+                //System.out.println(idProduto + nome + preco + receita + idCategoria + categoria);
                 if (categoria.equals("Bebida")) {
 
                     Bebida novaBebida = new Bebida(idProduto, nome, preco);
@@ -161,8 +166,14 @@ public class DaoProduto {
 
         getIngredientes();
 
-        System.out.println("Chamada de inserção de get produtos feita com sucesso!");
-        Produtos.getInstancia().imprimeLista();
+        //System.out.println("Chamada de inserção de get produtos feita com sucesso!");
+        //Produtos.getInstancia().imprimeLista();
+        Pizza jesus = (Pizza) produtos.get(7);
+
+        for (Insumo i : jesus.getIngredientes()) {
+        
+            System.out.println(i.getNome());
+        }
 
         return produtos;
 
@@ -172,12 +183,12 @@ public class DaoProduto {
         conexao = ConexaoBDMySQL.getInstancia();
 
         for (Produto p : this.produtos) {
-            System.out.println("entrou");
-            System.out.println(p.toString());
 
             if (p.getCategoria().equals("Pizza")) {
+
                 try (CallableStatement statement = conexao.getConexao().prepareCall("{call getIngredientesComida(?)}")) {
                     ingredientes.clear();
+                    
                     Pizza pizza = (Pizza) p;
 
                     statement.setInt(1, pizza.getId());
@@ -206,7 +217,6 @@ public class DaoProduto {
             }
         }
 
-        System.out.println("Chamada de inserção de get ingredientes feita com sucesso!");
-
+        //System.out.println("Chamada de inserção de get ingredientes feita com sucesso!");
     }
 }

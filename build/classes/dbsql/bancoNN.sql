@@ -101,10 +101,12 @@ CREATE TABLE IF NOT EXISTS ComidaIngrediente (
     unidade VARCHAR(25) NOT NULL,
     quantidade VARCHAR(25) NOT NULL,
     CONSTRAINT pkComidaIngrediente PRIMARY KEY (idIngrediente , idComida),
-    CONSTRAINT fkComidaIngredienteIngridente FOREIGN KEY (idIngrediente)
+   
+    CONSTRAINT fkComidaIngredienteIngrediente  FOREIGN KEY (idIngrediente)
         REFERENCES Ingrediente(idIngrediente)
         ON DELETE CASCADE
         ON UPDATE CASCADE,
+   
     CONSTRAINT fkComidaIngredienteComida FOREIGN KEY (idComida)
         REFERENCES Produto (idProduto)
         ON DELETE CASCADE
