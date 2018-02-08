@@ -46,8 +46,7 @@ public class DaoCliente {
             resultSet = statement.getResultSet();
 
             if (resultSet.next()) {
-                System.out.println("Add Cliente chamado com sucesso");
-
+                
                 ids.add(resultSet.getInt(1));
                 ids.add(resultSet.getInt(2));
 

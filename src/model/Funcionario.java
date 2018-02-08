@@ -11,30 +11,22 @@ package model;
  */
 public abstract class Funcionario {
 
-    private static int uniqueId = 0;
-    private int id;
+    protected int id;
     protected String nome;
     protected String nomeUsuario;
     protected String senha;
     protected Cargo cargo;
     protected Pedido pedido;
 
-    public Funcionario(String nomeUsuario, String senha, Cargo cargo, String nome) {
-        id = uniqueId;
-        uniqueId++;
-        setNome(nome);
-        setNomeUsuario(nomeUsuario);
-        setSenha(senha);
-        setCargo(cargo);
+    public Funcionario(int id, String nome, String nomeUsuario, String senha, Cargo cargo) {
+        this.id = id;
+        this.nome = nome;
+        this.nomeUsuario = nomeUsuario;
+        this.senha = senha;
+        this.cargo = cargo;
+        this.pedido = pedido;
     }
 
-    public Funcionario() {
-    }
-
-    public Funcionario(String nomeUsuario, String senha) {
-        setNomeUsuario(nomeUsuario);
-        setSenha(senha);
-    }
 
     public int getId() {
         return id;
@@ -43,6 +35,12 @@ public abstract class Funcionario {
     public String getNomeUsuario() {
         return nomeUsuario;
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
+    
 
     public void setNomeUsuario(String nomeUsuario) {
         if (!nomeUsuario.equals(" ")) {

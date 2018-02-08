@@ -11,16 +11,10 @@ package model;
  */
 public class Atendente extends Funcionario {
 
-    public Atendente(String nomeUsuario, String senha, Cargo cargo, String nome) {
-        super(nomeUsuario, senha, cargo, nome);
+    public Atendente(int id, String nome, String nomeUsuario, String senha, Cargo cargo) {
+        super(id, nome, nomeUsuario, senha, cargo);
     }
-
-    public Atendente() {
-    }
-
-    public Atendente(String nomeUsuario, String senha) {
-        super(nomeUsuario, senha);
-    }
+ 
 
     @Override
     public void imprimeInformacoesFuncionario() {

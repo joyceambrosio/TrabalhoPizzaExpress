@@ -14,25 +14,24 @@ public class Cargo {
     private String cargo;
     private double salario;
     private boolean comissao;
+    private int idCargo;
 
-    public Cargo(String cargo, double salario, boolean comissao) {
-        setCargo(cargo);
-        setSalario(salario);
-        setComissao(comissao);
+    public Cargo(String cargo, double salario, boolean comissao, int idCargo) {
+        this.cargo = cargo;
+        this.salario = salario;
+        this.comissao = comissao;
+        this.idCargo = idCargo;
     }
 
-    public Cargo() {
+    public int getIdCargo() {
+        return idCargo;
     }
 
-    public Cargo(String cargo, double salario) {
-        setCargo(cargo);
-        setSalario(salario);
+    public void setIdCargo(int idCargo) {
+        this.idCargo = idCargo;
     }
 
-    public Cargo(String cargo, boolean comissao) {
-        setCargo(cargo);
-        setComissao(comissao);
-    }
+ 
 
     public String getCargo() {
         return cargo;

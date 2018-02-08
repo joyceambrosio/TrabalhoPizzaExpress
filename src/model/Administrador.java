@@ -13,72 +13,67 @@ import java.util.ArrayList;
  */
 public class Administrador extends Funcionario {
 
-    private static ArrayList<Funcionario> funcionarios;
-    private Relatorio relatorio;
-    private static ArrayList<Produto> produtos;
+//    private static ArrayList<Funcionario> funcionarios;
+//    private Relatorio relatorio;
+//    private static ArrayList<Produto> produtos;
 
-    public Administrador(String nomeUsuario, String senha, Cargo cargo, String nome) {
-        super(nomeUsuario, senha, cargo, nome);
+    public Administrador(int id, String nome, String nomeUsuario, String senha, Cargo cargo) {
+        super(id, nome, nomeUsuario, senha, cargo);
     }
 
-    public Administrador() {
-    }
-
-    public Administrador(String nomeUsuario, String senha) {
-        super(nomeUsuario, senha);
-    }
-
-    public static ArrayList<Funcionario> getFuncionarios() {
-        return funcionarios;
-    }
-
-    public static void setFuncionarios(ArrayList<Funcionario> funcionarios) {
-        Administrador.funcionarios = funcionarios;
-    }
-
-    public Relatorio getRelatorio() {
-        return relatorio;
-    }
-
-    public void setRelatorio(Relatorio relatorio) {
-        this.relatorio = relatorio;
-    }
-
-    public static ArrayList<Produto> getProdutos() {
-        return produtos;
-    }
-
-    public static void setProdutos(ArrayList<Produto> produtos) {
-        Administrador.produtos = produtos;
-    }
-
-    public void adicionarFuncionario(Funcionario funcionario) {
-        funcionarios.add(funcionario);
-    }
-
-    public void alterarFuncionario(Funcionario funcionario, int i) {
-        funcionarios.add(i, funcionario);
-    }
-
-    public void removerFuncionario(Funcionario funcionario) {
-        funcionarios.remove(funcionario);
-    }
-
-    public void adicionarProduto(Produto produto) {
-        produtos.add(produto);
-    }
-
-    public void alterarProduto(Produto produto, int i) {
-        produtos.add(i, produto);
-    }
-
-    public void removerProduto(Produto produto) {
-        produtos.remove(produto);
-    }
-
-    public void gerarRelatorio(String semana, int mes, int ano) {
-        relatorio.gererRelatorio(semana, mes, ano);
-    }
+    //alterar aqui
+//
+//    public static ArrayList<Funcionario> getFuncionarios() {
+//        return funcionarios;
+//    }
+//
+//    public static void setFuncionarios(ArrayList<Funcionario> funcionarios) {
+//        Administrador.funcionarios = funcionarios;
+//    }
+//
+//    public Relatorio getRelatorio() {
+//        return relatorio;
+//    }
+//
+//    public void setRelatorio(Relatorio relatorio) {
+//        this.relatorio = relatorio;
+//    }
+//
+//    public static ArrayList<Produto> getProdutos() {
+//        return produtos;
+//    }
+//
+//    public static void setProdutos(ArrayList<Produto> produtos) {
+//        Administrador.produtos = produtos;
+//    }
+//
+//    public void adicionarFuncionario(Funcionario funcionario) {
+//        funcionarios.add(funcionario);
+//    }
+//
+//    public void alterarFuncionario(Funcionario funcionario, int i) {
+//        funcionarios.add(i, funcionario);
+//    }
+//
+//    public void removerFuncionario(Funcionario funcionario) {
+//        funcionarios.remove(funcionario);
+//    }
+//
+//    public void adicionarProduto(Produto produto) {
+//        produtos.add(produto);
+//    }
+//
+//    public void alterarProduto(Produto produto, int i) {
+//        produtos.add(i, produto);
+//    }
+//
+//    public void removerProduto(Produto produto) {
+//        produtos.remove(produto);
+//    }
+//
+//    public void gerarRelatorio(String semana, int mes, int ano) {
+//        relatorio.gererRelatorio(semana, mes, ano);
+//    }
 
     @Override
     public void imprimeInformacoesFuncionario() {

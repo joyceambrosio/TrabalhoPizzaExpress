@@ -11,6 +11,8 @@ package model;
  */
 public class Relatorio {
 
+    
+    //alterar aqui
     private int mes;
     private int ano;
     private String semana;
@@ -19,7 +21,7 @@ public class Relatorio {
     public Relatorio(int mes, int ano) {
         this.mes = mes;
         this.ano = ano;
-        adm = new Administrador();
+     
     }
 
     public Relatorio() {

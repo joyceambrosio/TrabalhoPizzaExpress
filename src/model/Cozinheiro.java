@@ -11,16 +11,11 @@ package model;
  */
 public class Cozinheiro extends Funcionario {
 
-    public Cozinheiro(String nomeUsuario, String senha, Cargo cargo, String nome) {
-        super(nomeUsuario, senha, cargo, nome);
+    public Cozinheiro(int id, String nome, String nomeUsuario, String senha, Cargo cargo) {
+        super(id, nome, nomeUsuario, senha, cargo);
     }
 
-    public Cozinheiro() {
-    }
-
-    public Cozinheiro(String nomeUsuario, String senha) {
-        super(nomeUsuario, senha);
-    }
+ 
 
     @Override
     public void imprimeInformacoesFuncionario() {

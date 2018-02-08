@@ -44,25 +44,25 @@ public class Seed {
 
     public void addSeeds() throws SQLException {
         //Cadastrando funcionários e logins
-        Funcionario f1 = new Administrador("Administrador", "123456789", new Cargo("Administrador", 8000, false), "Francisco Jaquin");
-        funcionarios.add(f1);
-        logins.add(new Login("Administrador", "123456789"));
-
-        Funcionario f2 = new Atendente("carlosAlmeida", "123456", new Cargo("Atendente", 980, false), "Carlos Almeida");
-        funcionarios.add(f2);
-        logins.add(new Login("carlosAlmeida", "123456"));
-
-        Funcionario f3 = new Cozinheiro("chefePedro", "123456", new Cargo("Cozinheiro", 1200, false), "Pedro Cunha");
-        funcionarios.add(f3);
-        logins.add(new Login("chefePedro", "123456"));
-
-        Funcionario f4 = new Entregador("entregadorRoberto", "123456", new Cargo("Entregador", true), "Roberto Augsto");
-        funcionarios.add(f4);
-        logins.add(new Login("entregadorRoberto", "123456"));
-
-        Funcionario f5 = new Cozinheiro("subchefErick", "123456", new Cargo("Cozinheiro", 1200, false), "Erick Ramos");
-        funcionarios.add(f5);
-        logins.add(new Login("subchefErick", "123456"));
+//        Funcionario f1 = new Administrador("Administrador", "123456789", new Cargo("Administrador", 8000, false), "Francisco Jaquin");
+//        funcionarios.add(f1);
+//        logins.add(new Login("Administrador", "123456789"));
+//
+//        Funcionario f2 = new Atendente("carlosAlmeida", "123456", new Cargo("Atendente", 980, false), "Carlos Almeida");
+//        funcionarios.add(f2);
+//        logins.add(new Login("carlosAlmeida", "123456"));
+//
+//        Funcionario f3 = new Cozinheiro("chefePedro", "123456", new Cargo("Cozinheiro", 1200, false), "Pedro Cunha");
+//        funcionarios.add(f3);
+//        logins.add(new Login("chefePedro", "123456"));
+//
+//        Funcionario f4 = new Entregador("entregadorRoberto", "123456", new Cargo("Entregador", true), "Roberto Augsto");
+//        funcionarios.add(f4);
+//        logins.add(new Login("entregadorRoberto", "123456"));
+//
+//        Funcionario f5 = new Cozinheiro("subchefErick", "123456", new Cargo("Cozinheiro", 1200, false), "Erick Ramos");
+//        funcionarios.add(f5);
+//        logins.add(new Login("subchefErick", "123456"));
 
         //Polimorfismo
         Produto produto1 = new Insumo("Vinho tinto", 3.00);
