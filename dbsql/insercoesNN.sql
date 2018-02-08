@@ -36,7 +36,7 @@ CALL addProduto(3, "Suco de frutas 350ml", 4.00);
 CALL addProduto(3, "Suco de tamarindo", 15.00);
 -- Testando upd e del
 CALL updProduto(5, "Suco de frutas 350ml", 3.50);
-CALL delProduto(6);
+-- CALL delProduto(6);
 
 -- adicionando algumas pizzas
 CALL addComida(2, "Pizza de 4 queijos", 25.99, "Fazer a massa, colocar qualquer queijo que tiver e assar");
@@ -44,56 +44,56 @@ CALL addComida(2, "Pizza marguerita", 25.99, "Fazer a massa, colocar queijo, man
 CALL addComida(2, "Pizza de brócolis", 30.99, "Fazer a massa, colocar brócolis e assar");
 CALL addComida(2, "Pizza portuguesa", 30.99, "Fazer a massa, colocar tudo que tiver e assar");
 CALL addComida(2, "Pizza baiana", 30.99, "Fazer a massa, colocar todas as pimentas e assar");
-CALL addComida(2, "Pizza teste", 30.99, "Fazer a massa, colocar todas as pimentas e assar");
+-- CALL addComida(2, "Pizza teste", 30.99, "Fazer a massa, colocar todas as pimentas e assar");
 
 -- Testando del e upd
 -- CALL updComida("Pizza Bahiana", 35.99, "Fazer a massa, colocar todas as pimentas e assar");
-CALL delComida(6);
+-- CALL delComida(6);
 
 
 -- adicionando ingredientes às pizzas
 
 -- pizza 1
-CALL addComidaIngrediente(1, 1, "Copos" ,"2/5");
-CALL addComidaIngrediente(1, 2, "unidades" ,"2");
-CALL addComidaIngrediente(1, 11, "Copos", "2/5");
-CALL addComidaIngrediente(1, 4, "gramas", "100");
-CALL addComidaIngrediente(1, 5, "gramas", "100");
-CALL addComidaIngrediente(1, 6, "gramas" ,"100");
-CALL addComidaIngrediente(1, 7, "gramas", "100");
--- pizza 2
-CALL addComidaIngrediente(2, 1, "Copos", "2/5");
-CALL addComidaIngrediente(2, 2, "unidades", "2");
-CALL addComidaIngrediente(2, 11, "Copos", "2/5");
-CALL addComidaIngrediente(2, 9, "unidades", "2");
-CALL addComidaIngrediente(2, 4, "gramas", "200");
-CALL addComidaIngrediente(2, 5, "1gramas", "100");
--- pizza 3
-CALL addComidaIngrediente(3, 1, "Copos", "2/5");
-CALL addComidaIngrediente(3, 2, "unidades", "2");
-CALL addComidaIngrediente(3, 11, "Copos", "2/5");
-CALL addComidaIngrediente(3, 9, "unidades", "2");
-CALL addComidaIngrediente(3, 4, "gramas", "100 ");
-CALL addComidaIngrediente(3, 5, " gramas", "100");
-CALL addComidaIngrediente(3, 10, "gramas", "100 ");
--- pizza 4
-CALL addComidaIngrediente(4, 1, "Copos", "2/5");
-CALL addComidaIngrediente(4, 2, " unidades", "2");
-CALL addComidaIngrediente(4, 11, "Copos", "2/5");
-CALL addComidaIngrediente(4, 9, "unidades", "2 ");
-CALL addComidaIngrediente(4, 4, "gramas", "100");
-CALL addComidaIngrediente(4, 5, " gramas", "100");
-CALL addComidaIngrediente(4, 12, "gramas", "100");
-CALL addComidaIngrediente(4, 13, "gramas", "100");
-CALL addComidaIngrediente(4, 14, "gramas", "100");
--- pizza 5
-CALL addComidaIngrediente(5, 1, "Copos", "2/5");
-CALL addComidaIngrediente(5, 2, "unidades", "2");
-CALL addComidaIngrediente(5, 11, "2/5 Copos", "2/5");
-CALL addComidaIngrediente(5, 9, "unidades", "2");
+CALL addComidaIngrediente(5, 1, "Copos" ,"2/5");
+CALL addComidaIngrediente(5, 2, "unidades" ,"2");
+CALL addComidaIngrediente(5, 11, "Copos", "2/5");
 CALL addComidaIngrediente(5, 4, "gramas", "100");
-CALL addComidaIngrediente(5, 14, "gramas", "100");
-CALL addComidaIngrediente(5, 10, "gramas", "100");
+CALL addComidaIngrediente(5, 5, "gramas", "100");
+CALL addComidaIngrediente(5, 6, "gramas" ,"100");
+CALL addComidaIngrediente(5, 7, "gramas", "100");
+-- pizza 2
+CALL addComidaIngrediente(6, 1, "Copos", "2/5");
+CALL addComidaIngrediente(6, 2, "unidades", "2");
+CALL addComidaIngrediente(6, 11, "Copos", "2/5");
+CALL addComidaIngrediente(6, 9, "unidades", "2");
+CALL addComidaIngrediente(6, 4, "gramas", "200");
+CALL addComidaIngrediente(6, 5, "1gramas", "100");
+-- pizza 3
+CALL addComidaIngrediente(7, 1, "Copos", "2/5");
+CALL addComidaIngrediente(7, 2, "unidades", "2");
+CALL addComidaIngrediente(7, 11, "Copos", "2/5");
+CALL addComidaIngrediente(7, 9, "unidades", "2");
+CALL addComidaIngrediente(7, 4, "gramas", "100 ");
+CALL addComidaIngrediente(7, 5, " gramas", "100");
+CALL addComidaIngrediente(7, 10, "gramas", "100 ");
+-- pizza 4
+CALL addComidaIngrediente(8, 1, "Copos", "2/5");
+CALL addComidaIngrediente(8, 2, " unidades", "2");
+CALL addComidaIngrediente(8, 11, "Copos", "2/5");
+CALL addComidaIngrediente(8, 9, "unidades", "2 ");
+CALL addComidaIngrediente(8, 4, "gramas", "100");
+CALL addComidaIngrediente(8, 5, " gramas", "100");
+CALL addComidaIngrediente(8, 12, "gramas", "100");
+CALL addComidaIngrediente(8, 13, "gramas", "100");
+CALL addComidaIngrediente(8, 14, "gramas", "100");
+-- pizza 5
+CALL addComidaIngrediente(9, 1, "Copos", "2/5");
+CALL addComidaIngrediente(9, 2, "unidades", "2");
+CALL addComidaIngrediente(9, 11, "2/5 Copos", "2/5");
+CALL addComidaIngrediente(9, 9, "unidades", "2");
+CALL addComidaIngrediente(9, 4, "gramas", "100");
+CALL addComidaIngrediente(9, 14, "gramas", "100");
+CALL addComidaIngrediente(9, 10, "gramas", "100");
 -- testando upd e del
 CALL updComidaIngrediente(4, 9, "unidade", "1");
 CALL delComidaIngrediente(3, 10);
@@ -109,13 +109,15 @@ CALL addCliente("Valentina", "Avenida esqueci", 217, "Guararema", "Alegre", "ES"
 
 
 select * from cargo;
+CALL addCargo("Administrador", 1200.00, 0);
 CALL addCargo("Atendente", 1200.00, 0);
 CALL addCargo("Cozinheiro", 1800.00, 0);
 CALL addCargo("Entregador", 0.00, 1);
 
-CALL addFuncionario(1, "Joy", "12346");
-CALL addFuncionario(2, "Nah", "12346");
-CALL addFuncionario(3, "Wagner", "12346");
+CALL addFuncionario(1, "Administrador", "Administrador", "123456789");
+CALL addFuncionario(2, "Joyce", "Joy", "123");
+CALL addFuncionario(3, "Natalia", "NatyCristal", "123");
+CALL addFuncionario(4, "Carlos Alberto", "Carlos", "123");
 
 CALL addPedido(2, 3);
 CALL addPedido(1, null);
@@ -128,19 +130,19 @@ CALL addPedidoProduto(2, 3, 1);
 CALL addPedidoProduto(2, 4, 1);
 CALL updPedidoProduto(2, 4, 6);
 
-select * from Produto;
-
-
-SELECT * FROM Pedido;
-SELECT * FROM PedidoProduto;
-select * from comida;
-select * from cliente;
-select * from endereco;
-select * from cliente inner join endereco on endereco.idEndereco = cliente.idEndereco;
-select * from Produto INNER JOIN Comida on Produto.idProduto = Comida.idProduto;
-select Cliente.nome, Produto.nome, Pedido.Total from Pedido inner join PedidoProduto ON Pedido.idPedido = PedidoProduto.idPedido INNER JOIN Produto on PedidoProduto.idProduto = Produto.idProduto INNER JOIN Cliente on Cliente.idCliente = Pedido.idCliente LEFT JOIN Funcionario on Pedido.idFuncionario = Funcionario.idFuncionario;
-
-
+-- select * from Produto;
+-- 
+-- 
+-- SELECT * FROM Pedido;
+-- SELECT * FROM PedidoProduto;
+-- select * from comida;
+-- select * from cliente;
+-- select * from endereco;
+-- select * from cliente inner join endereco on endereco.idEndereco = cliente.idEndereco;
+-- select * from Produto INNER JOIN Comida on Produto.idProduto = Comida.idProduto;
+-- select Cliente.nome, Produto.nome, Pedido.Total from Pedido inner join PedidoProduto ON Pedido.idPedido = PedidoProduto.idPedido INNER JOIN Produto on PedidoProduto.idProduto = Produto.idProduto INNER JOIN Cliente on Cliente.idCliente = Pedido.idCliente LEFT JOIN Funcionario on Pedido.idFuncionario = Funcionario.idFuncionario;
+-- 
+-- 
 
 INSERT INTO 
 Pedido (idCliente)

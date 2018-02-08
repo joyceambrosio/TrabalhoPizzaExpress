@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.Cliente;
-import view.Menu;
+import view.ViewMenu;
 
 /**
  *
@@ -22,9 +22,9 @@ import view.Menu;
  */
 public class PresenterCliente {
 
-    private Menu menu;
+    private ViewMenu menu;
 
-    public PresenterCliente(Menu menu) {
+    public PresenterCliente(ViewMenu menu) {
         this.menu = menu;
 
         adicionarCliente();

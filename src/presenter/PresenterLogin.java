@@ -12,8 +12,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.URL;
 import javax.swing.JOptionPane;
-import view.Login;
-import view.Menu;
+import view.ViewLogin;
+import view.ViewMenu;
 
 /**
  *
@@ -21,10 +21,10 @@ import view.Menu;
  */
 public class PresenterLogin {
 
-    private Login view;
+    private ViewLogin view;
    
 
-    public PresenterLogin(Login view) {
+    public PresenterLogin(ViewLogin view) {
         this.view = view;
 
         validarLogin();

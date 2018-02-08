@@ -18,7 +18,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.Cliente;
 import model.Endereco;
-import view.CadastrarCliente;
+import view.ViewCadastrarCliente;
 
 /**
  *
@@ -26,11 +26,11 @@ import view.CadastrarCliente;
  */
 public class PresenterCadastrarCliente {
 
-    private CadastrarCliente view;
+    private ViewCadastrarCliente view;
     private static PresenterCadastrarCliente instancia;
 
     private PresenterCadastrarCliente() {
-        this.view = new CadastrarCliente();
+        this.view = new ViewCadastrarCliente();
                
         cadastrarCliente();
         

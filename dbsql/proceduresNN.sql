@@ -426,11 +426,12 @@ DELIMITER //
 CREATE PROCEDURE addFuncionario(
 	IN idCargoIN INT, 
 	IN usuarioIN varchar(45), 
+	IN nomeIN varchar(45),
 	IN senhaIN varchar(45)
 )
 BEGIN
-	INSERT INTO Funcionario (idCargo, usuario, senha) 
-	VALUES(idCargoIN, usuarioIN, senhaIN);
+	INSERT INTO Funcionario (idCargo, nome, usuario, senha) 
+	VALUES(idCargoIN, nomeIN, usuarioIN, senhaIN);
 
 	SELECT LAST_INSERT_ID();
 
@@ -443,14 +444,14 @@ DELIMITER //
 CREATE PROCEDURE updFuncionario(
 	IN idFuncionarioIN INT,
 	IN idCargoIN INT, 
-	IN usuarioIN varchar(45), 
+	IN nomeIN varchar(45), 
 	IN senhaIN varchar(45)
 )
 BEGIN
 	UPDATE Funcionario
 	SET 
 		idCargo = idCargoIN,
-		usuario = usuarioIN,
+		nome = usuarioIN,
 		senha = senhaIN
 	WHERE idFuncionario = idFuncionarioIN;
 END;

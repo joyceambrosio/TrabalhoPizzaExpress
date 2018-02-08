@@ -14,7 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import model.Produto;
-import view.Menu;
+import view.ViewMenu;
 import presenter.*;
 
 /**
@@ -23,9 +23,9 @@ import presenter.*;
  */
 public class PresenterProduto {
     
-    private Menu view;
+    private ViewMenu view;
 
-    public PresenterProduto(Menu view) {
+    public PresenterProduto(ViewMenu view) {
         this.view = view;
         
         try {

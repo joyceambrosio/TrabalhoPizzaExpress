@@ -19,6 +19,7 @@ CREATE TABLE IF NOT EXISTS Cargo (
 CREATE TABLE IF NOT EXISTS Funcionario (
     idFuncionario INT NOT NULL AUTO_INCREMENT,
     idCargo INT NOT NULL,
+    nome VARCHAR(45) NOT NULL,
     usuario VARCHAR(45) NOT NULL,
     senha VARCHAR(45) NOT NULL,
     ativo CHAR(1) NOT NULL DEFAULT 1,
@@ -101,14 +102,12 @@ CREATE TABLE IF NOT EXISTS ComidaIngrediente (
     unidade VARCHAR(25) NOT NULL,
     quantidade VARCHAR(25) NOT NULL,
     CONSTRAINT pkComidaIngrediente PRIMARY KEY (idIngrediente , idComida),
-    CONSTRAINT fkComidaIngredienteIngridente FOREIGN KEY (idIngrediente)
+    CONSTRAINT fkComidaIngredienteIngrediente FOREIGN KEY (idIngrediente)
         REFERENCES Ingrediente(idIngrediente)
         ON DELETE CASCADE
         ON UPDATE CASCADE,
     CONSTRAINT fkComidaIngredienteComida FOREIGN KEY (idComida)
         REFERENCES Produto (idProduto)
-        ON DELETE CASCADE
-        ON UPDATE CASCADE
 )  ENGINE=INNODB;
 
 CREATE TABLE IF NOT EXISTS Pedido (

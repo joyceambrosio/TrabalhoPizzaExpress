@@ -13,12 +13,12 @@ import javax.swing.JTextField;
  *
  * @author Aluno
  */
-public class CadastrarCliente extends javax.swing.JFrame {
+public class ViewCadastrarCliente extends javax.swing.JFrame {
 
     /**
      * Creates new form CadastrarCliente
      */
-    public CadastrarCliente() {
+    public ViewCadastrarCliente() {
         initComponents();
     }
 

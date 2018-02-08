@@ -24,7 +24,7 @@ import model.Bebida;
 import model.Insumo;
 import model.Pizza;
 import model.Produto;
-import view.CadastrarProduto;
+import view.ViewCadastrarProduto;
 
 /**
  *
@@ -35,10 +35,10 @@ public class PresenterCadastarProduto {
     private ArrayList<Insumo> ingredientesTemp;
     private static PresenterCadastarProduto instancia;
 
-    private CadastrarProduto view;
+    private ViewCadastrarProduto view;
 
     private PresenterCadastarProduto() {
-        this.view = new CadastrarProduto();
+        this.view = new ViewCadastrarProduto();
         ingredientesTemp = new ArrayList<>();
         EstadoInsumo();
         EscutaBotaoInsumo();

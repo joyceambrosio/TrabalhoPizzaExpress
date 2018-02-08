@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.Pedido;
-import view.Menu;
+import view.ViewMenu;
 
 /**
  *
@@ -23,9 +23,9 @@ import view.Menu;
  */
 public class PresenterPedido {
 
-    private Menu menu;
+    private ViewMenu menu;
 
-    public PresenterPedido(Menu menu) {
+    public PresenterPedido(ViewMenu menu) {
         this.menu = menu;
 
         populaMenuPedidos();

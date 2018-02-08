@@ -16,9 +16,9 @@ import model.Funcionario;
 import presenter.PresenterCadastrarCliente;
 import presenter.PresenterLogin;
 import presenter.PresenterMenu;
-import view.CadastrarCliente;
-import view.Login;
-import view.Menu;
+import view.ViewCadastrarCliente;
+import view.ViewLogin;
+import view.ViewMenu;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -39,8 +39,8 @@ public class Main {
         Seed seed = new Seed();
         seed.addSeeds();
 
-        PresenterLogin login = new PresenterLogin(new Login());
-        //PresenterCadastrarCliente cadastraCliente = new PresenterCadastrarCliente(new CadastrarCliente());
+        PresenterLogin login = new PresenterLogin(new ViewLogin());
+        //PresenterCadastrarCliente cadastraCliente = new PresenterCadastrarCliente(new ViewCadastrarCliente());
 
     }
 

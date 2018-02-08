@@ -11,7 +11,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.net.URL;
 import model.Produto;
-import view.CadastrarProduto;
+import view.ViewCadastrarProduto;
 
 /**
  *
@@ -19,7 +19,7 @@ import view.CadastrarProduto;
  */
 public class PresenterModificarProduto {
 
-    private CadastrarProduto view;
+    private ViewCadastrarProduto view;
     private static PresenterModificarProduto instancia;
     private Produto produto;
 
@@ -44,7 +44,7 @@ public class PresenterModificarProduto {
         Image iconeTitulo = Toolkit.getDefaultToolkit().getImage(caminhoImagem);
         view.setIconImage(iconeTitulo);
         view.setTitle("Modificar Produto");
-        view = new CadastrarProduto();
+        view = new ViewCadastrarProduto();
     }
     
     

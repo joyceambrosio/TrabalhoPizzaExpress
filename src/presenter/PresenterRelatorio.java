@@ -5,7 +5,7 @@
  */
 package presenter;
 
-import view.Menu;
+import view.ViewMenu;
 
 /**
  *
@@ -13,7 +13,7 @@ import view.Menu;
  */
 public class PresenterRelatorio {
     
-    private Menu menu;
+    private ViewMenu menu;
     
     
     

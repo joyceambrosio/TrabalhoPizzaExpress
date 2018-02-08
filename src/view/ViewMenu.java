@@ -19,12 +19,12 @@ import javax.swing.JTextField;
  *
  * @author Aluno
  */
-public class Menu extends javax.swing.JFrame {
+public class ViewMenu extends javax.swing.JFrame {
 
     /**
      * Creates new form Menu
      */
-    public Menu() {
+    public ViewMenu() {
         initComponents();
     }
 

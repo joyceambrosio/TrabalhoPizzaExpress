@@ -8,7 +8,7 @@ package presenter;
 import colections.Funcionarios;
 import javax.swing.table.DefaultTableModel;
 import model.Funcionario;
-import view.Menu;
+import view.ViewMenu;
 
 /**
  *
@@ -16,9 +16,9 @@ import view.Menu;
  */
 public class PresenterFuncionario {
     
-    private Menu menu;
+    private ViewMenu menu;
 
-    public PresenterFuncionario(Menu menu) {
+    public PresenterFuncionario(ViewMenu menu) {
         this.menu = menu;
         
         populaMenuFuncionarios();

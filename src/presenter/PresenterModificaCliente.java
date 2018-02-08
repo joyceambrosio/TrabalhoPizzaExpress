@@ -19,7 +19,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.Cliente;
 import model.Endereco;
-import view.CadastrarCliente;
+import view.ViewCadastrarCliente;
 
 /**
  *
@@ -28,13 +28,13 @@ import view.CadastrarCliente;
 public class PresenterModificaCliente {
 
     private Cliente cliente;
-    private CadastrarCliente view;
+    private ViewCadastrarCliente view;
     private static PresenterModificaCliente instancia;
 
     private PresenterModificaCliente(Cliente c) {
 
         this.cliente = c;
-        this.view = new CadastrarCliente();
+        this.view = new ViewCadastrarCliente();
         configuraExibicao();
         modificarCliente();
         instancia = null;

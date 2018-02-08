@@ -11,7 +11,7 @@ import java.awt.Toolkit;
 import java.net.URL;
 import javax.swing.event.ChangeEvent;
 
-import view.Menu;
+import view.ViewMenu;
 
 /**
  *
@@ -20,7 +20,7 @@ import view.Menu;
 public final class PresenterMenu {
 
     private static PresenterMenu instancia;
-    private Menu view;
+    private ViewMenu view;
     private PresenterCliente abaCliente;
     private PresenterPedido abaPedido;
     private PresenterProduto abaProduto;
@@ -29,13 +29,13 @@ public final class PresenterMenu {
     
     public static PresenterMenu getInstancia(){
         if(instancia == null){
-            instancia = new PresenterMenu(new Menu());
+            instancia = new PresenterMenu(new ViewMenu());
         }
         
         return instancia;
     }
 
-    private PresenterMenu(Menu view) {
+    private PresenterMenu(ViewMenu view) {
         this.view = view;
 
         instanciarAbas();
