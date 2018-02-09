@@ -201,14 +201,14 @@ DELIMITER //
 CREATE PROCEDURE updComida(
 	IN idProdutoIN INT,
 	IN nomeIN varchar(45), 
-	IN precoIN double
+	IN precoIN double, 
+	IN receitaIN varchar(500)
 )
 BEGIN
 	UPDATE Produto
 	SET 
 		nome = nomeIN,
-		preco = precoIN,
-		receita = receitaIN
+		preco = precoIN
 	WHERE idProduto = idProdutoIN;
 
 	UPDATE Comida 
@@ -283,6 +283,19 @@ BEGIN
 END;
 //
 DELIMITER ;
+
+DROP PROCEDURE IF EXISTS delComidaIngredientes;
+DELIMITER //
+CREATE PROCEDURE delComidaIngredientes(
+	IN idComidaIN INT
+)
+BEGIN
+	DELETE FROM ComidaIngrediente
+	WHERE idComida = idComidaIN;
+END;
+//
+DELIMITER ;
+
 
 -- ------------------------------ CLIENTE - ADD GET UPDATE ATIVA/DESATIVA -----------------------------
 

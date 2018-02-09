@@ -64,7 +64,7 @@ public class Clientes {
         dao.desativaCliente(idCliente);
     }
 
-    public boolean modifica(Cliente clienteOld, Cliente clienteNew) throws SQLException {
+    public boolean update(Cliente clienteOld, Cliente clienteNew) throws SQLException {
         // O que eu to fazendo aqui é pegar o cliente velho e um cliente novo com as novas variáveis
         // setar os ids do cliente velho no cliente novo e passar pra dao
 

@@ -3,12 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/joyce/Documents/GitHub/TrabalhoPizzaExpress/src/presenter/PresenterProduto.java</file>
+            <file>file:/C:/Users/joyce/Documents/GitHub/TrabalhoPizzaExpress/src/presenter/PresenterModificarProduto.java</file>
             <file>file:/C:/Users/joyce/Documents/GitHub/TrabalhoPizzaExpress/src/colections/Produtos.java</file>
-            <file>file:/C:/Users/joyce/Documents/GitHub/TrabalhoPizzaExpress/src/model/Pizza.java</file>
-            <file>file:/C:/Users/joyce/Documents/GitHub/TrabalhoPizzaExpress/src/model/Insumo.java</file>
             <file>file:/C:/Users/joyce/Documents/GitHub/TrabalhoPizzaExpress/src/presenter/PresenterCadastarProduto.java</file>
             <file>file:/C:/Users/joyce/Documents/GitHub/TrabalhoPizzaExpress/src/dao/DaoProduto.java</file>
-            <file>file:/C:/Users/joyce/Documents/GitHub/TrabalhoPizzaExpress/src/view/ViewCadastrarProduto.java</file>
         </group>
     </open-files>
 </project-private>

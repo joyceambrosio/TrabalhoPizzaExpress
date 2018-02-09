@@ -181,7 +181,6 @@ public class PresenterCadastarProduto {
 
             }
         });
-
     }
 
     public void cadastrarInsumo() {
@@ -274,6 +273,15 @@ public class PresenterCadastarProduto {
 
     }
 
+    public boolean ingredienteUnico(Produto produto) {
+        for (Produto p : ingredientesTemp) {
+            if (p.getId() == produto.getId()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public void incluirIngredientes() {
         view.getjButtonIncluir().addActionListener(new ActionListener() {
             @Override
@@ -284,25 +292,22 @@ public class PresenterCadastarProduto {
                 String qtd = view.getjTextFieldQuantidade().getText();
 
                 if (validarCamposIngredientes(und, qtd)) {
-
                     produto.setUnidade(und);
                     produto.setQuantidade(qtd);
-
                     if (produto != null) {
-                        if (!ingredientesTemp.contains(produto)) {
+                        if (ingredienteUnico(produto)) {
                             ingredientesTemp.add(produto);
                             popularTabelaIngredientes();
                         } else {
                             JOptionPane.showMessageDialog(view, "O ingrediente já está na lista");
                         }
-                    } else {
-                        JOptionPane.showMessageDialog(view, "Não foi possível adicionar o ingrediente");
                     }
-
+                } else {
+                    JOptionPane.showMessageDialog(view, "Não foi possível adicionar o ingrediente");
                 }
             }
-
-        });
+        }
+        );
     }
 
     public void removerIngerdientes() {
@@ -325,10 +330,12 @@ public class PresenterCadastarProduto {
 
                         } else {
                             JOptionPane.showMessageDialog(view, "Não foi possível remover o ingrediente");
+
                         }
 
                     } catch (SQLException ex) {
-                        Logger.getLogger(PresenterCadastarProduto.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(PresenterCadastarProduto.class
+                                .getName()).log(Level.SEVERE, null, ex);
                     }
 
                 }

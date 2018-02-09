@@ -53,6 +53,27 @@ public class DaoProduto {
         return false;
     }
 
+    public boolean updateProduto(Produto produto) throws SQLException {
+        System.out.println("Dentro de update produto fazer update de: " + produto.getId() + " " + produto.getNome());
+
+        if (produto.getCategoria().equals("Insumo")) {
+            updInsumo((Insumo) produto);
+            return true;
+        }
+
+        if (produto.getCategoria().equals("Bebida")) {
+            updBebida((Bebida) produto);
+            return true;
+        }
+
+        if (produto.getCategoria().equals("Pizza")) {
+            updComida((Pizza) produto);
+            return true;
+        }
+
+        return false;
+    }
+
     public void addInsumo(Insumo insumo) throws SQLException {
 
         conexao = ConexaoBDMySQL.getInstancia();
@@ -130,6 +151,9 @@ public class DaoProduto {
         return idComida;
     }
 
+    
+  
+    
     public ArrayList<Produto> getProdutos() throws SQLException {
 
         conexao = ConexaoBDMySQL.getInstancia();
@@ -203,29 +227,102 @@ public class DaoProduto {
             }
         }
 
-        //System.out.println("Chamada de inserção de get ingredientes feita com sucesso!");
     }
 
     public void getIngredientes() throws SQLException {
-
         conexao = ConexaoBDMySQL.getInstancia();
-
         try (CallableStatement statement = conexao.getConexao().prepareCall("{call getIngredientes}")) {
-
             statement.execute();
-
             resultSet = statement.getResultSet();
-
             while (resultSet.next()) {
                 int idProduto = resultSet.getInt(1);
                 String nome = resultSet.getString(2);
 
                 Produto novoInsumo = new Insumo(idProduto, nome, 0.0);
                 produtos.add(novoInsumo);
-
             }
             statement.close();
         }
 
     }
+
+    private void updInsumo(Insumo insumo) throws SQLException {
+        System.out.println("Preparando a conexão para fazer update de: " + insumo.getId() + " " + insumo.getNome());
+        conexao = ConexaoBDMySQL.getInstancia();
+
+        try (CallableStatement statement = conexao.getConexao().prepareCall("{call updIngrediente(?, ?)}")) {
+            statement.setInt(1, insumo.getId());
+            statement.setString(2, insumo.getNome());
+            statement.execute();
+            resultSet = statement.getResultSet();
+
+            statement.close();
+        }
+    }
+
+    private void updBebida(Bebida bebida) throws SQLException {
+        
+        System.out.println("Preparando a conexão para fazer update de: " + bebida.getId() + " " + bebida.getNome());
+        
+        conexao = ConexaoBDMySQL.getInstancia();
+
+        try (CallableStatement statement = conexao.getConexao().prepareCall("{call updProduto(?, ?, ?)}")) {
+
+            statement.setInt(1, bebida.getId());
+            statement.setString(2, bebida.getNome());
+            statement.setDouble(3, bebida.getPreco());
+
+            statement.execute();
+            
+            resultSet = statement.getResultSet();
+
+            statement.close();
+            
+            System.out.println("Passsou update de: " + bebida.getId() + " " + bebida.getNome());
+        }
+
+    }
+
+    private void updComida(Pizza pizza) throws SQLException {
+        conexao = ConexaoBDMySQL.getInstancia();
+
+        try (CallableStatement statement = conexao.getConexao().prepareCall("{call updComida(?, ?, ?, ?)}")) {
+
+            statement.setInt(1, pizza.getId());
+            statement.setString(2, pizza.getNome());
+            statement.setDouble(3, pizza.getPreco());
+            statement.setString(4, pizza.getReceita());
+
+            statement.execute();
+
+            resultSet = statement.getResultSet();
+
+            statement.close();
+            System.out.println("Fez update");
+        }
+
+        try (CallableStatement statement = conexao.getConexao().prepareCall("{delComidaIngredientes(?)}")) {
+            statement.setInt(1, pizza.getId());
+            System.out.println("Deletou os ingredientes");
+        } catch (Exception e) {
+        }
+
+        for (Insumo p : pizza.getIngredientes()) {
+
+            try (CallableStatement statement = conexao.getConexao().prepareCall("{call addComidaIngrediente(?, ?, ?, ?)}")) {
+
+                statement.setInt(1, idComida);
+                statement.setInt(2, p.getId());
+                statement.setString(3, p.getUnidade());
+                statement.setString(4, p.getQuantidade());
+                statement.execute();
+
+                resultSet = statement.getResultSet();
+
+                statement.close();
+            }
+        }
+        System.out.println("Adicionou os ingredientes novos");
+    }
+
 }
