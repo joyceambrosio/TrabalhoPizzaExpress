@@ -49,9 +49,9 @@ END;
 //
 DELIMITER ;
 
-DROP PROCEDURE IF EXISTS getProdutosAll;
+DROP PROCEDURE IF EXISTS getProdutos;
 DELIMITER //
-CREATE PROCEDURE getProdutosAll(
+CREATE PROCEDURE getProdutos(
 )
 BEGIN
 	SELECT 
@@ -112,6 +112,19 @@ BEGIN
 	VALUES (nomeIN);
 
 	SELECT LAST_INSERT_ID();
+END;
+//
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS getIngredientes;
+DELIMITER //
+CREATE PROCEDURE getIngredientes()
+BEGIN
+	SELECT 
+		idIngrediente,
+		nome
+	FROM
+		Ingrediente;
 END;
 //
 DELIMITER ;

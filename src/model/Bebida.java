@@ -16,8 +16,9 @@ public class Bebida extends Produto {
     public Bebida() {
     }
 
-    public Bebida(String nome) {
-        super(nome);
+    public Bebida(String nome, double preco) {
+        super(nome, preco);
+        setCategoria();
     }
 
     public Bebida(int id, String nome, double preco) {
@@ -25,6 +26,7 @@ public class Bebida extends Produto {
         setCategoria();
     }
 
+    @Override
     public void setCategoria() {
         this.categoria = "Bebida";
     }

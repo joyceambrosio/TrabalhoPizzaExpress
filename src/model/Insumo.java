@@ -15,11 +15,12 @@ public class Insumo extends Produto {
     private String unidade;
     private String quantidade;
 
+
     public Insumo(String nome, double preco) {
         super(nome, preco);
         setCategoria();
     }
-
+    
     public Insumo(int id, String nome, double preco, String unidade, String quantidade) {
         super(id, nome, preco);
         this.quantidade = quantidade;
@@ -27,6 +28,7 @@ public class Insumo extends Produto {
         setCategoria();
     }
 
+    @Override
     public void setCategoria() {
         this.categoria = "Insumo";
     }
@@ -37,13 +39,6 @@ public class Insumo extends Produto {
 
     public String getQuantidade() {
         return quantidade;
-    }
-
-    public Insumo() {
-    }
-
-    public Insumo(String nome) {
-        super(nome);
     }
 
     @Override

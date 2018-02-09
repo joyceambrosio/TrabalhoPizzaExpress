@@ -46,6 +46,7 @@ public class Pizza extends Produto {
     public Pizza() {
     }
 
+    @Override
     public void setCategoria() {
         this.categoria = "Pizza";
     }

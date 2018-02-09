@@ -45,8 +45,12 @@ public class Produtos {
 
     }
 
-    public boolean add(Produto produto) {
-        return produtos.add(produto);
+    public boolean add(Produto produto) throws SQLException {
+        DaoProduto dao = new DaoProduto();
+        if (dao.addProduto(produto)) {
+            return produtos.add(produto);
+        }
+        return false;
     }
 
     public Produto getProdutoByNome(String nome) {

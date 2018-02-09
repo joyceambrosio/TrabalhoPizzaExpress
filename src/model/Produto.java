@@ -37,9 +37,21 @@ public class Produto {
     public void setCategoria() {
         this.categoria = "Produto";
     }
-    
+
+    public void setPreco(double preco) {
+        if (preco > 0) {
+            this.preco = preco;
+        }
+    }
+
     public void setId(int id) {
         this.id = id;
+    }
+
+    public void setNome(String nome) {
+        if (!nome.equals(" ")) {
+            this.nome = nome;
+        }
     }
 
     public int getId() {
@@ -54,20 +66,8 @@ public class Produto {
         return nome;
     }
 
-    public void setNome(String nome) {
-        if (!nome.equals(" ")) {
-            this.nome = nome;
-        }
-    }
-
     public double getPreco() {
         return preco;
-    }
-
-    public void setPreco(double preco) {
-        if (preco > 0) {
-            this.preco = preco;
-        }
     }
 
     public void imprimir() {
