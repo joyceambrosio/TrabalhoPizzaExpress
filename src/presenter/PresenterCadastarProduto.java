@@ -102,7 +102,7 @@ public class PresenterCadastarProduto {
         view.getjTextAreaReceita().setEnabled(false);
     }
 
-    public void EstadoBebida() {
+    public void estadoBebida() {
         setState("Bebida");
         view.getjRadioButtonInsumo().setSelected(false);
         view.getjRadioButtonBebida().setSelected(true);
@@ -120,8 +120,8 @@ public class PresenterCadastarProduto {
         view.getjTextAreaReceita().setEnabled(false);
     }
 
-    public void EstadoComida() {
-        setState("Comida");
+    public void estadoPizza() {
+        setState("Pizza");
         view.getjRadioButtonInsumo().setSelected(false);
         view.getjRadioButtonBebida().setSelected(false);
         view.getjRadioButtonComida().setSelected(true);
@@ -151,7 +151,7 @@ public class PresenterCadastarProduto {
         view.getjRadioButtonComida().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                EstadoComida();
+                estadoPizza();
             }
         });
     }
@@ -160,7 +160,7 @@ public class PresenterCadastarProduto {
         view.getjRadioButtonBebida().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                EstadoBebida();
+                estadoBebida();
             }
         });
     }
@@ -175,7 +175,7 @@ public class PresenterCadastarProduto {
                 if (getState().equals("Bebida")) {
                     cadastrarBebida();
                 }
-                if (getState().equals("Comida")) {
+                if (getState().equals("Pizza")) {
                     cadastrarPizza();
                 }
 

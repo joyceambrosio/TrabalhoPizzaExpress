@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.Produto;
 import view.ViewMenu;
@@ -26,18 +27,18 @@ public class PresenterProduto {
 
     public PresenterProduto(ViewMenu view) {
         this.view = view;
-
         try {
+            modificarProduto();
             populaMenuProdutos();
-        } catch (SQLException ex) {
-            Logger.getLogger(PresenterProduto.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException e) {
         }
-        novoProduto();
+
+        adicionarProduto();
 
     }
 
     // Coisas de Produto
-    public void populaMenuProdutos() throws SQLException, SQLException {
+    public void populaMenuProdutos() throws SQLException {
         Object colunas[] = {"ID", "Nome", "Categoria", "Preço"};
         DefaultTableModel tabela = new DefaultTableModel(colunas, 0);
 
@@ -58,7 +59,7 @@ public class PresenterProduto {
         }
     }
 
-    public void novoProduto() {
+    public void adicionarProduto() {
         view.getjButtonNovoProduto().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -67,4 +68,27 @@ public class PresenterProduto {
         });
     }
 
+    public void modificarProduto() {
+        view.getjButtonModificarProduto().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int linha = view.getjTableProduto().getSelectedRow();
+                if (linha == -1) {
+                    JOptionPane.showMessageDialog(view, "Selecione um produto para realizar as modificações");
+                } else if (linha >= 0) {
+
+                    try {
+                        int idProduto = Integer.parseInt(view.getjTableProduto().getValueAt(linha, 0).toString());
+                        Produto p = Produtos.getInstancia().getProdutosbyID(idProduto);
+
+                        if (p != null) {
+                            PresenterModificarProduto presenterModificaProduto = PresenterModificarProduto.getInstancia(p);
+                        }
+                    } catch (SQLException ex) {
+                        Logger.getLogger(PresenterProduto.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+        });
+    }
 }

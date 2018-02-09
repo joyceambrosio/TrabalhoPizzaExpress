@@ -25,13 +25,13 @@ import view.ViewCadastrarCliente;
  *
  * @author joyce
  */
-public class PresenterModificaCliente {
+public class PresenterModificarCliente {
 
     private Cliente cliente;
     private ViewCadastrarCliente view;
-    private static PresenterModificaCliente instancia;
+    private static PresenterModificarCliente instancia;
 
-    private PresenterModificaCliente(Cliente c) {
+    private PresenterModificarCliente(Cliente c) {
 
         this.cliente = c;
         this.view = new ViewCadastrarCliente();
@@ -57,9 +57,9 @@ public class PresenterModificaCliente {
 
     }
 
-    public static PresenterModificaCliente getInstancia(Cliente c) {
+    public static PresenterModificarCliente getInstancia(Cliente c) {
         if (instancia == null) {
-            instancia = new PresenterModificaCliente(c);
+            instancia = new PresenterModificarCliente(c);
             return instancia;
         }
 
@@ -106,7 +106,7 @@ public class PresenterModificaCliente {
                     try {
                         Clientes.getInstancia().modifica(cliente, cli);
                     } catch (SQLException ex) {
-                        Logger.getLogger(PresenterModificaCliente.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(PresenterModificarCliente.class.getName()).log(Level.SEVERE, null, ex);
                     }
 
                     JOptionPane.showMessageDialog(view, "Cliente modificado com sucesso");

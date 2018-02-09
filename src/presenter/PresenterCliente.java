@@ -39,11 +39,13 @@ public class PresenterCliente {
 
         Object colunas[] = {"ID", "Nome do Cliente", "Endereço", "Quantidade de Compras"};
         DefaultTableModel tabela = new DefaultTableModel(colunas, 0);
+
         menu.getjTableCliente().setModel(tabela);
 
         try {
             for (Cliente c : Clientes.getInstancia().getClientes()) {
                 int id = c.getId();
+
                 String nome = c.getNome();
                 String end = c.getEndereco().getEnderecoCompleto();
                 int compras = c.getNumeroCompra();
@@ -76,15 +78,13 @@ public class PresenterCliente {
 
                 if (linha == -1) {
                     JOptionPane.showMessageDialog(menu, "Selecione um cliente para realizar as modificações");
-                }
-
-                if (linha >= 0) {
+                } else if (linha >= 0) {
 
                     int idCliente = Integer.parseInt(menu.getjTableCliente().getValueAt(linha, 0).toString());
                     Cliente c = Clientes.getInstancia().getClienteById(idCliente);
 
                     if (c != null) {
-                        PresenterModificaCliente presenterModificaCliente = PresenterModificaCliente.getInstancia(c);
+                        PresenterModificarCliente presenterModificaCliente = PresenterModificarCliente.getInstancia(c);
 
                     }
 

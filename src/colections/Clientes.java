@@ -32,8 +32,8 @@ public class Clientes {
 
     public Iterable<Cliente> getClientes() throws SQLException {
         DaoCliente dao = new DaoCliente();
-        this.clientes = dao.getClientes();
-        return clientes;
+         return clientes = dao.getClientes();
+       
     }
 
     public ArrayList<Cliente> getLista() {

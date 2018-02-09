@@ -28,6 +28,17 @@ public class PresenterModificarProduto {
 
         this.produto = produto;
 
+        this.view = new ViewCadastrarProduto();
+
+        configurarExibicao();
+        estadoInsumo();
+        instancia = null;
+        URL caminhoImagem = this.getClass().getClassLoader().getResource("icones/PizzaIcone.png");
+        Image iconeTitulo = Toolkit.getDefaultToolkit().getImage(caminhoImagem);
+        view.setIconImage(iconeTitulo);
+        view.setTitle("Modificar Produto");
+        view = new ViewCadastrarProduto();
+
         this.view.addWindowListener(new WindowAdapter() {
             @SuppressWarnings("override")
             public void windowClosing(WindowEvent evt) {
@@ -36,43 +47,49 @@ public class PresenterModificarProduto {
             }
         });
 
-        URL caminhoImagem = this.getClass().getClassLoader().getResource("icones/PizzaIcone.png");
-        Image iconeTitulo = Toolkit.getDefaultToolkit().getImage(caminhoImagem);
-        view.setIconImage(iconeTitulo);
-        view.setTitle("Modificar Produto");
-        view = new ViewCadastrarProduto();
+        view.setVisible(true);
     }
 
     public static PresenterModificarProduto getInstancia(Produto p) {
         if (instancia == null) {
             return instancia = new PresenterModificarProduto(p);
         }
-
         return instancia;
     }
 
     private void configurarExibicao() {
         if (produto.getCategoria().equals("Insumo")) {
+            estadoInsumo();
             configurarInsumo();
         }
         if (produto.getCategoria().equals("Bebida")) {
+            estadoBebida();
             configurarBebida();
         }
         if (produto.getCategoria().equals("Pizza")) {
+            estadoPìzza();
             configurarPizza();
+        } else {
+            view.dispose();
         }
     }
 
     private void configurarInsumo() {
+        estadoInsumo();
+        System.out.println(produto.getNome());
         view.getjTextFieldNomeProduto().setText(produto.getNome());
     }
 
     private void configurarBebida() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        estadoBebida();
+        System.out.println(produto.getNome());
+        view.getjTextFieldNomeProduto().setText(produto.getNome());
     }
 
     private void configurarPizza() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        estadoPìzza();
+        System.out.println(produto.getNome());
+        view.getjTextFieldNomeProduto().setText(produto.getNome());
     }
 
     public String getState() {
@@ -89,7 +106,7 @@ public class PresenterModificarProduto {
         view.getjRadioButtonBebida().setSelected(false);
         view.getjRadioButtonComida().setSelected(false);
 
-        view.getjRadioButtonInsumo().setEnabled(false);
+        view.getjRadioButtonInsumo().setEnabled(true);
         view.getjRadioButtonBebida().setEnabled(false);
         view.getjRadioButtonComida().setEnabled(false);
 
@@ -103,16 +120,17 @@ public class PresenterModificarProduto {
         view.getjComboBoxIngrediente().setEnabled(false);
         view.getjTableIngredientes().setEnabled(false);
         view.getjTextAreaReceita().setEnabled(false);
+        view.getjButtonCadastrar().setText("Salvar");
     }
 
-    public void EstadoBebida() {
+    public void estadoBebida() {
         setState("Bebida");
         view.getjRadioButtonInsumo().setSelected(false);
         view.getjRadioButtonBebida().setSelected(true);
         view.getjRadioButtonComida().setSelected(false);
 
         view.getjRadioButtonInsumo().setEnabled(false);
-        view.getjRadioButtonBebida().setEnabled(false);
+        view.getjRadioButtonBebida().setEnabled(true);
         view.getjRadioButtonComida().setEnabled(false);
 
         view.getjFormattedTextFielPrecoVenda().setEnabled(true);
@@ -125,17 +143,18 @@ public class PresenterModificarProduto {
         view.getjComboBoxIngrediente().setEnabled(false);
         view.getjTableIngredientes().setEnabled(false);
         view.getjTextAreaReceita().setEnabled(false);
+        view.getjButtonCadastrar().setText("Salvar");
     }
 
-    public void EstadoComida() {
-        setState("Comida");
+    public void estadoPìzza() {
+        setState("Pizza");
         view.getjRadioButtonInsumo().setSelected(false);
         view.getjRadioButtonBebida().setSelected(false);
         view.getjRadioButtonComida().setSelected(true);
 
         view.getjRadioButtonInsumo().setEnabled(false);
         view.getjRadioButtonBebida().setEnabled(false);
-        view.getjRadioButtonComida().setEnabled(false);
+        view.getjRadioButtonComida().setEnabled(true);
 
         view.getjFormattedTextFielPrecoVenda().setEnabled(true);
         view.getjTextFieldUnidade().setEnabled(true);
@@ -147,6 +166,7 @@ public class PresenterModificarProduto {
         view.getjComboBoxIngrediente().setEnabled(true);
         view.getjTableIngredientes().setEnabled(true);
         view.getjTextAreaReceita().setEnabled(true);
+        view.getjButtonCadastrar().setText("Salvar");
     }
 
 }
