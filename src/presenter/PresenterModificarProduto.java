@@ -32,12 +32,11 @@ public class PresenterModificarProduto {
 
         configurarExibicao();
         estadoInsumo();
-        instancia = null;
+        
         URL caminhoImagem = this.getClass().getClassLoader().getResource("icones/PizzaIcone.png");
         Image iconeTitulo = Toolkit.getDefaultToolkit().getImage(caminhoImagem);
         view.setIconImage(iconeTitulo);
         view.setTitle("Modificar Produto");
-        view = new ViewCadastrarProduto();
 
         this.view.addWindowListener(new WindowAdapter() {
             @SuppressWarnings("override")
@@ -46,7 +45,7 @@ public class PresenterModificarProduto {
                 view.dispose();
             }
         });
-
+        view.setLocationRelativeTo(null);
         view.setVisible(true);
     }
 
@@ -58,6 +57,7 @@ public class PresenterModificarProduto {
     }
 
     private void configurarExibicao() {
+      
         if (produto.getCategoria().equals("Insumo")) {
             estadoInsumo();
             configurarInsumo();
@@ -70,6 +70,7 @@ public class PresenterModificarProduto {
             estadoPìzza();
             configurarPizza();
         } else {
+            instancia = null;
             view.dispose();
         }
     }
