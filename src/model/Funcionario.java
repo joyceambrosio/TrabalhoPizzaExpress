@@ -33,9 +33,6 @@ public abstract class Funcionario {
         this.senha = senha;
         this.cargo = cargo;
     }
-    
-    
-
 
     public int getId() {
         return id;
@@ -48,8 +45,6 @@ public abstract class Funcionario {
     public void setId(int id) {
         this.id = id;
     }
-    
-    
 
     public void setNomeUsuario(String nomeUsuario) {
         if (!nomeUsuario.equals(" ")) {

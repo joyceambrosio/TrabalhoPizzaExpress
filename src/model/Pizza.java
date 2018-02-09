@@ -30,8 +30,9 @@ public class Pizza extends Produto {
         setCategoria();
     }
 
-    public Pizza(ArrayList<Insumo> ingredientes, String receita, String nome, double preco) {
+    public Pizza(String nome, double preco, String receita, ArrayList<Insumo> ingredientes) {
         super(nome, preco);
+        setReceita(receita);
         setIngredientes(ingredientes);
         setCategoria();
     }
@@ -108,7 +109,7 @@ public class Pizza extends Produto {
 //        for (Insumo i : ingredientes){
 //            ingrediente = ingrediente + "\n" + i.toString();
 //        }
-        return "Pizza{" + ", receita=" + receita + ", categoria=" + categoria  + '}';
+        return "Pizza{" + ", receita=" + receita + ", categoria=" + categoria + '}';
     }
 
 }

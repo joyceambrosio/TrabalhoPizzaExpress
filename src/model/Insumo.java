@@ -15,17 +15,29 @@ public class Insumo extends Produto {
     private String unidade;
     private String quantidade;
 
-
     public Insumo(String nome, double preco) {
         super(nome, preco);
         setCategoria();
     }
-    
+
+    public Insumo(int id, String nome, double preco) {
+        super(id, nome, preco);
+        setCategoria();
+    }
+
     public Insumo(int id, String nome, double preco, String unidade, String quantidade) {
         super(id, nome, preco);
         this.quantidade = quantidade;
         this.unidade = unidade;
         setCategoria();
+    }
+
+    public void setUnidade(String unidade) {
+        this.unidade = unidade;
+    }
+
+    public void setQuantidade(String quantidade) {
+        this.quantidade = quantidade;
     }
 
     @Override
@@ -73,7 +85,7 @@ public class Insumo extends Produto {
 
     @Override
     public String toString() {
-        return "Nome: " + nome + " Preço: " + preco;
+        return nome;
     }
 
 }

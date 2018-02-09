@@ -52,7 +52,7 @@ public class PresenterCadastarProduto {
         escutarBotaoBebida();
         escutarBotaoComida();
         popularInsumosCombo();
-        //incluIngredientes();
+        incluirIngredientes();
         removerIngerdientes();
         fechar();
         cadastrar();
@@ -181,7 +181,7 @@ public class PresenterCadastarProduto {
                     cadastrarBebida();
                 }
                 if (getState().equals("Comida")) {
-                    cadastrarComida();
+                    cadastrarPizza();
                 }
 
             }
@@ -207,14 +207,6 @@ public class PresenterCadastarProduto {
         }
     }
 
-    public boolean validarCamposInsumo(String nome) {
-        if (nome.equals("")) {
-            view.getjLabelAvisosNomeVenda().setText("O nome não pode ser vazio");
-            return false;
-        }
-        return true;
-    }
-
     public void cadastrarBebida() {
 
         String nome = view.getjTextFieldNomeProduto().getText();
@@ -238,11 +230,139 @@ public class PresenterCadastarProduto {
 
     }
 
+    public void cadastrarPizza() {
+        String nome = view.getjTextFieldNomeProduto().getText();
+        String precoString = view.getjFormattedTextFielPrecoVenda().getText().replace(',', '.');;
+        String receita = view.getjTextAreaReceita().getText();
+        double preco = 0;
+
+        if (validarCamposComida(nome, precoString, receita)) {
+            try {
+                preco = Double.parseDouble(precoString);
+                Produto comida = new Pizza(nome, preco, receita, ingredientesTemp);
+                comida.imprimir();
+                if (Produtos.getInstancia().add(comida)) {
+                    JOptionPane.showMessageDialog(null, "Produto cadastrado com sucesso");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Ocorreu um erro");
+                }
+            } catch (NumberFormatException | SQLException e) {
+            }
+
+        }
+    }
+
+    public void popularInsumosCombo() {
+        DefaultComboBoxModel produtoComboBox = new DefaultComboBoxModel();
+        view.getjComboBoxIngrediente().setModel(produtoComboBox);
+
+        try {
+            for (Produto p : Produtos.getInstancia().getLista()) {
+                if (p.getCategoria().equals("Insumo")) {
+                    produtoComboBox.addElement(p);
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PresenterCadastarProduto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void popularTabelaIngredientes() {
+        Object colunas[] = {"ID", "Ingrediente", "Unidade", "Quantidade"};
+        DefaultTableModel tabela = new DefaultTableModel(colunas, 0);
+
+        view.getjTableIngredientes().setModel(tabela);
+
+        for (Insumo produto : ingredientesTemp) {
+            tabela.addRow(new Object[]{produto.getId(), produto.getNome(), produto.getUnidade(), produto.getQuantidade()});
+        }
+
+    }
+
+    public void incluirIngredientes() {
+        view.getjButtonIncluir().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                Insumo produto = (Insumo) view.getjComboBoxIngrediente().getSelectedItem();
+                String und = view.getjTextFieldUnidade().getText();
+                String qtd = view.getjTextFieldQuantidade().getText();
+
+                if (validarCamposIngredientes(und, qtd)) {
+
+                    produto.setUnidade(und);
+                    produto.setQuantidade(qtd);
+
+                    if (produto != null) {
+                        if (!ingredientesTemp.contains(produto)) {
+                            ingredientesTemp.add(produto);
+                            popularTabelaIngredientes();
+                        } else {
+                            JOptionPane.showMessageDialog(view, "O ingrediente já está na lista");
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(view, "Não foi possível adicionar o ingrediente");
+                    }
+
+                }
+            }
+
+        });
+    }
+
+    public void removerIngerdientes() {
+        view.getjButtonExcluir().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int linha = view.getjTableIngredientes().getSelectedRow();
+                if (linha == -1) {
+                    JOptionPane.showMessageDialog(view, "Você precisa selecionar um ingrediente na lista antes de remover");
+                } else {
+
+                    int id = Integer.parseInt(view.getjTableIngredientes().getValueAt(linha, 0).toString());
+
+                    Produto p;
+                    try {
+                        p = Produtos.getInstancia().getInsumosbyID(id);
+                        if (p != null) {
+                            ingredientesTemp.remove(p);
+                            popularTabelaIngredientes();
+
+                        } else {
+                            JOptionPane.showMessageDialog(view, "Não foi possível remover o ingrediente");
+                        }
+
+                    } catch (SQLException ex) {
+                        Logger.getLogger(PresenterCadastarProduto.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                }
+            }
+        });
+    }
+
+    public boolean validarCamposInsumo(String nome) {
+        if (nome.equals("")) {
+            view.getjLabelAvisosNomeVenda().setText("O campo nome não pode ser vazio");
+            return false;
+        }
+        return true;
+    }
+
+    public boolean validarCamposIngredientes(String unidade, String quantidade) {
+        view.getjLabelAvisosIngrediente().setText("");
+        if (unidade.equals("") && quantidade.equals("")) {
+            view.getjLabelAvisosIngrediente().setText(view.getjLabelAvisosIngrediente().getText() + "Os campos unidade e quantidade não podem ser vazios ");
+            return false;
+        }
+        return true;
+    }
+
     public boolean validarCamposBebida(String nome, String precoString) {
         view.getjLabelAvisosNomeVenda().setText("");
 
         if (nome.equals("") && precoString.equals("")) {
-            view.getjLabelAvisosNomeVenda().setText(view.getjLabelAvisosNomeVenda().getText() + "Os campos não podem ser vazios ");
+            view.getjLabelAvisosNomeVenda().setText(view.getjLabelAvisosNomeVenda().getText() + "Os campos nome e preço não podem ser vazios ");
             return false;
         } else {
             double preco = Double.parseDouble(precoString);
@@ -254,158 +374,19 @@ public class PresenterCadastarProduto {
         return true;
     }
 
-    public void cadastrarComida() {
-        try {
-            Produtos.getInstancia().imprimeLista();
-        } catch (SQLException e) {
+    public boolean validarCamposComida(String nome, String preco, String receita) {
+        view.getjLabelAvisosReceita().setText(" ");
+        validarCamposBebida(nome, preco);
+
+        if (ingredientesTemp.isEmpty()) {
+            view.getjLabelAvisosIngrediente().setText(view.getjLabelAvisosIngrediente().getText() + "Você precisa adicionar ao menos um ingrediente à receita ");
         }
 
-    }
-
-//    public void cadastrarComida() {
-//    }
-//    public void Cadastar() {
-//        view.getjButtonCadastrar().addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//
-//                String nome = view.getjTextFieldNomeProduto().getText();
-//                double preco = Double.parseDouble(view.getjTextFieldPrecoVenda().getText());
-//
-//                if (nome.equals("") || preco <= 0.0) {
-//                    if (nome.equals("")) {
-//                        JOptionPane.showMessageDialog(view, "O nome não pode ser vazio");
-//                    }
-//                    if (preco <= 0.0) {
-//                        JOptionPane.showMessageDialog(view, "Preencha um valor válido para preço de venda do produto");
-//                    }
-//                } else {
-//
-//                    if (view.getjRadioButtonInsumo().isSelected()) {
-//                        try {
-//                            Produtos.getInstancia().add(new Insumo(nome));
-//                        } catch (SQLException ex) {
-//                            Logger.getLogger(PresenterCadastarProduto.class.getName()).log(Level.SEVERE, null, ex);
-//                        }
-//                        JOptionPane.showMessageDialog(view, "Ingrediente adicionado com sucesso");
-//                        view.dispose();
-//
-//                    }
-//
-//                    if (view.getjRadioButtonBebida().isSelected()) {
-////                        try {
-////                            //Produtos.getInstancia().add(new Bebida(nome, preco));
-////                        } catch (SQLException ex) {
-////                            Logger.getLogger(PresenterCadastarProduto.class.getName()).log(Level.SEVERE, null, ex);
-////                        }
-//                        JOptionPane.showMessageDialog(view, "Bebida adicionada com sucesso");
-//                        instancia = null;
-//                        view.dispose();
-//
-//                    }
-//
-//                    if (view.getjRadioButtonComida().isSelected()) {
-//                        String receita = view.getjTextAreaReceita().getText();
-//
-//                        if (receita.equals("") || ingredientesTemp.size() <= 0) {
-//                            if (receita.equals("")) {
-//                                JOptionPane.showMessageDialog(view, "Preencha o campo receita");
-//                            }
-//                            if (ingredientesTemp.size() <= 0) {
-//                                JOptionPane.showMessageDialog(view, "Selecione os ingredientes da receita");
-//                            }
-//                        } else {
-//
-//                            try {
-//                                Produtos.getInstancia().add(new Pizza(ingredientesTemp, receita, nome, preco));
-//                                JOptionPane.showMessageDialog(view, "Pizza adicionada com sucesso");
-//                                instancia = null;
-//                                view.dispose();
-//                                Produtos.getInstancia().imprimeLista();
-//                            } catch (SQLException ex) {
-//                                Logger.getLogger(PresenterCadastarProduto.class.getName()).log(Level.SEVERE, null, ex);
-//                            }
-//
-//                        }
-//                    }
-//                }
-//            }
-//        });
-//
-//    }
-    public void popularInsumosCombo() {
-        DefaultComboBoxModel produtoComboBox = new DefaultComboBoxModel();
-        view.getjComboBoxIngrediente().setModel(produtoComboBox);
-
-        try {
-            for (Produto p : Produtos.getInstancia().getLista()) {
-                if (p.getCategoria().equals("Insumo")) {
-                    produtoComboBox.addElement(p.getNome());
-                }
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(PresenterCadastarProduto.class.getName()).log(Level.SEVERE, null, ex);
+        if (receita.equals("")) {
+            view.getjLabelAvisosReceita().setText("O campo receita não pode ser vazio");
+            return false;
         }
-    }
-
-    public void popularTabelaIngredientes() {
-        Object colunas[] = {"Ingrediente"};
-        DefaultTableModel tabela = new DefaultTableModel(colunas, 0);
-
-        view.getjTableIngredientes().setModel(tabela);
-
-        for (Produto p : ingredientesTemp) {
-            String nome = p.getNome();
-            tabela.addRow(new Object[]{nome});
-        }
-
-    }
-//
-//    public void incluIngredientes() {
-//        view.getjButtonIncluir().addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                String produto = view.getjComboBoxIngrediente().getSelectedItem().toString();
-//                Produto p = Produtos.getInstancia().getProdutoByNome(produto);
-//
-//                if (p != null) {
-//                    ingredientesTemp.add(p);
-//                    popularTabelaIngredientes();
-//
-//                } else {
-//                    JOptionPane.showMessageDialog(view, "Não foi possível adicionar o ingrediente");
-//                }
-//
-//            }
-//        });
-//    }
-
-    public void removerIngerdientes() {
-        view.getjButtonExcluir().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int linha = view.getjTableIngredientes().getSelectedRow();
-                if (linha == -1) {
-                    JOptionPane.showMessageDialog(view, "Você precisa selecionar um ingrediente na lista antes de remover");
-                } else {
-                    String produto = view.getjTableIngredientes().getValueAt(linha, 0).toString();
-
-                    Produto p = null;
-                    try {
-                        p = Produtos.getInstancia().getProdutoByNome(produto);
-                    } catch (SQLException ex) {
-                        Logger.getLogger(PresenterCadastarProduto.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                    if (p != null) {
-                        ingredientesTemp.remove(p);
-                        popularTabelaIngredientes();
-
-                    } else {
-                        JOptionPane.showMessageDialog(view, "Não foi possível remover o ingrediente");
-                    }
-                }
-            }
-        });
+        return true;
     }
 
     public void fechar() {

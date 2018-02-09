@@ -62,9 +62,18 @@ public class Produtos {
         return null;
     }
 
-    public Produto getProdutoById(int id) {
+    public Produto getProdutosbyID(int id) {
         for (Produto p : produtos) {
-            if (p.getId() == id) {
+            if (p.getId() == id && !p.getCategoria().equals("Insumo")) {
+                return p;
+            }
+        }
+        return null;
+    }
+
+    public Produto getInsumosbyID(int id) {
+        for (Produto p : produtos) {
+            if (p.getId() == id && p.getCategoria().equals("Insumo")) {
                 return p;
             }
         }

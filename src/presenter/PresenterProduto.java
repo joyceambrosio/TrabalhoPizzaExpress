@@ -5,7 +5,6 @@
  */
 package presenter;
 
-
 import colections.Produtos;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -22,25 +21,21 @@ import presenter.*;
  * @author Natalia
  */
 public class PresenterProduto {
-    
+
     private ViewMenu view;
 
     public PresenterProduto(ViewMenu view) {
         this.view = view;
-        
+
         try {
             populaMenuProdutos();
         } catch (SQLException ex) {
             Logger.getLogger(PresenterProduto.class.getName()).log(Level.SEVERE, null, ex);
         }
-         novoProduto();
+        novoProduto();
 
     }
-    
-    
-  
-    
-    
+
     // Coisas de Produto
     public void populaMenuProdutos() throws SQLException, SQLException {
         Object colunas[] = {"ID", "Nome", "Categoria", "Preço"};
@@ -53,13 +48,14 @@ public class PresenterProduto {
         }
 
         for (Produto p : Produtos.getInstancia().getProdutos()) {
-            int id = p.getId();
-            String nome = p.getNome();
-            String categoria = p.getCategoria();
-            double preco = p.getPreco();
-            tabela.addRow(new Object[]{id, nome, categoria, preco});
+            if (!p.getCategoria().equals("Insumo")) {
+                int id = p.getId();
+                String nome = p.getNome();
+                String categoria = p.getCategoria();
+                double preco = p.getPreco();
+                tabela.addRow(new Object[]{id, nome, categoria, preco});
+            }
         }
-
     }
 
     public void novoProduto() {
@@ -71,5 +67,4 @@ public class PresenterProduto {
         });
     }
 
-    
 }

@@ -43,8 +43,8 @@ public class DaoProduto {
             produto.setId(idComida);
             return true;
         }
-        
-        if (produto.getCategoria().equals("Comida")) {
+
+        if (produto.getCategoria().equals("Pizza")) {
             addComida((Pizza) produto);
             produto.setId(idComida);
             return true;
@@ -94,32 +94,34 @@ public class DaoProduto {
     public int addComida(Pizza produto) throws SQLException {
         conexao = ConexaoBDMySQL.getInstancia();
 
-        try (CallableStatement statement = conexao.getConexao().prepareCall("{call addComida(?, ?, ?)}")) {
+        try (CallableStatement statement = conexao.getConexao().prepareCall("{call addComida(?, ?, ?, ?)}")) {
 
-            statement.setString(1, produto.getNome());
-            statement.setDouble(2, produto.getPreco());
-            statement.setString(3, produto.getReceita());
+            statement.setInt(1, 2);
+            statement.setString(2, produto.getNome());
+            statement.setDouble(3, produto.getPreco());
+            statement.setString(4, produto.getReceita());
 
             statement.execute();
+
             resultSet = statement.getResultSet();
 
             if (resultSet.next()) {
-                //System.out.println("Add Pizza chamado com sucesso");
+
                 idComida = resultSet.getInt(1);
             }
             statement.close();
         }
-        //eu podia ter feito outra função mas são 4 am
 
         for (Insumo p : produto.getIngredientes()) {
+
             try (CallableStatement statement = conexao.getConexao().prepareCall("{call addComidaIngrediente(?, ?, ?, ?)}")) {
 
                 statement.setInt(1, idComida);
                 statement.setInt(2, p.getId());
                 statement.setString(3, p.getUnidade());
                 statement.setString(4, p.getQuantidade());
-
                 statement.execute();
+
                 resultSet = statement.getResultSet();
 
                 statement.close();
@@ -146,7 +148,6 @@ public class DaoProduto {
                 int idCategoria = resultSet.getInt(5);
                 String categoria = resultSet.getString(6);
 
-                
                 if (categoria.equals("Bebida")) {
                     Bebida novaBebida = new Bebida(idProduto, nome, preco);
                     produtos.add(novaBebida);
@@ -157,13 +158,14 @@ public class DaoProduto {
             }
             statement.close();
         }
+        getIngredientesComida();
         getIngredientes();
 
         return produtos;
 
     }
 
-    public void getIngredientes() throws SQLException {
+    public void getIngredientesComida() throws SQLException {
         conexao = ConexaoBDMySQL.getInstancia();
 
         for (Produto p : this.produtos) {
@@ -202,5 +204,28 @@ public class DaoProduto {
         }
 
         //System.out.println("Chamada de inserção de get ingredientes feita com sucesso!");
+    }
+
+    public void getIngredientes() throws SQLException {
+
+        conexao = ConexaoBDMySQL.getInstancia();
+
+        try (CallableStatement statement = conexao.getConexao().prepareCall("{call getIngredientes}")) {
+
+            statement.execute();
+
+            resultSet = statement.getResultSet();
+
+            while (resultSet.next()) {
+                int idProduto = resultSet.getInt(1);
+                String nome = resultSet.getString(2);
+
+                Produto novoInsumo = new Insumo(idProduto, nome, 0.0);
+                produtos.add(novoInsumo);
+
+            }
+            statement.close();
+        }
+
     }
 }

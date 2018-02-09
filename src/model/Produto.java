@@ -11,7 +11,7 @@ package model;
  */
 public class Produto {
 
-    int id;
+    protected int id;
     protected String nome;
     protected double preco;
     private String categoria;
