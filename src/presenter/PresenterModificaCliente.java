@@ -35,7 +35,7 @@ public class PresenterModificaCliente {
 
         this.cliente = c;
         this.view = new ViewCadastrarCliente();
-        configuraExibicao();
+        configurarExibicao();
         modificarCliente();
         instancia = null;
 
@@ -70,7 +70,7 @@ public class PresenterModificaCliente {
         this.cliente = cliente;
     }
 
-    private void configuraExibicao() {
+    private void configurarExibicao() {
         view.getjTextFieldNome().setText(cliente.getNome());
         view.getjTextFieldLogradouro().setText(cliente.getEndereco().getLogradouro());
         view.getjTextFieldNumero().setText(cliente.getEndereco().getNumero());

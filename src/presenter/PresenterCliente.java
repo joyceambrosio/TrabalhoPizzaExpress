@@ -57,15 +57,13 @@ public class PresenterCliente {
     }
 
     public void adicionarCliente() {
-        
-         menu.getjButtonNovoCliente().addActionListener(new ActionListener() {
-             @Override
-             public void actionPerformed(ActionEvent e) {
-                 PresenterCadastrarCliente cliente =  PresenterCadastrarCliente.getInstancia();
-             }
-         });
 
-        
+        menu.getjButtonNovoCliente().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                PresenterCadastrarCliente cliente = PresenterCadastrarCliente.getInstancia();
+            }
+        });
 
     }
 
@@ -87,7 +85,7 @@ public class PresenterCliente {
 
                     if (c != null) {
                         PresenterModificaCliente presenterModificaCliente = PresenterModificaCliente.getInstancia(c);
-                       
+
                     }
 
                 }
@@ -126,7 +124,7 @@ public class PresenterCliente {
     }
 
     public void excluirCliente() {
-        
+
         menu.getjButtonExcluirCliente().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -140,10 +138,11 @@ public class PresenterCliente {
                     int id = Integer.parseInt(menu.getjTableCliente().getValueAt(linha, 0).toString());
                     try {
 
-                        int confirmacao = JOptionPane.showConfirmDialog(menu, "Tem certeza que quer remover esse cliente?");
-                        System.out.println(confirmacao);
+                        int confirmacao = JOptionPane.showConfirmDialog(null, "Tem certeza que quer remover esse cliente?");
                         if (confirmacao == 0) {
                             Clientes.getInstancia().desativaCliente(id);
+                            JOptionPane.showMessageDialog(null, "O cliente foi removido com sucesso");
+
                         }
                     } catch (SQLException ex) {
                         Logger.getLogger(PresenterMenu.class.getName()).log(Level.SEVERE, null, ex);

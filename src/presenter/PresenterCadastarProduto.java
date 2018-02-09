@@ -14,17 +14,12 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.net.URL;
 import java.sql.SQLException;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.text.DefaultFormatterFactory;
-import javax.swing.text.NumberFormatter;
 import model.Bebida;
 import model.Insumo;
 import model.Pizza;
@@ -47,7 +42,7 @@ public class PresenterCadastarProduto {
     private PresenterCadastarProduto() {
         this.view = new ViewCadastrarProduto();
         ingredientesTemp = new ArrayList<>();
-        EstadoInsumo();
+        estadoInsumo();
         escutarBotaoInsumo();
         escutarBotaoBebida();
         escutarBotaoComida();
@@ -89,7 +84,7 @@ public class PresenterCadastarProduto {
         this.state = state;
     }
 
-    public void EstadoInsumo() {
+    public void estadoInsumo() {
         setState("Insumo");
         view.getjRadioButtonInsumo().setSelected(true);
         view.getjRadioButtonBebida().setSelected(false);
@@ -147,7 +142,7 @@ public class PresenterCadastarProduto {
         view.getjRadioButtonInsumo().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                EstadoInsumo();
+                estadoInsumo();
             }
         });
     }
