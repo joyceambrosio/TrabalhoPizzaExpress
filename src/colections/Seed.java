@@ -69,14 +69,14 @@ public class Seed {
 //        funcionarios.add(f5);
 //        logins.add(new Login("subchefErick", "123456"));
 
-        //Polimorfismo
-        Produto produto1 = new Insumo("Vinho tinto", 3.00);
-        Produto produto2 = new Insumo("Maracujá", 0.5);
-
-//        Produto bebida1 = new Bebida("Chopp", 5.50);
-//        Produto bebida2 = new Bebida("Cerveja", 4.50);
-        Produto pizza1 = new Pizza("Monta a pizza e assa", "Pizza margarita", 29.90);
-        Produto pizza2 = new Pizza("Monta a pizza e assa", "Pizza de brócolis", 29.90);
+//        //Polimorfismo
+//        Produto produto1 = new Insumo("Vinho tinto", 3.00);
+//        Produto produto2 = new Insumo("Maracujá", 0.5);
+//
+////        Produto bebida1 = new Bebida("Chopp", 5.50);
+////        Produto bebida2 = new Bebida("Cerveja", 4.50);
+//        Produto pizza1 = new Pizza("Monta a pizza e assa", "Pizza margarita", 29.90);
+//        Produto pizza2 = new Pizza("Monta a pizza e assa", "Pizza de brócolis", 29.90);
 
 //        produtos.add(produto1);
 //        produtos.add(produto2);

@@ -22,13 +22,12 @@ import view.ViewMenu;
 public class PresenterLogin {
 
     private ViewLogin view;
-   
 
     public PresenterLogin(ViewLogin view) {
         this.view = view;
 
         validarLogin();
-        
+
         URL caminhoImagem = this.getClass().getClassLoader().getResource("icones/PizzaIcone.png");
         Image iconeTitulo = Toolkit.getDefaultToolkit().getImage(caminhoImagem);
         view.setIconImage(iconeTitulo);
@@ -59,8 +58,7 @@ public class PresenterLogin {
                 } else if (Funcionarios.getInstancia().funcionarioValido(usuario)) {
                     //verifica login e senha e chama a tela main
                     if (Funcionarios.getInstancia().getFuncionario(usuario).getSenha().equals(senha)) {
-                        System.out.println(Funcionarios.getInstancia().getFuncionario(usuario).getSenha());
-                        System.out.println(Funcionarios.getInstancia().getFuncionario(usuario).getNomeUsuario());
+                        System.out.println("Usuário autenticado com sucesso");
                         view.setVisible(false);
                         view.dispose();
                         PresenterMenu.getInstancia();

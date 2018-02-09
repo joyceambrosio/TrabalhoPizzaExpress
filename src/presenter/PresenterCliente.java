@@ -132,16 +132,14 @@ public class PresenterCliente {
 
                 if (linha == -1) {
                     JOptionPane.showMessageDialog(menu, "Selecione um cliente na lista para remove-lo");
-                }
-
-                if (linha >= 0) {
+                } else if (linha >= 0) {
                     int id = Integer.parseInt(menu.getjTableCliente().getValueAt(linha, 0).toString());
                     try {
 
-                        int confirmacao = JOptionPane.showConfirmDialog(null, "Tem certeza que quer remover esse cliente?");
+                        int confirmacao = JOptionPane.showConfirmDialog(menu, "Tem certeza que quer remover esse cliente?");
                         if (confirmacao == 0) {
                             Clientes.getInstancia().desativaCliente(id);
-                            JOptionPane.showMessageDialog(null, "O cliente foi removido com sucesso");
+                            JOptionPane.showMessageDialog(menu, "O cliente foi removido com sucesso");
 
                         }
                     } catch (SQLException ex) {

@@ -5,7 +5,6 @@
  */
 package colections;
 
-import dao.DaoCliente;
 import dao.DaoProduto;
 import java.sql.SQLException;
 import java.util.ArrayList;

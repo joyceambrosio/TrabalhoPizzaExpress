@@ -46,7 +46,7 @@ public class DaoCliente {
             resultSet = statement.getResultSet();
 
             if (resultSet.next()) {
-                
+
                 ids.add(resultSet.getInt(1));
                 ids.add(resultSet.getInt(2));
 
@@ -86,8 +86,6 @@ public class DaoCliente {
 
                 clientes.add(cli);
             }
-
-            System.out.println("Chamada de inserção de cliente feita com sucesso!");
 
             statement.close();
 
