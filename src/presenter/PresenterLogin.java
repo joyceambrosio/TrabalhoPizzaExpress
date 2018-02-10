@@ -11,9 +11,12 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.URL;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import model.Funcionario;
 import view.ViewLogin;
-import view.ViewMenu;
 
 /**
  *
@@ -55,19 +58,23 @@ public class PresenterLogin {
                     if (senha.equals("")) {
                         JOptionPane.showMessageDialog(view, "Por favor, informar a senha.");
                     }
-                } else if (Funcionarios.getInstancia().funcionarioValido(usuario)) {
-                    //verifica login e senha e chama a tela main
-                    if (Funcionarios.getInstancia().getFuncionario(usuario).getSenha().equals(senha)) {
-                        System.out.println("Usuário autenticado com sucesso");
-                        view.setVisible(false);
-                        view.dispose();
-                        PresenterMenu.getInstancia();
-                    } else {
-                        JOptionPane.showMessageDialog(view, "Login ou senha estão incorretos.");
-                    }
-
                 } else {
-                    JOptionPane.showMessageDialog(view, "Login ou senha estão incorretos.");
+                    try {
+                        if (Funcionarios.getInstancia().funcionarioValido(usuario, senha)) {
+                            //verifica login e senha e chama a tela main
+                            Funcionario funcionario = Funcionarios.getInstancia().getFuncionario(usuario);
+
+                            view.setVisible(false);
+                            view.dispose();
+                            PresenterMenu.getInstancia(funcionario.getCargo().getCargo());
+
+                        } else {
+                            JOptionPane.showMessageDialog(view, "Login ou senha estão incorretos.");
+                        }
+
+                    } catch (SQLException ex) {
+                        Logger.getLogger(PresenterLogin.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
             }
 

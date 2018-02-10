@@ -205,8 +205,8 @@ public class PresenterPedido {
                 entregador = p.getEntregador().getNome();
 
             }
-            double total = p.getNumTotalPedido();
-            tabela.addRow(new Object[]{nome, end, status, entregador, total});
+//            double total = p.getNumTotalPedido();
+//            tabela.addRow(new Object[]{nome, end, status, entregador, total});
         }
     }
 }
