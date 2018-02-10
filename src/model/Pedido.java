@@ -24,11 +24,11 @@ public class Pedido {
     public Pedido() {
     }
 
-    public Pedido(int id, Cliente cliente, Funcionario entregador) {
+    public Pedido(int id, Cliente cliente, Funcionario entregador, String status) {
         setId(id);
         setCliente(cliente);
         alterarEntregador(entregador);
-        setStatusPedido("Aberto");
+        setStatusPedido(status);
     }
 
     public Pedido(int id, Cliente cliente, Funcionario entregador, ArrayList<Produto> produtos, String statusPedido, double total) {
@@ -37,7 +37,6 @@ public class Pedido {
         alterarEntregador(entregador);
         setProdutos(produtos);
         setTotalPedido(totalPedido);
-
         setStatusPedido(statusPedido);
     }
 
@@ -150,11 +149,7 @@ public class Pedido {
     }
 
     public void setStatusPedido(String statusPedido) {
-        if (!statusPedido.equals(" ")) {
-            this.statusPedido = statusPedido;
-        } else {
-            this.statusPedido = "Aberto";
-        }
+        this.statusPedido = statusPedido;
     }
 
     @Override

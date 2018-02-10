@@ -562,7 +562,7 @@ BEGIN
     IF (conta > 9)
 		THEN
 			UPDATE Pedido
-            SET desconto = 1
+            SET desconto = 0.5
             WHERE idPedido = LAST_INSERT_ID();
             
         	UPDATE Cliente
@@ -573,7 +573,7 @@ BEGIN
         IF (conta <= 9)
 		THEN
 			UPDATE Pedido
-            SET desconto = 0
+            SET desconto = 1
             WHERE idPedido = LAST_INSERT_ID();
 	END IF;
 	SELECT LAST_INSERT_ID();
@@ -593,7 +593,8 @@ BEGIN
 	    Pedido.idFuncionario,
 	    Funcionario.nome,
 	    Pedido.total,
-	    Pedido.desconto
+	    Pedido.desconto,
+	    Pedido.status
 	FROM
 	    Pedido
 	        INNER JOIN
@@ -633,13 +634,15 @@ DELIMITER //
 CREATE PROCEDURE updPedido(
 	IN idPedidoIN INT,
 	IN idFuncionarioIN INT,
-	IN idClienteIN INT
+	IN idClienteIN INT,
+	IN statusIN VARCHAR(25)
 )
 BEGIN
 	UPDATE Pedido
 	SET 
 		idCliente = idClienteIN,
-		idFuncionario = idFuncionarioIN 
+		idFuncionario = idFuncionarioIN,
+		status = statusIN
 	WHERE idPedido = idPedidoIN;
 END;
 //

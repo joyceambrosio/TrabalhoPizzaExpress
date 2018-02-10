@@ -5,12 +5,14 @@
  */
 package dao;
 
+import colections.Clientes;
 import colections.Funcionarios;
 import conexaoBanco.ConexaoBDMySQL;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import model.Cliente;
 import model.Funcionario;
 import model.Insumo;
 import model.Pedido;
@@ -30,8 +32,12 @@ public class DaoPedido {
     private ArrayList<Produto> produtos = new ArrayList<>();
     private ArrayList<Insumo> ingredientes = null;
 
+    private Cliente cliente;
+    private Funcionario funcionario;
+
     public ArrayList<Pedido> getPedidos() throws SQLException {
         conexao = ConexaoBDMySQL.getInstancia();
+        pedidos = new ArrayList<Pedido>();
 
         try (CallableStatement statement = conexao.getConexao().prepareCall("{call getPedidos}")) {
 
@@ -45,23 +51,25 @@ public class DaoPedido {
                 int idCliente = resultSet.getInt(2);
                 String nome = resultSet.getString(3);
                 int idFuncionario = resultSet.getInt(4);
+                
                 if (resultSet.wasNull()) {
-                    Funcionario f = Funcionarios.getInstancia().getFuncionarioByID(1);
+                    funcionario = Funcionarios.getInstancia().getFuncionarioByID(1);
                 } else {
-                    String nomeFuncionario = resultSet.getString(5);
+                    funcionario = Funcionarios.getInstancia().getFuncionarioByID(idFuncionario);
                 }
 
                 double total = resultSet.getDouble(6);
                 int desconto = resultSet.getInt(7);
+                String status = resultSet.getString(8);
 
-//
-//                if (categoria.equals("Bebida")) {
-//                    Bebida novaBebida = new Bebida(idProduto, nome, preco);
-//                    produtos.add(novaBebida);
-//                } else if (categoria.equals("Pizza")) {
-//                    Pizza novaPizza = new Pizza(idProduto, nome, preco, receita);
-//                    produtos.add(novaPizza);
-//                }
+                Cliente cliente = Clientes.getInstancia().getClienteById(idCliente);
+
+                Pedido pedido = new Pedido(idPedido, cliente, funcionario, status);
+
+                System.out.println(pedido);
+
+                pedidos.add(pedido);
+
             }
             statement.close();
         }

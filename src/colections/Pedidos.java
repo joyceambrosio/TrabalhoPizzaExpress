@@ -5,6 +5,8 @@
  */
 package colections;
 
+import dao.DaoPedido;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import model.Cliente;
 import model.Pedido;
@@ -30,8 +32,9 @@ public class Pedidos {
         return instancia;
     }
 
-    public ArrayList<Pedido> getPedidos() {
-        return pedidos;
+    public ArrayList<Pedido> getPedidos() throws SQLException {
+        DaoPedido dao = new DaoPedido();
+        return dao.getPedidos();
     }
 
     public ArrayList<Pedido> getLista() {

@@ -115,7 +115,8 @@ CREATE TABLE IF NOT EXISTS Pedido (
     idFuncionario INT NULL DEFAULT NULL, # força o null pra default
     idCliente INT NOT NULL,
     total DOUBLE DEFAULT 0.0,
-    desconto boolean DEFAULT 0,
+    desconto DOUBLE DEFAULT 1,
+    status VARCHAR(25) DEFAULT 'Aberto',
     data DATETIME DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT pkPedido PRIMARY KEY (idPedido),
     CONSTRAINT fkPedidoCliente FOREIGN KEY (idCliente)

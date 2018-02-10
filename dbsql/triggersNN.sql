@@ -6,14 +6,20 @@ CREATE TRIGGER insertProdutoPedido
 	FOR EACH ROW
 BEGIN
 	DECLARE valorProduto DOUBLE;
+	DECLARE valorDesconto DOUBLE;
 
 	SELECT preco 
     INTO valorProduto 
 	FROM Produto
 	WHERE idProduto = NEW.idProduto;
 
+	SELECT desconto
+    INTO valorDesconto 
+	FROM Pedido
+	WHERE idPedido = NEW.idPedido;
+
 	UPDATE Pedido
-	SET total = (total + (NEW.quantidade * valorProduto))
+	SET total = (total + (( NEW.quantidade * valorProduto ) * valordesconto ))
 	WHERE Pedido.idPedido = NEW.idPedido;
 END//
 DELIMITER ;
@@ -26,14 +32,20 @@ CREATE TRIGGER updateProdutoPedido
 	FOR EACH ROW
 BEGIN
 	DECLARE valorProduto DOUBLE;
+	DECLARE valorDesconto DOUBLE;
 
 	SELECT preco 
 	INTO valorProduto 
 	FROM Produto
 	WHERE idProduto = OLD.idProduto;
 
+	SELECT desconto
+    INTO valorDesconto 
+	FROM Pedido
+	WHERE idPedido = NEW.idPedido;
+
 	UPDATE Pedido
-	SET total = (total - (OLD.quantidade * valorProduto))
+	SET total = (total - (( NEW.quantidade * valorProduto ) * valordesconto ))
 	WHERE Pedido.idPedido = OLD.idPedido;
 	
 	UPDATE Pedido
@@ -51,14 +63,20 @@ DELIMITER //
 		FOR EACH ROW
 	BEGIN
 		DECLARE valorProduto DOUBLE;
+		DECLARE valorDesconto DOUBLE;
 
 	SELECT preco
 	INTO valorProduto 
 	FROM Produto
 	WHERE idProduto = OLD.idProduto;
 
+	SELECT desconto
+    INTO valorDesconto 
+	FROM Pedido
+	WHERE idPedido = OLD.idPedido;
+
 	UPDATE Pedido 
-	SET total = (total - (OLD.quantidade * valorProduto))
+	SET total = (total - (( OLD.quantidade * valorProduto ) * valordesconto ))
 	WHERE Pedido.idPedido = OLD.idPedido;
 
 END//

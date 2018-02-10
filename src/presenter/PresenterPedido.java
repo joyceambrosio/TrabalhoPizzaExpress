@@ -28,7 +28,11 @@ public class PresenterPedido {
     public PresenterPedido(ViewMenu menu) {
         this.menu = menu;
 
-        populaMenuPedidos();
+        try {
+            populaMenuPedidos();
+        } catch (SQLException ex) {
+            Logger.getLogger(PresenterPedido.class.getName()).log(Level.SEVERE, null, ex);
+        }
         proximaEtapa();
         anteriorEtapa();
         novoPedido();
@@ -123,7 +127,11 @@ public class PresenterPedido {
         menu.getjCheckBoxAbertos().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                populaMenuPedidos();
+                try {
+                    populaMenuPedidos();
+                } catch (SQLException ex) {
+                    Logger.getLogger(PresenterPedido.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -132,7 +140,11 @@ public class PresenterPedido {
         menu.getjCheckBoxProducao().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                populaMenuPedidos();
+                try {
+                    populaMenuPedidos();
+                } catch (SQLException ex) {
+                    Logger.getLogger(PresenterPedido.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -141,7 +153,11 @@ public class PresenterPedido {
         menu.getjCheckBoxEntrega().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                populaMenuPedidos();
+                try {
+                    populaMenuPedidos();
+                } catch (SQLException ex) {
+                    Logger.getLogger(PresenterPedido.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -150,12 +166,16 @@ public class PresenterPedido {
         menu.getjCheckBoxConcluidos().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                populaMenuPedidos();
+                try {
+                    populaMenuPedidos();
+                } catch (SQLException ex) {
+                    Logger.getLogger(PresenterPedido.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
 
-    public void populaMenuPedidos() {
+    public void populaMenuPedidos() throws SQLException {
 
         Object colunas[] = {"Nome", "Endereço", "Etapa", "Entregador", "Total"};
         DefaultTableModel tabela = new DefaultTableModel(colunas, 0);
@@ -205,7 +225,7 @@ public class PresenterPedido {
                 entregador = p.getEntregador().getNome();
 
             }
-            double total = p.getNumTotalPedido();
+            double total = p.getTotalPedido();
             tabela.addRow(new Object[]{nome, end, status, entregador, total});
         }
     }
