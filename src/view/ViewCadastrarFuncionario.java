@@ -52,6 +52,12 @@ public class ViewCadastrarFuncionario extends javax.swing.JFrame {
         return jTextFieldNome;
     }
 
+    public JTextField getjTextFieldUsuario() {
+        return jTextFieldUsuario;
+    }
+
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -82,7 +88,7 @@ public class ViewCadastrarFuncionario extends javax.swing.JFrame {
         jPasswordFieldSenha1 = new javax.swing.JPasswordField();
         jPasswordFieldSenha2 = new javax.swing.JPasswordField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -123,8 +129,6 @@ public class ViewCadastrarFuncionario extends javax.swing.JFrame {
                 jButtonCadastrarActionPerformed(evt);
             }
         });
-
-        jComboBoxCargo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel5.setForeground(new java.awt.Color(51, 51, 51));
         jLabel5.setText("Cargo");
