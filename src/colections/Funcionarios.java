@@ -53,19 +53,20 @@ public class Funcionarios {
         return false;
     }
 
-    public boolean funcionarioValido(String usuario) {
-        for (Funcionario f : funcionarios) {
-            return f.getNomeUsuario().equals(usuario);
+    public boolean funcionarioValido(String usuario, String senha) throws SQLException {
+        for (Funcionario f : getFuncionarios()) {
+            if(f.getNomeUsuario().equals(usuario) && f.getSenha().equals(senha)){
+                return true;
+            }
+           
         }
         return false;
     }
 
-    public Funcionario getFuncionario(String usuario) {
-        for (Funcionario f : funcionarios) {
+    public Funcionario getFuncionario(String usuario) throws SQLException {
+        for (Funcionario f : dao.getFuncionarios()) {
             if (f.getNomeUsuario().equals(usuario)) {
                 return f;
-            } else {
-                return null;
             }
         }
         return null;
