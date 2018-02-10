@@ -46,6 +46,7 @@ public class PresenterModificarProduto {
 
         configurarExibicao();
         modificar();
+        fechar();
 
         URL caminhoImagem = this.getClass().getClassLoader().getResource("icones/PizzaIcone.png");
         Image iconeTitulo = Toolkit.getDefaultToolkit().getImage(caminhoImagem);
@@ -208,7 +209,7 @@ public class PresenterModificarProduto {
         view.getjFormattedTextFielPrecoVenda().setText(precoString);
         view.getjTextAreaReceita().setText(p.getReceita());
         incluirIngredientes();
-        removerIngerdientes();
+        removerIngredientes();
 
     }
 
@@ -367,23 +368,22 @@ public class PresenterModificarProduto {
         );
     }
 
-    public void removerIngerdientes() {
+    public void removerIngredientes() {
         view.getjButtonExcluir().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int linha = view.getjTableIngredientes().getSelectedRow();
                 if (linha < 0) {
-                    JOptionPane.showMessageDialog(view, "Você precisa selecionar um ingrediente na lista antes de remover");
+                    JOptionPane.showMessageDialog(null, "Você precisa selecionar um ingrediente na lista antes de remover");
                 } else {
 
                     int id = Integer.parseInt(view.getjTableIngredientes().getValueAt(linha, 0).toString());
 
                     ArrayList<Insumo> ingredientesIteracao = new ArrayList<>();
-                    
+
                     ingredientesIteracao.addAll(ingredientesTemp);
 
                     for (Insumo s : ingredientesIteracao) {
-                        System.out.println("id lista" + s.getId() + " id " + id);
                         if (s.getId() == id) {
                             ingredientesTemp.remove(s);
                         }
@@ -441,6 +441,16 @@ public class PresenterModificarProduto {
             return false;
         }
         return true;
+    }
+
+    public void fechar() {
+        view.getjButtonFechar().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                instancia = null;
+                view.dispose();
+            }
+        });
     }
 
 }

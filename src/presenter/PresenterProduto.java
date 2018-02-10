@@ -29,6 +29,7 @@ public class PresenterProduto {
         try {
             modificarProduto();
             populaMenuProdutos();
+            excluirProduto();
         } catch (SQLException e) {
         }
 
@@ -87,6 +88,36 @@ public class PresenterProduto {
                         Logger.getLogger(PresenterProduto.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
+            }
+        });
+    }
+    
+    public void excluirProduto(){
+        view.getjButtonExcluirProduto().addActionListener(new ActionListener() {
+            @Override
+            
+            public void actionPerformed(ActionEvent e) {
+                  int linha = view.getjTableProduto().getSelectedRow();
+
+                if (linha == -1) {
+                    JOptionPane.showMessageDialog(null, "Selecione um produto na lista para remove-lo");
+                } else if (linha >= 0) {
+                    int id = Integer.parseInt(view.getjTableProduto().getValueAt(linha, 0).toString());
+                    try {
+                        int confirmacao = JOptionPane.showConfirmDialog(null, "Tem certeza que quer remover esse produto?");
+                        if (confirmacao == 0) {
+                            
+                            Produto p  = Produtos.getInstancia().getProdutosbyID(id); 
+                            System.out.println(p.getId());
+                            Produtos.getInstancia().remove(p);
+                            JOptionPane.showMessageDialog(null, "O produto foi removido com sucesso");
+
+                        }
+                    } catch (SQLException ex) {
+                        Logger.getLogger(PresenterMenu.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+       
             }
         });
     }

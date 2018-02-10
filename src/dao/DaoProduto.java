@@ -5,14 +5,12 @@
  */
 package dao;
 
-import colections.Produtos;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import model.Bebida;
 import conexaoBanco.*;
-import model.Endereco;
 import model.Insumo;
 import model.Pizza;
 import model.Produto;
@@ -53,8 +51,26 @@ public class DaoProduto {
         return false;
     }
 
-    public boolean updateProduto(Produto produto) throws SQLException {
+    public boolean removeProduto(Produto produto) throws SQLException {
+        if (produto.getCategoria().equals("Insumo")) {
+            delInsumo((Insumo) produto);
+            return true;
+        }
 
+        if (produto.getCategoria().equals("Bebida")) {
+            delBebida((Bebida) produto);
+            return true;
+        }
+
+        if (produto.getCategoria().equals("Pizza")) {
+            delComida((Pizza) produto);
+            return true;
+        }
+
+        return false;
+    }
+
+    public boolean updateProduto(Produto produto) throws SQLException {
 
         if (produto.getCategoria().equals("Insumo")) {
             updInsumo((Insumo) produto);
@@ -113,7 +129,7 @@ public class DaoProduto {
     }
 
     public int addComida(Pizza produto) throws SQLException {
-        
+
         conexao = ConexaoBDMySQL.getInstancia();
 
         try (CallableStatement statement = conexao.getConexao().prepareCall("{call addComida(?, ?, ?, ?)}")) {
@@ -202,8 +218,6 @@ public class DaoProduto {
                     statement.setInt(1, pizza.getId());
                     statement.execute();
 
-
-
                     resultSet = statement.getResultSet();
 
                     while (resultSet.next()) {
@@ -247,7 +261,7 @@ public class DaoProduto {
     }
 
     private void updInsumo(Insumo insumo) throws SQLException {
-      
+
         conexao = ConexaoBDMySQL.getInstancia();
 
         try (CallableStatement statement = conexao.getConexao().prepareCall("{call updIngrediente(?, ?)}")) {
@@ -261,8 +275,6 @@ public class DaoProduto {
     }
 
     private void updBebida(Bebida bebida) throws SQLException {
-
-
 
         conexao = ConexaoBDMySQL.getInstancia();
 
@@ -284,7 +296,6 @@ public class DaoProduto {
 
     private void updComida(Pizza pizza) throws SQLException {
         conexao = ConexaoBDMySQL.getInstancia();
-       
 
         try (CallableStatement statement = conexao.getConexao().prepareCall("{call updComida(?, ?, ?, ?)}")) {
 
@@ -298,19 +309,19 @@ public class DaoProduto {
             resultSet = statement.getResultSet();
 
             statement.close();
-  
+
         }
 
         try (CallableStatement statement = conexao.getConexao().prepareCall("{delComidaIngredientes(?)}")) {
             statement.setInt(1, pizza.getId());
-           
+
         } catch (Exception e) {
         }
 
         for (Insumo p : pizza.getIngredientes()) {
 
             try (CallableStatement statement = conexao.getConexao().prepareCall("{call addComidaIngrediente(?, ?, ?, ?)}")) {
-               
+
                 statement.setInt(1, idComida);
                 statement.setInt(2, p.getId());
                 statement.setString(3, p.getUnidade());
@@ -323,7 +334,38 @@ public class DaoProduto {
             } catch (Exception e) {
             }
         }
-  
+
     }
 
+    private void delInsumo(Insumo insumo) throws SQLException {
+        conexao = ConexaoBDMySQL.getInstancia();
+
+        try (CallableStatement statement = conexao.getConexao().prepareCall("{call delIngrediente(?)}")) {
+            statement.setInt(1, insumo.getId());
+            statement.execute();
+            resultSet = statement.getResultSet();
+            statement.close();
+        }
+    }
+
+    private void delBebida(Bebida bebida) throws SQLException {
+        conexao = ConexaoBDMySQL.getInstancia();
+        try (CallableStatement statement = conexao.getConexao().prepareCall("{call delProduto(?)}")) {
+            statement.setInt(1, bebida.getId());
+            statement.execute();
+            resultSet = statement.getResultSet();
+            statement.close();
+        }
+
+    }
+
+    private void delComida(Pizza pizza) throws SQLException {
+        conexao = ConexaoBDMySQL.getInstancia();
+        try (CallableStatement statement = conexao.getConexao().prepareCall("{call delComida(?)}")) {
+            statement.setInt(1, pizza.getId());
+            statement.execute();
+            resultSet = statement.getResultSet();
+            statement.close();
+        }
+    }
 }

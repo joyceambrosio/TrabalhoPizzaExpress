@@ -39,7 +39,7 @@ public class Produtos {
         return produtos;
     }
 
-    private boolean isCliente(Produto produto) {
+    private boolean isProduto(Produto produto) {
         return produtos.indexOf(produto) != -1;
 
     }
@@ -79,9 +79,10 @@ public class Produtos {
         return null;
     }
 
-    public boolean remove(Produto produto) {
-        if (isCliente(produto)) {
-            produtos.remove(produto);
+    public boolean remove(Produto produto) throws SQLException {
+        DaoProduto dao = new DaoProduto();   
+        if (isProduto(produto)) {
+            dao.removeProduto(produto);
             return true;
         } else {
             return false;

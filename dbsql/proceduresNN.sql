@@ -225,11 +225,16 @@ CREATE PROCEDURE delComida(
 	IN idProdutoIN INT
 )
 BEGIN
-    DELETE FROM Comida 
-    WHERE idProduto = idProdutoIN;
 
     DELETE FROM ComidaIngrediente
     WHERE idComida = idProdutoIN;
+    
+    DELETE FROM Comida 
+    WHERE idProduto = idProdutoIN;
+
+    DELETE FROM Produto 
+    WHERE idProduto = idProdutoIN;
+
 END;
 //
 DELIMITER ;
@@ -544,6 +549,29 @@ BEGIN
 	VALUES (idClienteIN, idFuncionarioIN);
 
 	SELECT LAST_INSERT_ID();
+END;
+//
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS getPedidos;
+DELIMITER //
+CREATE PROCEDURE getPedidos(
+)
+BEGIN
+	SELECT 
+	    Pedido.idPedido,
+	    Pedido.idCliente,
+	    Cliente.nome,
+	    Pedido.idFuncionario,
+	    Funcionario.nome,
+	    Pedido.total,
+	    Pedido.data
+	FROM
+	    Pedido
+	        INNER JOIN
+	    Cliente ON Cliente.idCliente = Pedido.idCliente
+	        LEFT JOIN
+	    Funcionario ON Pedido.idFuncionario = Funcionario.idFuncionario;
 END;
 //
 DELIMITER ;
