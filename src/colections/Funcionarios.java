@@ -5,6 +5,8 @@
  */
 package colections;
 
+import dao.DaoFuncionario;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import model.Funcionario;
 
@@ -16,8 +18,10 @@ public class Funcionarios {
 
     private static Funcionarios instancia = null;
     private static ArrayList<Funcionario> funcionarios = new ArrayList<>();
+    private DaoFuncionario dao;
 
-    public Funcionarios() {
+    private Funcionarios() {
+        dao = new DaoFuncionario();
     }
 
     public static Funcionarios getInstancia() {
@@ -26,9 +30,9 @@ public class Funcionarios {
         }
         return instancia;
     }
-
-    public ArrayList<Funcionario> getFuncionarios() {
-        return this.funcionarios;
+   
+    public ArrayList<Funcionario> getFuncionarios() throws SQLException {
+        return funcionarios = dao.getFuncionarios();
     }
 
     public boolean isFuncionario(Funcionario funcionario) {
@@ -40,8 +44,9 @@ public class Funcionarios {
         return false;
     }
 
-    public boolean add(Funcionario f) {
+    public boolean add(Funcionario f) throws SQLException {
         if (!isFuncionario(f)) {
+            dao.addFuncionario(f);
             funcionarios.add(f);
             return true;
         }
@@ -66,6 +71,29 @@ public class Funcionarios {
         return null;
     }
 
+    public void updtFuncionario(Funcionario funcionario) throws SQLException {
+
+        int x =-1;
+        for(Funcionario f: funcionarios){
+             x ++;
+            if(f.getId() ==  funcionario.getId()){
+                dao.updateFuncionario(funcionario);
+                funcionarios.set(x, funcionario);
+            }
+        }
+        
+    }
+
+    public Funcionario getFuncionarioByID(int id) {
+        for (Funcionario f : funcionarios) {
+            if (f.getId() == id) {
+
+                return f;
+            }
+        }
+        return null;
+    }
+
     public Funcionario getFuncionarioByNome(String nome) {
         for (Funcionario f : funcionarios) {
             if (f.getNome().equals(nome)) {
@@ -80,9 +108,13 @@ public class Funcionarios {
             System.out.println(f.toString());
         }
     }
-
-    public void addAll(ArrayList<Funcionario> atualizar){
-       funcionarios.addAll(atualizar);
-    }
     
+    public void desativaFuncionario(int idFuncionario) throws SQLException{
+        dao.desativaFuncionario(idFuncionario);
+    }
+
+    public void addAll(ArrayList<Funcionario> atualizar) {
+        funcionarios.addAll(atualizar);
+    }
+
 }

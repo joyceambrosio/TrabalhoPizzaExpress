@@ -103,10 +103,14 @@ public class PresenterCadastrarPedido {
         DefaultComboBoxModel entregadorComboBox = new DefaultComboBoxModel();
         view.getjComboBoxEntregadores().setModel(entregadorComboBox);
         entregadorComboBox.addElement("Casa");
-        for (Funcionario f : Funcionarios.getInstancia().getFuncionarios()) {
-            if (f.getCargo().getCargo().equals("Entregador")) {
-                entregadorComboBox.addElement(f.getNome());
+        try {
+            for (Funcionario f : Funcionarios.getInstancia().getFuncionarios()) {
+                if (f.getCargo().getCargo().equals("Entregador")) {
+                    entregadorComboBox.addElement(f.getNome());
+                }
             }
+        } catch (SQLException ex) {
+            Logger.getLogger(PresenterCadastrarPedido.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
