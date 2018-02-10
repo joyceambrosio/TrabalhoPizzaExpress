@@ -477,7 +477,7 @@ BEGIN
 	UPDATE Funcionario
 	SET 
 		idCargo = idCargoIN,
-		nome = usuarioIN,
+		nome = nomeIN,
 		senha = senhaIN
 	WHERE idFuncionario = idFuncionarioIN;
 END;
