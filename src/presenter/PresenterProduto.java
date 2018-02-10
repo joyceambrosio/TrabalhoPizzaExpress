@@ -15,7 +15,6 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.Produto;
 import view.ViewMenu;
-import presenter.*;
 
 /**
  *

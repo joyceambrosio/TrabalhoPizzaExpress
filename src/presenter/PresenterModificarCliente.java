@@ -104,7 +104,7 @@ public class PresenterModificarCliente {
 
                     Cliente cli = new Cliente(nome, end, true, 0);
                     try {
-                        Clientes.getInstancia().modifica(cliente, cli);
+                        Clientes.getInstancia().update(cliente, cli);
                     } catch (SQLException ex) {
                         Logger.getLogger(PresenterModificarCliente.class.getName()).log(Level.SEVERE, null, ex);
                     }
