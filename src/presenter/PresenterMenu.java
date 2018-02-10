@@ -70,7 +70,7 @@ public final class PresenterMenu {
             view.getjTabbedPaneMenu().setEnabledAt(3, false);
             view.getjTabbedPaneMenu().setEnabledAt(4, false);
 
-        } else if (cargo.equals("Atentende")) {
+        } else if (cargo.equals("Atendente")) {
             this.abaPedido = new PresenterPedido(view);
             this.abaCliente = new PresenterCliente(view);
             view.getjTabbedPaneMenu().setEnabledAt(2, false);
