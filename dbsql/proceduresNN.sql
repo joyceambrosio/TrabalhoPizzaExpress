@@ -215,8 +215,6 @@ BEGIN
 	SET receita = receitaIN
 	WHERE idProduto = idProdutoIN;
 
-	SELECT LAST_INSERT_ID();
-
 END;
 //
 DELIMITER ;

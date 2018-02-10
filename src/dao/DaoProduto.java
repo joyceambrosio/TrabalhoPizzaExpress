@@ -28,7 +28,7 @@ public class DaoProduto {
     int idComida;
     ArrayList<Integer> ids;
     ArrayList<Produto> produtos = new ArrayList<>();
-    ArrayList<Insumo> ingredientes = new ArrayList<>();
+    ArrayList<Insumo> ingredientes = null;
 
     public boolean addProduto(Produto produto) throws SQLException {
 
@@ -54,7 +54,7 @@ public class DaoProduto {
     }
 
     public boolean updateProduto(Produto produto) throws SQLException {
-        System.out.println("Dentro de update produto fazer update de: " + produto.getId() + " " + produto.getNome());
+
 
         if (produto.getCategoria().equals("Insumo")) {
             updInsumo((Insumo) produto);
@@ -113,6 +113,7 @@ public class DaoProduto {
     }
 
     public int addComida(Pizza produto) throws SQLException {
+        
         conexao = ConexaoBDMySQL.getInstancia();
 
         try (CallableStatement statement = conexao.getConexao().prepareCall("{call addComida(?, ?, ?, ?)}")) {
@@ -151,9 +152,6 @@ public class DaoProduto {
         return idComida;
     }
 
-    
-  
-    
     public ArrayList<Produto> getProdutos() throws SQLException {
 
         conexao = ConexaoBDMySQL.getInstancia();
@@ -195,14 +193,16 @@ public class DaoProduto {
         for (Produto p : this.produtos) {
 
             if (p.getCategoria().equals("Pizza")) {
+                ingredientes = new ArrayList<>();
 
                 try (CallableStatement statement = conexao.getConexao().prepareCall("{call getIngredientesComida(?)}")) {
-                    ingredientes.clear();
 
                     Pizza pizza = (Pizza) p;
 
                     statement.setInt(1, pizza.getId());
                     statement.execute();
+
+
 
                     resultSet = statement.getResultSet();
 
@@ -247,7 +247,7 @@ public class DaoProduto {
     }
 
     private void updInsumo(Insumo insumo) throws SQLException {
-        System.out.println("Preparando a conexão para fazer update de: " + insumo.getId() + " " + insumo.getNome());
+      
         conexao = ConexaoBDMySQL.getInstancia();
 
         try (CallableStatement statement = conexao.getConexao().prepareCall("{call updIngrediente(?, ?)}")) {
@@ -261,9 +261,9 @@ public class DaoProduto {
     }
 
     private void updBebida(Bebida bebida) throws SQLException {
-        
-        System.out.println("Preparando a conexão para fazer update de: " + bebida.getId() + " " + bebida.getNome());
-        
+
+
+
         conexao = ConexaoBDMySQL.getInstancia();
 
         try (CallableStatement statement = conexao.getConexao().prepareCall("{call updProduto(?, ?, ?)}")) {
@@ -273,18 +273,18 @@ public class DaoProduto {
             statement.setDouble(3, bebida.getPreco());
 
             statement.execute();
-            
+
             resultSet = statement.getResultSet();
 
             statement.close();
-            
-            System.out.println("Passsou update de: " + bebida.getId() + " " + bebida.getNome());
+
         }
 
     }
 
     private void updComida(Pizza pizza) throws SQLException {
         conexao = ConexaoBDMySQL.getInstancia();
+       
 
         try (CallableStatement statement = conexao.getConexao().prepareCall("{call updComida(?, ?, ?, ?)}")) {
 
@@ -298,19 +298,19 @@ public class DaoProduto {
             resultSet = statement.getResultSet();
 
             statement.close();
-            System.out.println("Fez update");
+  
         }
 
         try (CallableStatement statement = conexao.getConexao().prepareCall("{delComidaIngredientes(?)}")) {
             statement.setInt(1, pizza.getId());
-            System.out.println("Deletou os ingredientes");
+           
         } catch (Exception e) {
         }
 
         for (Insumo p : pizza.getIngredientes()) {
 
             try (CallableStatement statement = conexao.getConexao().prepareCall("{call addComidaIngrediente(?, ?, ?, ?)}")) {
-
+               
                 statement.setInt(1, idComida);
                 statement.setInt(2, p.getId());
                 statement.setString(3, p.getUnidade());
@@ -320,9 +320,10 @@ public class DaoProduto {
                 resultSet = statement.getResultSet();
 
                 statement.close();
+            } catch (Exception e) {
             }
         }
-        System.out.println("Adicionou os ingredientes novos");
+  
     }
 
 }

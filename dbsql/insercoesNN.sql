@@ -33,7 +33,7 @@ CALL addProduto(3, "Coca cola 2L", 8.50);
 CALL addProduto(3, "Coca cola 1,5L", 7.50);
 CALL addProduto(3, "Suco de frutas 500ml", 5.00);
 CALL addProduto(3, "Suco de frutas 350ml", 4.00);
-CALL addProduto(3, "Suco de tamarindo", 15.00);
+-- CALL addProduto(3, "Suco de tamarindo", 15.00);
 -- Testando upd e del
 CALL updProduto(5, "Suco de frutas 350ml", 3.50);
 -- CALL delProduto(6);
@@ -54,49 +54,49 @@ CALL addComida(2, "Pizza baiana", 30.99, "Fazer a massa, colocar todas as piment
 -- adicionando ingredientes às pizzas
 
 -- pizza 1
-CALL addComidaIngrediente(5, 1, "Copos" ,"2/5");
-CALL addComidaIngrediente(5, 2, "unidades" ,"2");
-CALL addComidaIngrediente(5, 11, "Copos", "2/5");
-CALL addComidaIngrediente(5, 4, "gramas", "100");
-CALL addComidaIngrediente(5, 5, "gramas", "100");
-CALL addComidaIngrediente(5, 6, "gramas" ,"100");
-CALL addComidaIngrediente(5, 7, "gramas", "100");
--- pizza 2
-CALL addComidaIngrediente(6, 1, "Copos", "2/5");
-CALL addComidaIngrediente(6, 2, "unidades", "2");
+CALL addComidaIngrediente(6, 1, "Copos" ,"2/5");
+CALL addComidaIngrediente(6, 2, "unidades" ,"2");
 CALL addComidaIngrediente(6, 11, "Copos", "2/5");
-CALL addComidaIngrediente(6, 9, "unidades", "2");
-CALL addComidaIngrediente(6, 4, "gramas", "200");
-CALL addComidaIngrediente(6, 5, "1gramas", "100");
--- pizza 3
+CALL addComidaIngrediente(6, 4, "gramas", "100");
+CALL addComidaIngrediente(6, 5, "gramas", "100");
+CALL addComidaIngrediente(6, 6, "gramas" ,"100");
+CALL addComidaIngrediente(6, 7, "gramas", "100");
+-- pizza 2
 CALL addComidaIngrediente(7, 1, "Copos", "2/5");
 CALL addComidaIngrediente(7, 2, "unidades", "2");
 CALL addComidaIngrediente(7, 11, "Copos", "2/5");
 CALL addComidaIngrediente(7, 9, "unidades", "2");
-CALL addComidaIngrediente(7, 4, "gramas", "100 ");
-CALL addComidaIngrediente(7, 5, " gramas", "100");
-CALL addComidaIngrediente(7, 10, "gramas", "100 ");
--- pizza 4
+CALL addComidaIngrediente(7, 4, "gramas", "200");
+CALL addComidaIngrediente(7, 5, "1gramas", "100");
+-- pizza 3
 CALL addComidaIngrediente(8, 1, "Copos", "2/5");
-CALL addComidaIngrediente(8, 2, " unidades", "2");
+CALL addComidaIngrediente(8, 2, "unidades", "2");
 CALL addComidaIngrediente(8, 11, "Copos", "2/5");
-CALL addComidaIngrediente(8, 9, "unidades", "2 ");
-CALL addComidaIngrediente(8, 4, "gramas", "100");
+CALL addComidaIngrediente(8, 9, "unidades", "2");
+CALL addComidaIngrediente(8, 4, "gramas", "100 ");
 CALL addComidaIngrediente(8, 5, " gramas", "100");
-CALL addComidaIngrediente(8, 12, "gramas", "100");
-CALL addComidaIngrediente(8, 13, "gramas", "100");
-CALL addComidaIngrediente(8, 14, "gramas", "100");
--- pizza 5
+CALL addComidaIngrediente(8, 10, "gramas", "100 ");
+-- pizza 4
 CALL addComidaIngrediente(9, 1, "Copos", "2/5");
-CALL addComidaIngrediente(9, 2, "unidades", "2");
-CALL addComidaIngrediente(9, 11, "2/5 Copos", "2/5");
-CALL addComidaIngrediente(9, 9, "unidades", "2");
+CALL addComidaIngrediente(9, 2, " unidades", "2");
+CALL addComidaIngrediente(9, 11, "Copos", "2/5");
+CALL addComidaIngrediente(9, 9, "unidades", "2 ");
 CALL addComidaIngrediente(9, 4, "gramas", "100");
+CALL addComidaIngrediente(9, 5, " gramas", "100");
+CALL addComidaIngrediente(9, 12, "gramas", "100");
+CALL addComidaIngrediente(9, 13, "gramas", "100");
 CALL addComidaIngrediente(9, 14, "gramas", "100");
-CALL addComidaIngrediente(9, 10, "gramas", "100");
+-- pizza 5
+CALL addComidaIngrediente(10, 1, "Copos", "2/5");
+CALL addComidaIngrediente(10, 2, "unidades", "2");
+CALL addComidaIngrediente(10, 11, "2/5 Copos", "2/5");
+CALL addComidaIngrediente(10, 9, "unidades", "2");
+CALL addComidaIngrediente(10, 4, "gramas", "100");
+CALL addComidaIngrediente(10, 14, "gramas", "100");
+CALL addComidaIngrediente(10, 10, "gramas", "100");
 -- testando upd e del
-CALL updComidaIngrediente(4, 9, "unidade", "1");
-CALL delComidaIngrediente(3, 10);
+-- CALL updComidaIngrediente(4, 9, "unidade", "1");
+-- CALL delComidaIngrediente(3, 10);
 
 -- adicionando clientes
 

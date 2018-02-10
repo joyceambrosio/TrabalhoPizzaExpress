@@ -95,13 +95,16 @@ public class Produtos {
     }
 
     public boolean update(Produto old) throws SQLException {
-        int index = produtos.indexOf(old);
-        if (index > -1) {
-            DaoProduto dao = new DaoProduto();
-            
-            System.out.println("Enviando pra dao");
-            return dao.updateProduto(old);
-            
+        DaoProduto dao = new DaoProduto();
+        System.out.println("entrou na collection");
+        int x = -1;
+        for (Produto p : produtos) {
+            x++;
+            if (p.getId() == old.getId()) {
+                dao.updateProduto(old);
+                produtos.set(x, old);
+                return true;
+            }
         }
         return false;
     }

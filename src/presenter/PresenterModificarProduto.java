@@ -133,17 +133,18 @@ public class PresenterModificarProduto {
         String nome = view.getjTextFieldNomeProduto().getText();
         String precoString = view.getjFormattedTextFielPrecoVenda().getText().replace(',', '.');
         String receita = view.getjTextAreaReceita().getText();
+        Pizza novaPizza;
 
         System.out.println("entrou na presenter");
         if (validarCamposComida(nome, precoString, receita)) {
             try {
                 System.out.println("Entrou no try");
-                produto.setNome(nome);
-                produto.setPreco(Double.parseDouble(precoString));
-                produto.setReceita(receita);
-                produto.setIngredientes(ingredientesTemp);
 
-                if (Produtos.getInstancia().update(produto)) {
+                novaPizza = new Pizza(nome, Double.parseDouble(precoString), receita, ingredientesTemp);
+
+                novaPizza.setId(produto.getId());
+
+                if (Produtos.getInstancia().update(novaPizza)) {
                     JOptionPane.showMessageDialog(null, "Pizza modificada com sucesso");
                 } else {
                     JOptionPane.showMessageDialog(null, "Ocorreu um erro");
@@ -195,6 +196,11 @@ public class PresenterModificarProduto {
         estadoPizza();
         Pizza p = (Pizza) produto;
         ingredientesTemp = p.getIngredientes();
+
+        for (Insumo i : ingredientesTemp) {
+            System.out.println("Insumo: " + i.getId() + i.getUnidade() + i.getQuantidade());
+        }
+
         popularInsumosCombo();
         popularTabelaIngredientes();
         view.getjTextFieldNomeProduto().setText(p.getNome());
@@ -366,17 +372,21 @@ public class PresenterModificarProduto {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int linha = view.getjTableIngredientes().getSelectedRow();
-                if (linha == -1) {
+                if (linha < 0) {
                     JOptionPane.showMessageDialog(view, "Você precisa selecionar um ingrediente na lista antes de remover");
                 } else {
 
                     int id = Integer.parseInt(view.getjTableIngredientes().getValueAt(linha, 0).toString());
 
-                    for (Insumo s : ingredientesTemp) {
+                    ArrayList<Insumo> ingredientesIteracao = new ArrayList<>();
+                    
+                    ingredientesIteracao.addAll(ingredientesTemp);
+
+                    for (Insumo s : ingredientesIteracao) {
+                        System.out.println("id lista" + s.getId() + " id " + id);
                         if (s.getId() == id) {
                             ingredientesTemp.remove(s);
                         }
-
                     }
 
                     popularTabelaIngredientes();
