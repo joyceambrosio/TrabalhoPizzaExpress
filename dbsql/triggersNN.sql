@@ -52,18 +52,18 @@ DELIMITER //
 	BEGIN
 		DECLARE valorProduto DOUBLE;
 
-		SELECT 
-	    preco
-	INTO valorProduto FROM
-	    Produto
-	WHERE
-	    idProduto = OLD.idProduto;
+	SELECT preco
+	INTO valorProduto 
+	FROM Produto
+	WHERE idProduto = OLD.idProduto;
 
-		UPDATE Pedido 
-	SET 
-	    total = (total - (OLD.quantidade * valorProduto))
-	WHERE
-	    Pedido.idPedido = OLD.idPedido;
+	UPDATE Pedido 
+	SET total = (total - (OLD.quantidade * valorProduto))
+	WHERE Pedido.idPedido = OLD.idPedido;
 
 END//
 DELIMITER ;
+
+
+
+

@@ -5,6 +5,7 @@
  */
 package model;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 /**
@@ -13,36 +14,47 @@ import java.util.ArrayList;
  */
 public class Pedido {
 
-    private static int uniqueId = 0;
     private int id;
     private Cliente cliente;
     private Funcionario entregador;
     private ArrayList<Produto> produtos;
     private String statusPedido;
-
-    //atributo estático em pedido
-    private static int numTotalPedido;
+    private double totalPedido;
 
     public Pedido() {
     }
 
-    public Pedido(Cliente cliente, Funcionario entregador) {
-        id = uniqueId;
-        uniqueId++;
+    public Pedido(int id, Cliente cliente, Funcionario entregador) {
+        setId(id);
         setCliente(cliente);
         alterarEntregador(entregador);
         setStatusPedido("Aberto");
     }
 
-    public Pedido(Cliente cliente, Funcionario entregador, ArrayList<Produto> produtos, String statusPedido) {
-        id = uniqueId;
-        uniqueId++;
-        System.out.println(uniqueId);
-        System.out.println(uniqueId);
+    public Pedido(int id, Cliente cliente, Funcionario entregador, ArrayList<Produto> produtos, String statusPedido, double total) {
+        setId(id);
         setCliente(cliente);
         alterarEntregador(entregador);
         setProdutos(produtos);
+        setTotalPedido(totalPedido);
+
         setStatusPedido(statusPedido);
+    }
+
+    public void setTotalPedido(double totalPedido) {
+        this.totalPedido = totalPedido;
+    }
+
+    public double getTotalPedido() {
+        return totalPedido;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public int getIdPedido() {
@@ -51,19 +63,6 @@ public class Pedido {
 
     public void setEntregador(Funcionario entregador) {
         this.entregador = entregador;
-    }
-
-    public static int getNumTotalPedido() {
-        return numTotalPedido;
-    }
-
-    public static void setNumTotalPedido(int numTotalPedido) {
-        Pedido.numTotalPedido = numTotalPedido;
-    }
-
-    public void addProduto(Produto produto) {
-        produtos.add(produto);
-        numTotalPedido++;
     }
 
     public void removerProduto(Produto produto) {
@@ -123,11 +122,6 @@ public class Pedido {
         if (cliente != null) {
             this.cliente = cliente;
         }
-    }
-
-    //método estático para verificar a quantidade de número de pedidos
-    public static void consultarNumeroTotalDePedidos() {
-        System.out.println(numTotalPedido);
     }
 
     public Funcionario getEntregador() {

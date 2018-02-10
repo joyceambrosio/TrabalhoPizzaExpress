@@ -535,7 +535,7 @@ END;
 //
 DELIMITER ;
 
--- ------------------------------ PEDIDO - ADD UPDATE DELETE -----------------------------
+-- ------------------------------ PEDIDO - ADD GET UPDATE DELETE -----------------------------
 
 DROP PROCEDURE IF EXISTS addPedido;
 DELIMITER //
@@ -544,10 +544,38 @@ CREATE PROCEDURE addPedido(
 	IN idFuncionarioIN INT
 )
 BEGIN
+	DECLARE conta INT;
+    
 	INSERT INTO 
 	Pedido (idCliente, idFuncionario)
 	VALUES (idClienteIN, idFuncionarioIN);
 
+	UPDATE Cliente
+	SET ncompras = (ncompras + 1)
+	WHERE Cliente.idCliente = idClienteIN;
+
+	SELECT nCompras
+    INTO conta
+    FROM Cliente 
+    WHERE idCliente = idClienteIN;
+    
+    IF (conta > 9)
+		THEN
+			UPDATE Pedido
+            SET desconto = 1
+            WHERE idPedido = LAST_INSERT_ID();
+            
+        	UPDATE Cliente
+			SET ncompras = 0
+			WHERE Cliente.idCliente = idClienteIN; 
+	
+    END IF;
+        IF (conta <= 9)
+		THEN
+			UPDATE Pedido
+            SET desconto = 0
+            WHERE idPedido = LAST_INSERT_ID();
+	END IF;
 	SELECT LAST_INSERT_ID();
 END;
 //
@@ -565,7 +593,7 @@ BEGIN
 	    Pedido.idFuncionario,
 	    Funcionario.nome,
 	    Pedido.total,
-	    Pedido.data
+	    Pedido.desconto
 	FROM
 	    Pedido
 	        INNER JOIN
@@ -582,8 +610,20 @@ CREATE PROCEDURE delPedido(
 	IN idPedidoIN INT
 )
 BEGIN
+
+	UPDATE Cliente
+	SET ncompras = (ncompras - 1)
+	WHERE Cliente.idCliente IN 
+		(
+			SELECT idCliente
+			FROM Pedido
+			WHERE idPedido = idPedidoIN
+
+		);
+
 	DELETE FROM Pedido
 	WHERE idPedido = idPedidoIN;
+
 END;
 //
 DELIMITER ;

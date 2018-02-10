@@ -22,11 +22,11 @@ import model.Produto;
 public class DaoProduto {
 
     private ResultSet resultSet;
-    ConexaoBDMySQL conexao;
-    int idComida;
-    ArrayList<Integer> ids;
-    ArrayList<Produto> produtos = new ArrayList<>();
-    ArrayList<Insumo> ingredientes = null;
+    private ConexaoBDMySQL conexao;
+    private int idComida;
+    private ArrayList<Integer> ids;
+    private ArrayList<Produto> produtos = new ArrayList<>();
+    private ArrayList<Insumo> ingredientes = null;
 
     public boolean addProduto(Produto produto) throws SQLException {
 
