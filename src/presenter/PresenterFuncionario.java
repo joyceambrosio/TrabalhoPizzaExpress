@@ -9,6 +9,7 @@ import colections.Funcionarios;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -31,13 +32,14 @@ public class PresenterFuncionario {
         cadastrarNovoFuncionario();
         modificarFuncionario();
         excluirFuncionario();
+        pesquisaFuncionario();
     }
 
     public void cadastrarNovoFuncionario() {
         menu.getjButtonNovoFuncionario().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                 PresenterCadastrarFuncionario presenterFuncionarioCad = PresenterCadastrarFuncionario.getInstancia();
+                PresenterCadastrarFuncionario presenterFuncionarioCad = PresenterCadastrarFuncionario.getInstancia();
             }
         });
 
@@ -52,7 +54,7 @@ public class PresenterFuncionario {
 
                 if (linha == -1) {
                     JOptionPane.showMessageDialog(menu, "Selecione um Funcionário para realizar as modificações");
-                } else if (linha >=0 ) {
+                } else if (linha >= 0) {
 
                     int idFuncionario = Integer.parseInt(menu.getjTableFuncionario().getValueAt(linha, 0).toString());
                     Funcionario f = Funcionarios.getInstancia().getFuncionarioByID(idFuncionario);
@@ -74,7 +76,6 @@ public class PresenterFuncionario {
         DefaultTableModel tabela = new DefaultTableModel(colunas, 0);
         menu.getjTableFuncionario().setModel(tabela);
 
-
         try {
             for (Funcionario f : Funcionarios.getInstancia().getFuncionarios()) {
                 int id = f.getId();
@@ -94,12 +95,12 @@ public class PresenterFuncionario {
         }
 
     }
-    
-    public void excluirFuncionario(){
+
+    public void excluirFuncionario() {
         menu.getjButtonExcluirFuncionario().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                  int linha = menu.getjTableFuncionario().getSelectedRow();
+                int linha = menu.getjTableFuncionario().getSelectedRow();
 
                 if (linha == -1) {
                     JOptionPane.showMessageDialog(menu, "Selecione um funcionário na lista para remove-lo");
@@ -117,6 +118,39 @@ public class PresenterFuncionario {
                     } catch (SQLException ex) {
                         Logger.getLogger(PresenterMenu.class.getName()).log(Level.SEVERE, null, ex);
                     }
+                }
+            }
+        });
+    }
+
+    public void pesquisaFuncionario() {
+        menu.getjButtonPesquisarFuncionario().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (menu.getjTextFieldBuscarFuncionario().getText().equals("")) {
+                    populaMenuFuncionarios();
+                } else {
+                    Object colunas[] = {"ID", "Nome", "Comissão", "Nome de Usuário", "Cargo"};
+                    DefaultTableModel tabela = new DefaultTableModel(colunas, 0);
+                    menu.getjTableFuncionario().setModel(tabela);
+
+                    System.out.println("Pesquisa: " + menu.getjTextFieldBuscarFuncionario().getText());
+                    ArrayList<Funcionario> pesquisa = Funcionarios.getInstancia().pesquisa(menu.getjTextFieldBuscarFuncionario().getText());
+                    for (Funcionario f : pesquisa) {
+                        int id = f.getId();
+                        String nome = f.getNome();
+                        String usuario = f.getNomeUsuario();
+                        String cargo = f.getCargo().getCargo();
+                        String comissao;
+                        if (f.getCargo().isComissao()) {
+                            comissao = "Sim";
+                        } else {
+                            comissao = "Não";
+                        }
+                        tabela.addRow(new Object[]{id, nome, comissao, usuario, cargo});
+
+                    }
+
                 }
             }
         });

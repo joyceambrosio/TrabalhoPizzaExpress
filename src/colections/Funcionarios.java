@@ -117,5 +117,16 @@ public class Funcionarios {
     public void addAll(ArrayList<Funcionario> atualizar) {
         funcionarios.addAll(atualizar);
     }
+    
+    public ArrayList<Funcionario> pesquisa(String nome){
+        ArrayList<Funcionario> funcTemp = new ArrayList<>();
+        for(Funcionario f: funcionarios){
+            if(f.getNome().contains(nome)){
+                funcTemp.add(f);
+            }
+        }
+      
+        return funcTemp;
+    }
 
 }

@@ -593,7 +593,7 @@ public class ViewMenu extends javax.swing.JFrame {
 
         jLabel5.setText("Data de início:");
 
-        jFormattedTextFieldDataInicio.setText("      /     /");
+        jFormattedTextFieldDataInicio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
         jFormattedTextFieldDataInicio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jFormattedTextFieldDataInicioActionPerformed(evt);
