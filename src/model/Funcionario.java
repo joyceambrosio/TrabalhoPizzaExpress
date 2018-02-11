@@ -93,7 +93,9 @@ public abstract class Funcionario {
     }
 
     @Override
-    public abstract String toString();
+    public String toString() {
+        return this.nome;
+    }
 
     public abstract void imprimeInformacoesFuncionario();
 }

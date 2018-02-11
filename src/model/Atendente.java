@@ -28,7 +28,7 @@ public class Atendente extends Funcionario {
 
     @Override
     public String toString() {
-        return this.getNome() + " " + this.getNomeUsuario() + " " + this.cargo;
+        return this.getNome();
     }
 
 }

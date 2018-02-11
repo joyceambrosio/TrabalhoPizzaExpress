@@ -13,6 +13,8 @@ import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import model.Cliente;
 import model.Funcionario;
 import model.Insumo;
@@ -121,6 +123,11 @@ public class DaoPedido {
     }
 
     public void updPedido(Pedido pedido) throws SQLException {
+        System.out.println("Entrou em update pedido na dao");
+        System.out.println(pedido.getId());
+        for (PedidoProduto p : pedido.getProdutos()) {
+            System.out.println(p.getProduto().getId() + p.getProduto().getId() + " " + p.getQuantidade() + " ");
+        }
         conexao = ConexaoBDMySQL.getInstancia();
 
         try (CallableStatement statement = conexao.getConexao().prepareCall("{call updPedido(?, ?, ?, ?)}")) {
@@ -137,16 +144,17 @@ public class DaoPedido {
 
             statement.execute();
 
-            resultSet = statement.getResultSet();
-
             statement.close();
 
         }
 
-        try (CallableStatement statement = conexao.getConexao().prepareCall("{delPedidoProdutos(?)}")) {
+        try (CallableStatement statement = conexao.getConexao().prepareCall("{call delPedidoProdutos(?)}")) {
             statement.setInt(1, pedido.getId());
+            statement.execute();
+            statement.close();
 
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
 
         for (PedidoProduto p : pedido.getProdutos()) {
@@ -163,6 +171,7 @@ public class DaoPedido {
 
                 statement.close();
             } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e.getMessage());
             }
         }
     }

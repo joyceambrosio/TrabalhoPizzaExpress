@@ -24,36 +24,6 @@ BEGIN
 END//
 DELIMITER ;
 
-DROP TRIGGER IF EXISTS updateProdutoPedido;
-
-DELIMITER //
-CREATE TRIGGER updateProdutoPedido 
-	AFTER UPDATE ON PedidoProduto
-	FOR EACH ROW
-BEGIN
-	DECLARE valorProduto DOUBLE;
-	DECLARE valorDesconto DOUBLE;
-
-	SELECT preco 
-	INTO valorProduto 
-	FROM Produto
-	WHERE idProduto = OLD.idProduto;
-
-	SELECT desconto
-    INTO valorDesconto 
-	FROM Pedido
-	WHERE idPedido = NEW.idPedido;
-
-	UPDATE Pedido
-	SET total = (total - (( NEW.quantidade * valorProduto ) * valordesconto ))
-	WHERE Pedido.idPedido = OLD.idPedido;
-	
-	UPDATE Pedido
-	SET total = (total + (NEW.quantidade * valorProduto))
-	WHERE Pedido.idPedido = OLD.idPedido;
-
-END//
-DELIMITER ;
 
 DROP TRIGGER IF EXISTS deleteProdutoPedido;
 

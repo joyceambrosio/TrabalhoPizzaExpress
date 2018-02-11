@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import model.Cliente;
 import model.Pedido;
+import model.PedidoProduto;
 import model.Produto;
 
 /**
@@ -82,6 +83,14 @@ public class Pedidos {
 
     public void updatePedido(Pedido p) throws SQLException {
         DaoPedido dao = new DaoPedido();
+        System.out.println("Dentro de update na collections");
+        System.out.println(p.getId());
+        
+        for (PedidoProduto g : p.getProdutos()){
+            System.out.println(g.getProduto().getId() +  " " + g.getProduto().getNome() + " "+ g.getQuantidade());
+        }
+
         dao.updPedido(p);
+        setPedidos();
     }
 }

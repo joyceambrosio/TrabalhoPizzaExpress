@@ -46,9 +46,9 @@ public final class PresenterMenu {
 
         return instancia;
     }
-    
-    public static PresenterMenu getInstancia(){
-          if (instancia == null) {
+
+    public static PresenterMenu getInstancia() {
+        if (instancia == null) {
             instancia = new PresenterMenu(new ViewMenu());
         }
 
@@ -80,7 +80,6 @@ public final class PresenterMenu {
             this.abaProduto = new PresenterProduto(view);
             this.abaFuncionario = new PresenterFuncionario(view);
 
-
         } else if (cargo.equals("Entregador")) {
             view.getjTabbedPaneMenu().setEnabledAt(1, false);
             this.abaPedido = new PresenterPedido(view);
@@ -108,8 +107,8 @@ public final class PresenterMenu {
     public ViewMenu getView() {
         return view;
     }
-    
-      public void populaMenuClientes() {
+
+    public void populaMenuClientes() {
 
         Object colunas[] = {"ID", "Nome do Cliente", "Endereço", "Quantidade de Compras"};
         DefaultTableModel tabela = new DefaultTableModel(colunas, 0);
@@ -131,14 +130,12 @@ public final class PresenterMenu {
         }
 
     }
-      
-       
-        public void populaMenuFuncionarios() {
+
+    public void populaMenuFuncionarios() {
 
         Object colunas[] = {"ID", "Nome", "Comissão", "Nome de Usuário", "Cargo"};
         DefaultTableModel tabela = new DefaultTableModel(colunas, 0);
         view.getjTableFuncionario().setModel(tabela);
-
 
         try {
             for (Funcionario f : Funcionarios.getInstancia().getFuncionarios()) {
@@ -159,9 +156,8 @@ public final class PresenterMenu {
         }
 
     }
-        
-        
-         public void populaMenuProdutos() throws SQLException {
+
+    public void populaMenuProdutos() throws SQLException {
         Object colunas[] = {"ID", "Nome", "Categoria", "Preço"};
         DefaultTableModel tabela = new DefaultTableModel(colunas, 0);
 
