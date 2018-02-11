@@ -17,7 +17,9 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import model.Atendente;
 import model.Cargo;
+import model.Cozinheiro;
 import model.Entregador;
 import model.Funcionario;
 import view.ViewCadastrarFuncionario;
@@ -45,7 +47,7 @@ public class PresenterModificarFuncionario {
         });
 
         view.getjComboBoxCargo().addItem("Entregador");
-        view.getjComboBoxCargo().addItem("Antendente");
+        view.getjComboBoxCargo().addItem("Atendente");
         view.getjComboBoxCargo().addItem("Cozinheiro");
 
         configuraCampos();
@@ -80,13 +82,16 @@ public class PresenterModificarFuncionario {
                 if (validaCampos()) {
                     if (view.getjComboBoxCargo().getSelectedItem().equals("Entregador")) {
                         funcionario = new Entregador(view.getjTextFieldNome().getText(), view.getjTextFieldUsuario().getText(), view.getjPasswordFieldSenha1().getText(), new Cargo("Entregador", 0, true, 4));
+                        funcionario.getCargo().setIdCargo(4);
                     }
                     if (view.getjComboBoxCargo().getSelectedItem().equals("Atendente")) {
-                        funcionario = new Entregador(view.getjTextFieldNome().getText(), view.getjTextFieldUsuario().getText(), view.getjPasswordFieldSenha1().getText(), new Cargo("Atendente", 1200, false, 1));
+                        funcionario = new Atendente(view.getjTextFieldNome().getText(), view.getjTextFieldUsuario().getText(), view.getjPasswordFieldSenha1().getText(), new Cargo("Atendente", 1200, false, 1));
+                        funcionario.getCargo().setIdCargo(2);
                     }
                     if (view.getjComboBoxCargo().getSelectedItem().equals("Cozinheiro")) {
-                        funcionario = new Entregador(view.getjTextFieldNome().getText(), view.getjTextFieldUsuario().getText(), view.getjPasswordFieldSenha1().getText(), new Cargo("Cozinheiro", 1800, false, 3));
+                        funcionario = new Cozinheiro(view.getjTextFieldNome().getText(), view.getjTextFieldUsuario().getText(), view.getjPasswordFieldSenha1().getText(), new Cargo("Cozinheiro", 1800, false, 3));
 
+                        funcionario.getCargo().setIdCargo(3);
                     }
 
                     funcionario.setId(funcionarioAntigo.getId());

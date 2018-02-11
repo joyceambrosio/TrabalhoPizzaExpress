@@ -43,7 +43,7 @@ public class PresenterCadastrarFuncionario {
         });
 
         view.getjComboBoxCargo().addItem("Entregador");
-        view.getjComboBoxCargo().addItem("Antendente");
+        view.getjComboBoxCargo().addItem("Atendente");
         view.getjComboBoxCargo().addItem("Cozinheiro");
 
         URL caminhoImagem = this.getClass().getClassLoader().getResource("icones/PizzaIcone.png");
