@@ -145,6 +145,7 @@ public class PresenterCliente {
                         int confirmacao = JOptionPane.showConfirmDialog(menu, "Tem certeza que quer remover esse cliente?");
                         if (confirmacao == 0) {
                             Clientes.getInstancia().desativaCliente(id);
+                            PresenterMenu.getInstancia().populaMenuClientes();
                             JOptionPane.showMessageDialog(menu, "O cliente foi removido com sucesso");
 
                         }

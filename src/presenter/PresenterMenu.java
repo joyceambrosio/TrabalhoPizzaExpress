@@ -5,11 +5,17 @@
  */
 package presenter;
 
+import colections.Clientes;
 import static java.awt.Frame.MAXIMIZED_BOTH;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.net.URL;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.event.ChangeEvent;
+import javax.swing.table.DefaultTableModel;
+import model.Cliente;
 
 import view.ViewMenu;
 
@@ -33,6 +39,14 @@ public final class PresenterMenu {
 
         return instancia;
     }
+    
+    public static PresenterMenu getInstancia(){
+          if (instancia == null) {
+            instancia = new PresenterMenu(new ViewMenu());
+        }
+
+        return instancia;
+    }
 
     private PresenterMenu(ViewMenu view, String cargo) {
         this.view = view;
@@ -45,6 +59,10 @@ public final class PresenterMenu {
         view.setVisible(true);
         instanciarAbas(cargo);
 
+    }
+
+    private PresenterMenu(ViewMenu viewMenu) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public void instanciarAbas(String cargo) {
@@ -82,6 +100,29 @@ public final class PresenterMenu {
 
     public ViewMenu getView() {
         return view;
+    }
+    
+      public void populaMenuClientes() {
+
+        Object colunas[] = {"ID", "Nome do Cliente", "Endereço", "Quantidade de Compras"};
+        DefaultTableModel tabela = new DefaultTableModel(colunas, 0);
+
+        view.getjTableCliente().setModel(tabela);
+
+        try {
+            for (Cliente c : Clientes.getInstancia().getClientes()) {
+                int id = c.getId();
+
+                String nome = c.getNome();
+                String end = c.getEndereco().getEnderecoCompleto();
+                int compras = c.getNumeroCompra();
+
+                tabela.addRow(new Object[]{id, nome, end, compras});
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PresenterMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
 }

@@ -110,6 +110,7 @@ public class PresenterModificarCliente {
                     }
 
                     JOptionPane.showMessageDialog(view, "Cliente modificado com sucesso");
+                    PresenterMenu.getInstancia().populaMenuClientes();
                     instancia = null;
                     view.dispose();
 

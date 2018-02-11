@@ -78,6 +78,7 @@ public class PresenterCadastrarCliente {
                 }
 
                 JOptionPane.showMessageDialog(view, "Cliente cadastrado com sucesso");
+                PresenterMenu.getInstancia().populaMenuClientes();
                 instancia = null;
                 view.dispose();
             }
