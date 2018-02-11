@@ -31,8 +31,6 @@ public class Cargo {
         this.idCargo = idCargo;
     }
 
- 
-
     public String getCargo() {
         return cargo;
     }

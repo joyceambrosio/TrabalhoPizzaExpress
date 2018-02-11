@@ -87,27 +87,27 @@ public class Pedidos {
         DaoPedido dao = new DaoPedido();
         System.out.println("Dentro de update na collections");
         System.out.println(p.getId());
-        
-        for (PedidoProduto g : p.getProdutos()){
-            System.out.println(g.getProduto().getId() +  " " + g.getProduto().getNome() + " "+ g.getQuantidade());
+
+        for (PedidoProduto g : p.getProdutos()) {
+            System.out.println(g.getProduto().getId() + " " + g.getProduto().getNome() + " " + g.getQuantidade());
         }
 
         dao.updPedido(p);
         setPedidos();
     }
-    
-    public ArrayList<Pedido> pesquisaPedido(String pesquisa){
+
+    public ArrayList<Pedido> pesquisaPedido(String pesquisa) {
         ArrayList<Pedido> pedidoTemp = new ArrayList<>();
         try {
-            for(Pedido p : getPedidos()){
-                if(p.getCliente().getNome().toLowerCase().contains(pesquisa.toLowerCase())){
+            for (Pedido p : getPedidos()) {
+                if (p.getCliente().getNome().toLowerCase().contains(pesquisa.toLowerCase())) {
                     pedidoTemp.add(p);
                 }
             }
         } catch (SQLException ex) {
             Logger.getLogger(Pedidos.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         return pedidoTemp;
     }
 }

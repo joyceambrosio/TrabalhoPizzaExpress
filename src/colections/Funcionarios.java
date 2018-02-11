@@ -30,7 +30,7 @@ public class Funcionarios {
         }
         return instancia;
     }
-   
+
     public ArrayList<Funcionario> getFuncionarios() throws SQLException {
         return funcionarios = dao.getFuncionarios();
     }
@@ -55,10 +55,10 @@ public class Funcionarios {
 
     public boolean funcionarioValido(String usuario, String senha) throws SQLException {
         for (Funcionario f : getFuncionarios()) {
-            if(f.getNomeUsuario().equals(usuario) && f.getSenha().equals(senha)){
+            if (f.getNomeUsuario().equals(usuario) && f.getSenha().equals(senha)) {
                 return true;
             }
-           
+
         }
         return false;
     }
@@ -74,15 +74,15 @@ public class Funcionarios {
 
     public void updtFuncionario(Funcionario funcionario) throws SQLException {
 
-        int x =-1;
-        for(Funcionario f: funcionarios){
-             x ++;
-            if(f.getId() ==  funcionario.getId()){
+        int x = -1;
+        for (Funcionario f : funcionarios) {
+            x++;
+            if (f.getId() == funcionario.getId()) {
                 dao.updateFuncionario(funcionario);
                 funcionarios.set(x, funcionario);
             }
         }
-        
+
     }
 
     public Funcionario getFuncionarioByID(int id) {
@@ -109,23 +109,23 @@ public class Funcionarios {
             System.out.println(f.toString());
         }
     }
-    
-    public void desativaFuncionario(int idFuncionario) throws SQLException{
+
+    public void desativaFuncionario(int idFuncionario) throws SQLException {
         dao.desativaFuncionario(idFuncionario);
     }
 
     public void addAll(ArrayList<Funcionario> atualizar) {
         funcionarios.addAll(atualizar);
     }
-    
-    public ArrayList<Funcionario> pesquisa(String nome){
+
+    public ArrayList<Funcionario> pesquisa(String nome) {
         ArrayList<Funcionario> funcTemp = new ArrayList<>();
-        for(Funcionario f: funcionarios){
-            if(f.getNome().toLowerCase().contains(nome.toLowerCase()) ){
+        for (Funcionario f : funcionarios) {
+            if (f.getNome().toLowerCase().contains(nome.toLowerCase())) {
                 funcTemp.add(f);
             }
         }
-      
+
         return funcTemp;
     }
 

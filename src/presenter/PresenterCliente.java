@@ -80,7 +80,6 @@ public class PresenterCliente {
                     JOptionPane.showMessageDialog(menu, "Selecione um cliente para realizar as modificações");
                 } else if (linha >= 0) {
 
-                    
                     int idCliente = Integer.parseInt(menu.getjTableCliente().getValueAt(linha, 0).toString());
                     Cliente c = null;
                     try {

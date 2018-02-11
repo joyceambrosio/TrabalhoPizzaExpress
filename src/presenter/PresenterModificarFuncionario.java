@@ -72,7 +72,7 @@ public class PresenterModificarFuncionario {
 
     public void modificarFuncionario() {
         Funcionario funcionarioAntigo = funcionario;
-        
+
         view.getjButtonCadastrar().addActionListener(new ActionListener() {
             @Override
 
@@ -80,10 +80,11 @@ public class PresenterModificarFuncionario {
                 if (validaCampos()) {
                     if (view.getjComboBoxCargo().getSelectedItem().equals("Entregador")) {
                         funcionario = new Entregador(view.getjTextFieldNome().getText(), view.getjTextFieldUsuario().getText(), view.getjPasswordFieldSenha1().getText(), new Cargo("Entregador", 0, true, 4));
-                    } else if (view.getjComboBoxCargo().getSelectedItem().equals("Atendente")) {
+                    }
+                    if (view.getjComboBoxCargo().getSelectedItem().equals("Atendente")) {
                         funcionario = new Entregador(view.getjTextFieldNome().getText(), view.getjTextFieldUsuario().getText(), view.getjPasswordFieldSenha1().getText(), new Cargo("Atendente", 1200, false, 1));
-
-                    } else if (view.getjComboBoxCargo().getSelectedItem().equals("Cozinheiro")) {
+                    }
+                    if (view.getjComboBoxCargo().getSelectedItem().equals("Cozinheiro")) {
                         funcionario = new Entregador(view.getjTextFieldNome().getText(), view.getjTextFieldUsuario().getText(), view.getjPasswordFieldSenha1().getText(), new Cargo("Cozinheiro", 1800, false, 3));
 
                     }

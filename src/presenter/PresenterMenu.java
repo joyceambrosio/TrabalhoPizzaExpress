@@ -180,8 +180,7 @@ public final class PresenterMenu {
             }
         }
     }
-    
-    
+
     public void populaMenuPedidos() throws SQLException {
 
         Object colunas[] = {"ID", "Nome", "Endereço", "Etapa", "Entregador", "Total"};
@@ -235,7 +234,5 @@ public final class PresenterMenu {
             tabela.addRow(new Object[]{id, nome, end, status, entregador, total});
         }
     }
-    
-   
 
 }

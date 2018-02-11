@@ -11,7 +11,6 @@ package model;
  */
 public class Relatorio {
 
-    
     //alterar aqui
     private String mes;
     private String ano;
@@ -21,7 +20,7 @@ public class Relatorio {
     public Relatorio(String mes, String ano) {
         this.mes = mes;
         this.ano = ano;
-     
+
     }
 
     public Relatorio() {

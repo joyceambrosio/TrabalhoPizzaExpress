@@ -27,7 +27,7 @@ public class Clientes {
         if (instancia == null) {
             return new Clientes();
         }
-        
+
         return instancia;
     }
 

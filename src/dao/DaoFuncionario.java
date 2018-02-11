@@ -28,7 +28,7 @@ public class DaoFuncionario {
     private ArrayList<Funcionario> funcionarios;
 
     public DaoFuncionario() {
-   
+
     }
 
     public void addFuncionario(Funcionario novoFunc) throws SQLException {
@@ -67,7 +67,7 @@ public class DaoFuncionario {
             if (resultSet.next()) {
                 funcionario.setId(resultSet.getInt(1));
             }
-            
+
             funcionarios.add(funcionario);
 
             statement.close();
@@ -88,12 +88,11 @@ public class DaoFuncionario {
             return true;
         }
 
-        
     }
 
     public ArrayList<Funcionario> getFuncionarios() throws SQLException {
         conexao = ConexaoBDMySQL.getInstancia();
-        funcionarios =  new ArrayList<>();
+        funcionarios = new ArrayList<>();
         try (CallableStatement statement = conexao.getConexao().prepareCall("{call getFuncionarios()}")) {
             statement.execute();
             resultSet = statement.getResultSet();
@@ -130,9 +129,8 @@ public class DaoFuncionario {
         return funcionarios;
     }
 
-    
-    public void desativaFuncionario(int idFuncionario) throws SQLException{
-         conexao = ConexaoBDMySQL.getInstancia();
+    public void desativaFuncionario(int idFuncionario) throws SQLException {
+        conexao = ConexaoBDMySQL.getInstancia();
 
         try (CallableStatement statement = conexao.getConexao().prepareCall("{call desativaFuncionario(?)}")) {
 

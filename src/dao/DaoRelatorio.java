@@ -14,11 +14,12 @@ import model.Relatorio;
  * @author Natalia
  */
 public class DaoRelatorio {
+
     private ResultSet resultSet;
     private ConexaoBDMySQL conexao;
-    
-    public void getRelatorio(Relatorio r){
-        
+
+    public void getRelatorio(Relatorio r) {
+
     }
-    
+
 }

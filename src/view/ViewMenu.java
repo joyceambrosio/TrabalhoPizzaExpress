@@ -871,7 +871,6 @@ public class ViewMenu extends javax.swing.JFrame {
         return jFormattedTextFieldDataFim;
     }
 
-
     public JPanel getjPanelCliente() {
         return jPanelCliente;
     }
@@ -919,7 +918,6 @@ public class ViewMenu extends javax.swing.JFrame {
     public JFormattedTextField getjFormattedTextFieldDataInicio() {
         return jFormattedTextFieldDataInicio;
     }
-    
 
     public JTextField getjTextFielBuscaPedido() {
         return jTextFielBuscaPedido;

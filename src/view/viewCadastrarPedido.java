@@ -257,8 +257,6 @@ public class viewCadastrarPedido extends javax.swing.JFrame {
         return jSpinnerQuantidade;
     }
 
-    
-
     public JTable getjTableProdutos() {
         return jTableProdutos;
     }
@@ -306,8 +304,6 @@ public class viewCadastrarPedido extends javax.swing.JFrame {
     public JLabel getjLabelAvisosProduto() {
         return jLabelAvisosProduto;
     }
-    
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAdicionar;

@@ -53,14 +53,13 @@ public class PresenterPedido {
     }
 
     public static PresenterPedido getinstancia(ViewMenu menu) {
-        if(instancia == null){
-            return instancia =  new PresenterPedido(menu);
+        if (instancia == null) {
+            return instancia = new PresenterPedido(menu);
         }
-        
+
         return instancia;
     }
-    
-    
+
     public void novoPedido() {
         menu.getjButtonNovoPedido().addActionListener(new ActionListener() {
             @Override
@@ -340,7 +339,7 @@ public class PresenterPedido {
                     ArrayList<Pedido> pfiltro = Pedidos.getInstancia().pesquisaPedido(menu.getjTextFielBuscaPedido().getText());
 
                     for (Pedido p : pfiltro) {
-                        System.out.println("Nome: " +p.getCliente().getNome());
+                        System.out.println("Nome: " + p.getCliente().getNome());
                         Pedido id = p;
                         String nome = p.getCliente().getNome();
                         String end = p.getCliente().getEndereco().getEnderecoCompleto();

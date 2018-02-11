@@ -118,17 +118,15 @@ public class Produtos {
         return false;
     }
 
-    
-    public ArrayList<Produto> pesquisaProduto(String nome){
-              ArrayList<Produto> prodTemp = new ArrayList<>();
-        for(Produto p: produtos){
-            if(p.getNome().toLowerCase().contains(nome.toLowerCase())){
+    public ArrayList<Produto> pesquisaProduto(String nome) {
+        ArrayList<Produto> prodTemp = new ArrayList<>();
+        for (Produto p : produtos) {
+            if (p.getNome().toLowerCase().contains(nome.toLowerCase())) {
                 prodTemp.add(p);
             }
         }
-      
+
         return prodTemp;
     }
-    
-    
+
 }

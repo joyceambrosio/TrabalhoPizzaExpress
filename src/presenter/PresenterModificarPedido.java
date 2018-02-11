@@ -39,14 +39,13 @@ public class PresenterModificarPedido {
     private viewCadastrarPedido view;
     private static PresenterModificarPedido instancia;
 
-
     protected ArrayList<PedidoProduto> produtosPedidoTemp;
     private Pedido pedido;
 
     private Cliente clientePedido = null;
     private Funcionario funcionarioPedido = null;
 
-    public PresenterModificarPedido(Pedido p) throws SQLException { 
+    public PresenterModificarPedido(Pedido p) throws SQLException {
         this.pedido = p;
         view = new viewCadastrarPedido();
 
@@ -177,13 +176,13 @@ public class PresenterModificarPedido {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                Produto produto = (Produto) view.getjComboBoxProdutos().getSelectedItem();     
+                Produto produto = (Produto) view.getjComboBoxProdutos().getSelectedItem();
                 int qtd = (Integer) view.getjSpinnerQuantidade().getValue();
 
                 if (validaCampos()) {
                     PedidoProduto nPedidoProduto = new PedidoProduto(produto, qtd);
-                    
-                    if(produtoUnico(nPedidoProduto)) {
+
+                    if (produtoUnico(nPedidoProduto)) {
                         produtosPedidoTemp.add(nPedidoProduto);
                         populaTabelaPedido();
                     } else {
@@ -197,8 +196,8 @@ public class PresenterModificarPedido {
         }
         );
     }
-    
-     public boolean produtoUnico(PedidoProduto nPedidoProduto) {
+
+    public boolean produtoUnico(PedidoProduto nPedidoProduto) {
         for (PedidoProduto p : produtosPedidoTemp) {
             if (p.getProduto().getId() == nPedidoProduto.getProduto().getId()) {
                 return false;
@@ -270,7 +269,7 @@ public class PresenterModificarPedido {
         } else {
             Funcionario f = (Funcionario) view.getjComboBoxEntregadores().getSelectedItem();
             funcionarioPedido = f;
-        } 
+        }
 
         if (produtosPedidoTemp.isEmpty()) {
             view.getjLabelAvisosProduto().setText("Adicione um produto ao pedido");

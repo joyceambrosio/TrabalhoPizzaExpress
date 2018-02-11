@@ -104,11 +104,12 @@ public class PresenterCadastrarFuncionario {
         if (view.getjTextFieldNome().equals("")) {
             JOptionPane.showMessageDialog(view, "Informe o nome");
             return false;
-        }  if (view.getjTextFieldUsuario().getText().equals("")) {
+        }
+        if (view.getjTextFieldUsuario().getText().equals("")) {
             JOptionPane.showMessageDialog(view, "Informe um nome de usuário");
             return false;
-        } 
-        
+        }
+
         if (!view.getjTextFieldUsuario().getText().equals("")) {
             try {
                 for (Funcionario f : Funcionarios.getInstancia().getFuncionarios()) {
@@ -124,7 +125,7 @@ public class PresenterCadastrarFuncionario {
             JOptionPane.showMessageDialog(view, "Preencher o campo senha");
             return false;
         }
-        
+
         if (!view.getjPasswordFieldSenha1().getText().equals(view.getjPasswordFieldSenha2().getText())) {
             JOptionPane.showMessageDialog(view, "As senhas não são compatíveis");
             view.getjPasswordFieldSenha1().setText("");

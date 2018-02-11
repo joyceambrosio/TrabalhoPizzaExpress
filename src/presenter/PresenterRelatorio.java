@@ -12,10 +12,7 @@ import view.ViewMenu;
  * @author Natalia
  */
 public class PresenterRelatorio {
-    
+
     private ViewMenu menu;
-    
-    
-    
-    
+
 }

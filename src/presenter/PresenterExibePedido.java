@@ -44,8 +44,7 @@ public class PresenterExibePedido {
         populaCliente();
         populaProduto();
         populaEntregador();
-        
-        
+
         URL caminhoImagem = this.getClass().getClassLoader().getResource("icones/PizzaIcone.png");
         Image iconeTitulo = Toolkit.getDefaultToolkit().getImage(caminhoImagem);
         view.setIconImage(iconeTitulo);

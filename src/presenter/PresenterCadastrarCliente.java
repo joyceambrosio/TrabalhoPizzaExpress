@@ -31,10 +31,9 @@ public class PresenterCadastrarCliente {
 
     private PresenterCadastrarCliente() {
         this.view = new ViewCadastrarCliente();
-               
+
         cadastrarCliente();
-        
-  
+
         this.view.addWindowListener(new WindowAdapter() {
             @SuppressWarnings("override")
             public void windowClosing(WindowEvent evt) {
@@ -42,7 +41,7 @@ public class PresenterCadastrarCliente {
                 view.dispose();
             }
         });
-        
+
         configurarTela();
     }
 
@@ -55,10 +54,10 @@ public class PresenterCadastrarCliente {
     }
 
     private void cadastrarCliente() {
-       
+
         view.getjButtonCadastrar().addActionListener((ActionEvent e) -> {
             if (validarCampos()) {
-                
+
                 String nome = view.getjTextFieldNome().getText();
                 String logradouro = view.getjTextFieldLogradouro().getText();
                 String numero = view.getjTextFieldNumero().getText();
@@ -67,9 +66,9 @@ public class PresenterCadastrarCliente {
                 String estado = view.getjTextFieldEstado().getText();
                 String pontoDeReferencia = view.getjTextFieldReferencia().getText();
                 String cep = view.getjTextFieldCep().getText();
-                
+
                 Endereco end = new Endereco(logradouro, bairro, cidade, estado, cep, pontoDeReferencia, numero);
-                
+
                 Cliente cli = new Cliente(nome, end, true, 0);
                 try {
                     Clientes.getInstancia().add(cli);
@@ -94,8 +93,6 @@ public class PresenterCadastrarCliente {
         view.setVisible(true);
 
     }
-
- 
 
     public boolean validarCampos() {
 

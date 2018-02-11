@@ -16,7 +16,6 @@ public class Administrador extends Funcionario {
 //    private static ArrayList<Funcionario> funcionarios;
 //    private Relatorio relatorio;
 //    private static ArrayList<Produto> produtos;
-
     public Administrador(int id, String nome, String nomeUsuario, String senha, Cargo cargo) {
         super(id, nome, nomeUsuario, senha, cargo);
     }
@@ -74,7 +73,6 @@ public class Administrador extends Funcionario {
 //    public void gerarRelatorio(String semana, int mes, int ano) {
 //        relatorio.gererRelatorio(semana, mes, ano);
 //    }
-
     @Override
     public void imprimeInformacoesFuncionario() {
         System.out.println("Nome Funcionario: " + super.getNome() + " Usuário: " + getNomeUsuario() + " Senha: " + super.getSenha()
