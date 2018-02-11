@@ -27,10 +27,7 @@ public class PresenterModificarPedido {
         this.pedido = p;
         view = new viewCadastrarPedido();
         
-        
-        
-        
-        
+               
          this.view.addWindowListener(new WindowAdapter() {
             @SuppressWarnings("override")
             public void windowClosing(WindowEvent evt) {
@@ -43,6 +40,7 @@ public class PresenterModificarPedido {
         Image iconeTitulo = Toolkit.getDefaultToolkit().getImage(caminhoImagem);
         view.setIconImage(iconeTitulo);
         view.setTitle("Modificar Pedido");
+        view.setLocationRelativeTo(null);
         view.setVisible(true);
     }
     
@@ -53,5 +51,10 @@ public class PresenterModificarPedido {
         }
         return instancia;
     }
+    
+    
+   
+    
+    
 
 }
