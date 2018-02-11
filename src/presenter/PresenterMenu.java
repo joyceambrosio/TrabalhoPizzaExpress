@@ -41,6 +41,7 @@ public final class PresenterMenu {
     private PresenterPedido abaPedido;
     private PresenterProduto abaProduto;
     private PresenterFuncionario abaFuncionario;
+    private PresenterRelatorio abaRelatorio;
 
     public static PresenterMenu getInstancia(String cargo) {
         if (instancia == null) {
@@ -82,6 +83,7 @@ public final class PresenterMenu {
             this.abaCliente = new PresenterCliente(view);
             this.abaProduto = new PresenterProduto(view);
             this.abaFuncionario = new PresenterFuncionario(view);
+            this.abaRelatorio =  new PresenterRelatorio(view);
 
         } else if (cargo.equals("Entregador")) {
             view.getjTabbedPaneMenu().setEnabledAt(1, false);

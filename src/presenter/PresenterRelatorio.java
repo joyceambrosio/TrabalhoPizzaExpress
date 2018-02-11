@@ -5,6 +5,10 @@
  */
 package presenter;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Scanner;
+import java.util.regex.Pattern;
 import view.ViewMenu;
 
 /**
@@ -13,6 +17,38 @@ import view.ViewMenu;
  */
 public class PresenterRelatorio {
 
-    private ViewMenu menu;
+    private ViewMenu view;
+
+    public PresenterRelatorio(ViewMenu menu) {
+        view = menu;
+    }
+
+    public String pegarDataInicio() {
+        String dataInicio = view.getjFormattedTextFieldDataInicio().getText();
+        Scanner scan = new Scanner(dataInicio);
+        String dia = "", mes = "", ano = "";
+
+        while (scan.hasNext()) {
+            dia = scan.useDelimiter("/").next();
+            mes = scan.next();
+            ano = scan.next();
+        }
+
+        return ano + "-" + dia + "-" + mes;
+    }
+
+    public String pegarDataFim() {
+        String dataInicio = view.getjFormattedTextFieldDataFim().getText();
+        Scanner scan = new Scanner(dataInicio);
+        String dia = "", mes = "", ano = "";
+
+        while (scan.hasNext()) {
+            dia = scan.useDelimiter("/").next();
+            mes = scan.next();
+            ano = scan.next();
+        }
+
+        return ano + "-" + dia + "-" + mes;
+    }
 
 }
