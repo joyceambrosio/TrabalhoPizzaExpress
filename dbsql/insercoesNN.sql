@@ -104,8 +104,8 @@ CALL addCliente("Joyce Ambrosio", "Rua Pref. Antonio Lemos Jr", 217, "Colina", "
 CALL addCliente("Natalia Soares", "Avenida esqueci", 217, "Colina", "Guacui", "ES","29540-000", "Ai");
 CALL addCliente("Enzo Vasconcelos", "Avenida esqueci", 217, "Colina", "Alegre", "ES", "29540-000", "Perto da ufes");
 CALL addCliente("Erick Ambrosio", "Avenida esqueci", 217, "Guararema", "Alegre","ES","29540-000", "Rua sem fim");
-CALL addCliente("Caio Soares", "Avenida esqueci", 217, "Guararema", "Alegre", "ES","29540-000", " ");
-CALL addCliente("Valentina Guimaraes", "Avenida esqueci", 217, "Guararema", "Alegre", "ES","29540-000", " ");
+CALL addCliente("Caio Soares", "Avenida esqueci", 217, "Guararema", "Alegre", "ES","29540-000", "n ha");
+CALL addCliente("Valentina Guimaraes", "Avenida esqueci", 217, "Guararema", "Alegre", "ES","29540-000", "n ha");
 
 
 CALL addCargo("Administrador", 1200.00, 0);

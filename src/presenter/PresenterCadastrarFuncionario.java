@@ -104,10 +104,12 @@ public class PresenterCadastrarFuncionario {
         if (view.getjTextFieldNome().equals("")) {
             JOptionPane.showMessageDialog(view, "Informe o nome");
             return false;
-        } else if (view.getjTextFieldUsuario().getText().equals("")) {
+        }  if (view.getjTextFieldUsuario().getText().equals("")) {
             JOptionPane.showMessageDialog(view, "Informe um nome de usuário");
             return false;
-        } else if (!view.getjTextFieldUsuario().getText().equals("")) {
+        } 
+        
+        if (!view.getjTextFieldUsuario().getText().equals("")) {
             try {
                 for (Funcionario f : Funcionarios.getInstancia().getFuncionarios()) {
                     if (f.getNomeUsuario().equalsIgnoreCase(view.getjTextFieldUsuario().getText())) {
@@ -121,7 +123,9 @@ public class PresenterCadastrarFuncionario {
         } else if (view.getjPasswordFieldSenha1().getText().equals("") || view.getjPasswordFieldSenha2().getText().equals("")) {
             JOptionPane.showMessageDialog(view, "Preencher o campo senha");
             return false;
-        } else if (!view.getjPasswordFieldSenha1().getText().equals(view.getjPasswordFieldSenha2().getText())) {
+        }
+        
+        if (!view.getjPasswordFieldSenha1().getText().equals(view.getjPasswordFieldSenha2().getText())) {
             JOptionPane.showMessageDialog(view, "As senhas não são compatíveis");
             view.getjPasswordFieldSenha1().setText("");
             view.getjPasswordFieldSenha2().setText("");
