@@ -118,4 +118,17 @@ public class Produtos {
         return false;
     }
 
+    
+    public ArrayList<Produto> pesquisaProduto(String nome){
+              ArrayList<Produto> prodTemp = new ArrayList<>();
+        for(Produto p: produtos){
+            if(p.getNome().contains(nome)){
+                prodTemp.add(p);
+            }
+        }
+      
+        return prodTemp;
+    }
+    
+    
 }

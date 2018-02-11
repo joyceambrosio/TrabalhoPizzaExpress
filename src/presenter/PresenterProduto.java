@@ -9,6 +9,7 @@ import colections.Produtos;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -34,6 +35,7 @@ public class PresenterProduto {
         }
 
         adicionarProduto();
+        pesquisaProduto();
 
     }
 
@@ -91,13 +93,13 @@ public class PresenterProduto {
             }
         });
     }
-    
-    public void excluirProduto(){
+
+    public void excluirProduto() {
         view.getjButtonExcluirProduto().addActionListener(new ActionListener() {
             @Override
-            
+
             public void actionPerformed(ActionEvent e) {
-                  int linha = view.getjTableProduto().getSelectedRow();
+                int linha = view.getjTableProduto().getSelectedRow();
 
                 if (linha == -1) {
                     JOptionPane.showMessageDialog(null, "Selecione um produto na lista para remove-lo");
@@ -106,8 +108,8 @@ public class PresenterProduto {
                     try {
                         int confirmacao = JOptionPane.showConfirmDialog(null, "Tem certeza que quer remover esse produto?");
                         if (confirmacao == 0) {
-                            
-                            Produto p  = Produtos.getInstancia().getProdutosbyID(id); 
+
+                            Produto p = Produtos.getInstancia().getProdutosbyID(id);
                             System.out.println(p.getId());
                             Produtos.getInstancia().remove(p);
                             JOptionPane.showMessageDialog(null, "O produto foi removido com sucesso");
@@ -117,8 +119,48 @@ public class PresenterProduto {
                         Logger.getLogger(PresenterMenu.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
-       
+
             }
         });
     }
+
+    public void pesquisaProduto() {
+        view.getjButtonPesquisarProduto().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (view.getjTextFieldBuscarProduto().getText().equals("")) {
+                    try {
+                        populaMenuProdutos();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(PresenterProduto.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                } else {
+
+                    ArrayList<Produto> pesquisa = null;
+                    try {
+                        pesquisa = Produtos.getInstancia().pesquisaProduto(view.getjTextFieldBuscarProduto().getText());
+                        Object colunas[] = {"ID", "Nome", "Categoria", "Preço"};
+                        DefaultTableModel tabela = new DefaultTableModel(colunas, 0);
+
+                        view.getjTableProduto().setModel(tabela);
+
+                        for (Produto p : pesquisa) {
+                            if (!p.getCategoria().equals("Insumo")) {
+                                int id = p.getId();
+                                String nome = p.getNome();
+                                String categoria = p.getCategoria();
+                                double preco = p.getPreco();
+                                tabela.addRow(new Object[]{id, nome, categoria, preco});
+                            }
+                        }
+                    } catch (SQLException ex) {
+                        JOptionPane.showMessageDialog(view, "Não foi possível realizar a pesquisa");
+                    }
+
+                }
+            }
+        });
+    }
+
 }
