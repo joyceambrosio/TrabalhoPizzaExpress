@@ -6,6 +6,7 @@
 package presenter;
 
 import colections.Pedidos;
+import colections.Produtos;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -15,6 +16,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.Pedido;
+import model.Produto;
 import view.ViewMenu;
 
 /**
@@ -38,6 +40,7 @@ public class PresenterPedido {
         escutaCheckConcluido();
         detalhesPedido();
         configuraMenu();
+        excluirPedido();
 
         try {
             populaMenuPedidos();
@@ -57,7 +60,34 @@ public class PresenterPedido {
                 }
             }
         });
+    }
 
+    public void excluirPedido() {
+        menu.getjButtonExcluirPedido().addActionListener(new ActionListener() {
+            @Override
+
+            public void actionPerformed(ActionEvent e) {
+                int linha = menu.getjTablePedido().getSelectedRow();
+
+                if (linha == -1) {
+                    JOptionPane.showMessageDialog(null, "Selecione um pedido na lista para remove-lo");
+                } else if (linha >= 0) {
+                    Pedido pedido = (Pedido) menu.getjTablePedido().getValueAt(linha, 0);
+                    int confirmacao = JOptionPane.showConfirmDialog(null, "Tem certeza que quer remover esse pedido?");
+                    if (confirmacao == 0) {
+
+                        try {
+                            Pedidos.getInstancia().remove(pedido);
+                            JOptionPane.showMessageDialog(null, "O pedido foi removido com sucesso");
+                        } catch (SQLException ex) {
+                            Logger.getLogger(PresenterPedido.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+
+                    }
+                }
+
+            }
+        });
     }
 
     public void configuraMenu() {
@@ -232,7 +262,7 @@ public class PresenterPedido {
             }
         }
         for (Pedido p : pfiltro) {
-            
+
             Pedido id = p;
             String nome = p.getCliente().getNome();
             String end = p.getCliente().getEndereco().getEnderecoCompleto();

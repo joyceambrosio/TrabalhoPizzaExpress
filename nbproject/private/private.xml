@@ -4,13 +4,9 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Joyce/Documents/GitHub/TrabalhoPizzaExpress/src/dao/DaoPedido.java</file>
-            <file>file:/C:/Users/Joyce/Documents/GitHub/TrabalhoPizzaExpress/src/model/PedidoProduto.java</file>
             <file>file:/C:/Users/Joyce/Documents/GitHub/TrabalhoPizzaExpress/src/colections/Pedidos.java</file>
             <file>file:/C:/Users/Joyce/Documents/GitHub/TrabalhoPizzaExpress/src/presenter/PresenterCadastrarPedido.java</file>
             <file>file:/C:/Users/Joyce/Documents/GitHub/TrabalhoPizzaExpress/src/presenter/PresenterPedido.java</file>
-            <file>file:/C:/Users/Joyce/Documents/GitHub/TrabalhoPizzaExpress/src/colections/Produtos.java</file>
-            <file>file:/C:/Users/Joyce/Documents/GitHub/TrabalhoPizzaExpress/src/dao/DaoProduto.java</file>
-            <file>file:/C:/Users/Joyce/Documents/GitHub/TrabalhoPizzaExpress/src/presenter/PresenterExibePedido.java</file>
         </group>
     </open-files>
 </project-private>

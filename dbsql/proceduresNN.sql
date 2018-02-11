@@ -622,6 +622,9 @@ BEGIN
 
 		);
 
+	DELETE FROM PedidoProduto
+	WHERE idPedido = idPedidoIN;
+
 	DELETE FROM Pedido
 	WHERE idPedido = idPedidoIN;
 
