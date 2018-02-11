@@ -1,8 +1,6 @@
-
-
-DROP PROCEDURE IF EXISTS calcComissaoEntregadores;
+DROP PROCEDURE IF EXISTS calcComissoes;
 DELIMITER //
-CREATE PROCEDURE calcComissaoEntregadores(
+CREATE PROCEDURE calcComissoes(
 	IN dataInicio VARCHAR(15),
     IN dataFim VARCHAR(15)
 )
@@ -27,9 +25,9 @@ END;
 DELIMITER ;
 
 
-DROP PROCEDURE IF EXISTS calcComissaoFixos;
+DROP PROCEDURE IF EXISTS calcFixos;
 DELIMITER //
-CREATE PROCEDURE calcComissaoFixos(
+CREATE PROCEDURE calcFixos(
 	IN dataInicio VARCHAR(15),
     IN dataFim VARCHAR(15)
 )
@@ -51,18 +49,19 @@ END;
 DELIMITER ;
 
 
-DROP PROCEDURE IF EXISTS calcFluxodeCaixa
+DROP PROCEDURE IF EXISTS calcEntradaCaixa;
 DELIMITER //
-CREATE PROCEDURE calcComissaoFixos(
+CREATE PROCEDURE calcEntradaCaixa(
 	IN dataInicio VARCHAR(15),
     IN dataFim VARCHAR(15)
 )
 BEGIN
-	
-
-
-
-
+	SELECT 
+	'Entradas',
+	sum(total) as total
+	FROM
+	Pedido p 
+	WHERE data BETWEEN CAST('2018-01-01' AS DATE) AND CAST('2018-03-03' AS DATE);
 END;
 //
 DELIMITER ;
