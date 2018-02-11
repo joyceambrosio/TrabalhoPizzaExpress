@@ -93,6 +93,7 @@ public class PresenterModificarFuncionario {
                     try {
                         Funcionarios.getInstancia().updtFuncionario(funcionario);
                         JOptionPane.showMessageDialog(view, "Funcionário alterado com sucesso!");
+                        PresenterMenu.getInstancia().populaMenuFuncionarios();
                         instancia = null;
                         view.dispose();
 

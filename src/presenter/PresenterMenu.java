@@ -6,16 +6,21 @@
 package presenter;
 
 import colections.Clientes;
+import colections.Funcionarios;
 import static java.awt.Frame.MAXIMIZED_BOTH;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.table.DefaultTableModel;
 import model.Cliente;
+import model.Funcionario;
 
 import view.ViewMenu;
 
@@ -121,6 +126,34 @@ public final class PresenterMenu {
             }
         } catch (SQLException ex) {
             Logger.getLogger(PresenterMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+      
+       
+        public void populaMenuFuncionarios() {
+
+        Object colunas[] = {"ID", "Nome", "Comissão", "Nome de Usuário", "Cargo"};
+        DefaultTableModel tabela = new DefaultTableModel(colunas, 0);
+        view.getjTableFuncionario().setModel(tabela);
+
+
+        try {
+            for (Funcionario f : Funcionarios.getInstancia().getFuncionarios()) {
+                int id = f.getId();
+                String nome = f.getNome();
+                String usuario = f.getNomeUsuario();
+                String cargo = f.getCargo().getCargo();
+                String comissao;
+                if (f.getCargo().isComissao()) {
+                    comissao = "Sim";
+                } else {
+                    comissao = "Não";
+                }
+                tabela.addRow(new Object[]{id, nome, comissao, usuario, cargo});
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PresenterFuncionario.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }

@@ -111,6 +111,7 @@ public class PresenterFuncionario {
                         if (confirmacao == 0) {
                             Funcionarios.getInstancia().desativaFuncionario(id);
                             JOptionPane.showMessageDialog(null, "O funcionário foi removido com sucesso");
+                            PresenterMenu.getInstancia().populaMenuFuncionarios();
 
                         }
                     } catch (SQLException ex) {

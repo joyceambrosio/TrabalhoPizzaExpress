@@ -84,7 +84,9 @@ public class PresenterCadastrarFuncionario {
 
                     try {
                         if (Funcionarios.getInstancia().add(funcionario)) {
+
                             JOptionPane.showMessageDialog(view, "Funcionário cadastrado com sucesso!");
+                            PresenterMenu.getInstancia().populaMenuFuncionarios();
                             instancia = null;
                             view.dispose();
                         }
