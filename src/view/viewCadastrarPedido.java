@@ -130,7 +130,7 @@ public class viewCadastrarPedido extends javax.swing.JFrame {
             }
         });
 
-        jSpinnerQuantidade.setModel(new javax.swing.SpinnerNumberModel());
+        jSpinnerQuantidade.setModel(new javax.swing.SpinnerNumberModel(1, 0, null, 1));
 
         jLabelAvisosCliente.setForeground(new java.awt.Color(153, 0, 0));
 
@@ -169,9 +169,9 @@ public class viewCadastrarPedido extends javax.swing.JFrame {
                             .addComponent(jLabelTotalPedido, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addComponent(jComboBoxClientes, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jComboBoxEntregadores, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 514, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jComboBoxProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jComboBoxProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)

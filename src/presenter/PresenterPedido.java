@@ -6,7 +6,6 @@
 package presenter;
 
 import colections.Pedidos;
-import com.sun.javafx.geom.PickRay;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -29,11 +28,6 @@ public class PresenterPedido {
     public PresenterPedido(ViewMenu menu) {
         this.menu = menu;
 
-        try {
-            populaMenuPedidos();
-        } catch (SQLException ex) {
-            Logger.getLogger(PresenterPedido.class.getName()).log(Level.SEVERE, null, ex);
-        }
         proximaEtapa();
         anteriorEtapa();
         novoPedido();
@@ -44,6 +38,12 @@ public class PresenterPedido {
         escutaCheckConcluido();
         detalhesPedido();
         configuraMenu();
+
+        try {
+            populaMenuPedidos();
+        } catch (SQLException ex) {
+            Logger.getLogger(PresenterPedido.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public void novoPedido() {
@@ -88,10 +88,10 @@ public class PresenterPedido {
                     JOptionPane.showMessageDialog(menu, "Selecione um pedido para alterar seu status");
                 }
                 if (linha >= 0) {
-               
+
                     Pedido p = (Pedido) menu.getjTablePedido().getValueAt(linha, 0);
                     try {
-                        
+
                         if (p.nextStatusPedido()) {
                             Pedidos.getInstancia().updatePedido(p);
                             populaMenuPedidos();
@@ -120,10 +120,10 @@ public class PresenterPedido {
                     JOptionPane.showMessageDialog(menu, "Selecione um pedido para alterar seu status");
                 }
                 if (linha >= 0) {
-               
+
                     Pedido p = (Pedido) menu.getjTablePedido().getValueAt(linha, 0);
                     try {
-                        
+
                         if (p.lastStatusPedido()) {
                             Pedidos.getInstancia().updatePedido(p);
                             populaMenuPedidos();
@@ -232,6 +232,7 @@ public class PresenterPedido {
             }
         }
         for (Pedido p : pfiltro) {
+            
             Pedido id = p;
             String nome = p.getCliente().getNome();
             String end = p.getCliente().getEndereco().getEnderecoCompleto();

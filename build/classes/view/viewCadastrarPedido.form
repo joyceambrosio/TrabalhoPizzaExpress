@@ -60,9 +60,9 @@
                   </Group>
                   <Component id="jComboBoxClientes" max="32767" attributes="0"/>
                   <Component id="jComboBoxEntregadores" max="32767" attributes="0"/>
-                  <Component id="jScrollPane1" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" pref="514" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="jComboBoxProdutos" min="-2" pref="300" max="-2" attributes="0"/>
+                      <Component id="jComboBoxProdutos" min="-2" pref="280" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -356,7 +356,7 @@
     <Component class="javax.swing.JSpinner" name="jSpinnerQuantidade">
       <Properties>
         <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-          <SpinnerModel initial="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+          <SpinnerModel initial="1" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
         </Property>
       </Properties>
     </Component>

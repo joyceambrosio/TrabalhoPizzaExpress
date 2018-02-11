@@ -176,7 +176,7 @@ public class DaoPedido {
 
             statement.setInt(1, pedido.getCliente().getId());
             if (pedido.getEntregador() == null) {
-                statement.setNull(4, java.sql.Types.INTEGER);
+                statement.setNull(2, java.sql.Types.INTEGER);
             } else {
                 statement.setInt(2, pedido.getEntregador().getId());
             }

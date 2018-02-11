@@ -226,6 +226,7 @@ public class PresenterCadastrarPedido {
                     }
 
                     JOptionPane.showMessageDialog(view, "Pedido cadastrado com sucesso");
+                    instancia = null;
                     view.dispose();
                 }
 
