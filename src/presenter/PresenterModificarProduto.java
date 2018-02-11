@@ -102,6 +102,7 @@ public class PresenterModificarProduto {
 
                 if (Produtos.getInstancia().update(produto)) {
                     JOptionPane.showMessageDialog(null, "Ingrediente modificado com sucesso");
+                    PresenterMenu.getInstancia().populaMenuProdutos();
                 } else {
                     JOptionPane.showMessageDialog(null, "Ocorreu um erro");
                 }
@@ -121,6 +122,7 @@ public class PresenterModificarProduto {
 
                 if (Produtos.getInstancia().update(produto)) {
                     JOptionPane.showMessageDialog(null, "Bebida modificada com sucesso");
+                    PresenterMenu.getInstancia().populaMenuProdutos();
                 } else {
                     JOptionPane.showMessageDialog(null, "Ocorreu um erro");
                 }
@@ -147,6 +149,7 @@ public class PresenterModificarProduto {
 
                 if (Produtos.getInstancia().update(novaPizza)) {
                     JOptionPane.showMessageDialog(null, "Pizza modificada com sucesso");
+                    PresenterMenu.getInstancia().populaMenuProdutos();
                 } else {
                     JOptionPane.showMessageDialog(null, "Ocorreu um erro");
                 }

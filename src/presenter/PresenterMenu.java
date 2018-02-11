@@ -7,6 +7,7 @@ package presenter;
 
 import colections.Clientes;
 import colections.Funcionarios;
+import colections.Produtos;
 import static java.awt.Frame.MAXIMIZED_BOTH;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -21,6 +22,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.table.DefaultTableModel;
 import model.Cliente;
 import model.Funcionario;
+import model.Produto;
 
 import view.ViewMenu;
 
@@ -156,6 +158,28 @@ public final class PresenterMenu {
             Logger.getLogger(PresenterFuncionario.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+    }
+        
+        
+         public void populaMenuProdutos() throws SQLException {
+        Object colunas[] = {"ID", "Nome", "Categoria", "Preço"};
+        DefaultTableModel tabela = new DefaultTableModel(colunas, 0);
+
+        view.getjTableProduto().setModel(tabela);
+
+        if (Produtos.getInstancia().getProdutos() == null) {
+            System.out.println("produtos null");
+        }
+
+        for (Produto p : Produtos.getInstancia().getProdutos()) {
+            if (!p.getCategoria().equals("Insumo")) {
+                int id = p.getId();
+                String nome = p.getNome();
+                String categoria = p.getCategoria();
+                double preco = p.getPreco();
+                tabela.addRow(new Object[]{id, nome, categoria, preco});
+            }
+        }
     }
 
 }

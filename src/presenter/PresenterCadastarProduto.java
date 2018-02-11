@@ -193,6 +193,7 @@ public class PresenterCadastarProduto {
                 Produto insumo = new Insumo(nome, 0.0);
                 if (Produtos.getInstancia().add(insumo)) {
                     JOptionPane.showMessageDialog(null, "Produto cadastrado com sucesso");
+                    PresenterMenu.getInstancia().populaMenuProdutos();
                 } else {
                     JOptionPane.showMessageDialog(null, "Ocorreu um erro");
                 }
@@ -214,6 +215,7 @@ public class PresenterCadastarProduto {
 
                 if (Produtos.getInstancia().add(bebida)) {
                     JOptionPane.showMessageDialog(null, "Produto cadastrado com sucesso");
+                    PresenterMenu.getInstancia().populaMenuProdutos();
                 } else {
                     JOptionPane.showMessageDialog(null, "Ocorreu um erro");
                 }
@@ -237,6 +239,7 @@ public class PresenterCadastarProduto {
                 comida.imprimir();
                 if (Produtos.getInstancia().add(comida)) {
                     JOptionPane.showMessageDialog(null, "Produto cadastrado com sucesso");
+                    PresenterMenu.getInstancia().populaMenuProdutos();
                 } else {
                     JOptionPane.showMessageDialog(null, "Ocorreu um erro");
                 }

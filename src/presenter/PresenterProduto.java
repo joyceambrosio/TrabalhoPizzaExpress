@@ -111,7 +111,7 @@ public class PresenterProduto {
                             System.out.println(p.getId());
                             Produtos.getInstancia().remove(p);
                             JOptionPane.showMessageDialog(null, "O produto foi removido com sucesso");
-
+                            PresenterMenu.getInstancia().populaMenuProdutos();
                         }
                     } catch (SQLException ex) {
                         Logger.getLogger(PresenterMenu.class.getName()).log(Level.SEVERE, null, ex);
