@@ -41,6 +41,7 @@ public class PresenterPedido {
         detalhesPedido();
         configuraMenu();
         excluirPedido();
+        modificarPedido();
 
         try {
             populaMenuPedidos();
@@ -277,5 +278,26 @@ public class PresenterPedido {
             double total = p.getTotalPedido();
             tabela.addRow(new Object[]{id, nome, end, status, entregador, total});
         }
+    }
+    
+     public void modificarPedido(){
+        menu.getjButtonModificarPedido().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                 int linha = menu.getjTablePedido().getSelectedRow();
+
+                if (linha == -1) {
+                    JOptionPane.showMessageDialog(menu, "Selecione um pedido para modificá-lo");
+                }
+                if (linha >= 0) {
+
+                    Pedido p = (Pedido) menu.getjTablePedido().getValueAt(linha, 0);
+                
+                
+                PresenterModificarPedido.getInstancia(p);
+                }
+            }
+        });
+        
     }
 }
