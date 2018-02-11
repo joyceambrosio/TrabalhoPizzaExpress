@@ -116,31 +116,32 @@ CALL addCargo("Entregador", 0.00, 1);
 CALL addFuncionario(1, "Administrador", "Administrador", "123456789");
 CALL addFuncionario(2, "Joyce", "Joy", "123");
 CALL addFuncionario(3, "Natalia", "NatyCristal", "123");
-CALL addFuncionario(4, "Carlos Alberto", "Carlos", "123");
+CALL addFuncionario(4, "Morty", "Morty", "123");
+CALL addFuncionario(4, "Ricardo Sanches", "Rick", "123");
 
-CALL addPedido(1, 3);
-CALL addPedido(2, 3);
-CALL addPedido(3, 3);
-CALL addPedido(4, 3);
-CALL addPedido(5, 3);
+CALL addPedido(1, 4);
+CALL addPedido(2, 4);
+CALL addPedido(3, 4);
+CALL addPedido(4, 4);
+CALL addPedido(5, 4);
 
 CALL addPedido(6, null);
-CALL addPedido(6, 3);
-CALL addPedido(6, 3);
-CALL addPedido(6, 3);
+CALL addPedido(6, 4);
+CALL addPedido(6, 4);
+CALL addPedido(6, 5);
 CALL addPedido(6, null);
 
-CALL addPedido(6, 3);
+CALL addPedido(6, 4);
 CALL addPedido(6, null);
-CALL addPedido(6, 3);
-CALL addPedido(2, 3);
-CALL addPedido(4, 3);
+CALL addPedido(6, 5);
+CALL addPedido(2, 4);
+CALL addPedido(4, 4);
 
-CALL addPedido(4, 3);
-CALL addPedido(5, 3);
+CALL addPedido(4, 5);
+CALL addPedido(5, 5);
 CALL addPedido(6, null);
 CALL addPedido(1, null);
-CALL addPedido(2, 3);
+CALL addPedido(2, 5);
 
 
 CALL addPedidoProduto(1, 1, 1);
@@ -177,6 +178,12 @@ CALL addPedidoProduto(17, 2, 2);
 CALL addPedidoProduto(18, 3, 1);
 CALL addPedidoProduto(19, 4, 1);
 CALL updPedidoProduto(20, 4, 6);
+
+SET SQL_SAFE_UPDATES = 0;
+update pedido
+SET status = "Concluído";
+SET SQL_SAFE_UPDATES = 1;
+
 
 -- select * from Produto;
 -- 

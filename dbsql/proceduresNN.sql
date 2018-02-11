@@ -1,15 +1,72 @@
-DROP PROCEDURE IF EXISTS calcFolhaPagamento;
+
+
+DROP PROCEDURE IF EXISTS calcComissaoEntregadores;
 DELIMITER //
-CREATE PROCEDURE calcFolhaPagamento(
-	IN anoIN INT,
-	IN mesIN INT
+CREATE PROCEDURE calcComissaoEntregadores(
+	IN dataInicio VARCHAR(15),
+    IN dataFim VARCHAR(15)
 )
 BEGIN
-
-	
+	SELECT 
+		p.idFuncionario, 
+		f.nome, 
+		sum(total * 0.15) as comissao
+	FROM
+		Pedido p
+			INNER JOIN
+		Funcionario f ON f.idFuncionario = p.idFuncionario
+			INNER JOIN
+		cargo c ON c.idCargo = f.idCargo
+	WHERE
+		data BETWEEN CAST(dataInicio AS DATE) AND CAST(dataFim AS DATE)
+		AND p.status LIKE 'Concluído'
+		AND f.idCargo = 4
+    GROUP BY idFuncionario;
 END;
 //
 DELIMITER ;
+
+
+DROP PROCEDURE IF EXISTS calcComissaoFixos;
+DELIMITER //
+CREATE PROCEDURE calcComissaoFixos(
+	IN dataInicio VARCHAR(15),
+    IN dataFim VARCHAR(15)
+)
+BEGIN
+	SELECT 
+	    f.idFuncionario as id,
+	    f.nome as nome,
+	    c.salario as salario
+	FROM
+	    Funcionario f
+	        INNER JOIN
+	    cargo c ON c.idCargo = f.idCargo
+	WHERE
+	    f.dataAdmissao BETWEEN CAST(dataInicio AS DATE) AND CAST(dataFim AS DATE)
+	    AND c.comissao = 0
+	    GROUP BY idFuncionario;
+END;
+//
+DELIMITER ;
+
+
+DROP PROCEDURE IF EXISTS calcFluxodeCaixa
+DELIMITER //
+CREATE PROCEDURE calcComissaoFixos(
+	IN dataInicio VARCHAR(15),
+    IN dataFim VARCHAR(15)
+)
+BEGIN
+	
+
+
+
+
+END;
+//
+DELIMITER ;
+
 
 
 -- ------------------------------- CATEGORIA - ADD  -----------------------------
@@ -494,8 +551,12 @@ CREATE PROCEDURE desativaFuncionario(
 )
 BEGIN
 	UPDATE Funcionario
-	SET ativo = 0 
+	SET 
+		ativo = 0,
+		dataDemissao = CURRENT_TIMESTAMP
 	WHERE idFuncionario = idFuncionarioIN;
+
+
 END;
 //
 DELIMITER ;

@@ -23,6 +23,8 @@ CREATE TABLE IF NOT EXISTS Funcionario (
     usuario VARCHAR(45) NOT NULL,
     senha VARCHAR(45) NOT NULL,
     ativo CHAR(1) NOT NULL DEFAULT 1,
+    dataAdmissao DATETIME DEFAULT CURRENT_TIMESTAMP,
+    dataDemissao DATETIME NULL,
     CONSTRAINT pkFuncionario PRIMARY KEY (idFuncionario),
     CONSTRAINT fkFuncionarioCargo FOREIGN KEY (idCargo)
         REFERENCES Cargo (idCargo)
@@ -32,9 +34,6 @@ CREATE TABLE IF NOT EXISTS FolhaPagamento (
     idFolhaPagamento INT NOT NULL AUTO_INCREMENT,
     idFuncionario INT NOT NULL,
     data DATETIME NOT NULL,
-    dia INT NOT NULL,
-    mes INT NOT NULL,
-    ano INT NOT NULL,
     totalSalario DOUBLE NOT NULL,
     CONSTRAINT pkFolhaPagamento PRIMARY KEY (idFolhaPagamento),
     CONSTRAINT fkFolhaPagamentoFuncionario FOREIGN KEY (idFuncionario)
