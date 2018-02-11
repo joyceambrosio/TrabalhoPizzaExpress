@@ -122,7 +122,7 @@ public class Produtos {
     public ArrayList<Produto> pesquisaProduto(String nome){
               ArrayList<Produto> prodTemp = new ArrayList<>();
         for(Produto p: produtos){
-            if(p.getNome().contains(nome)){
+            if(p.getNome().toLowerCase().contains(nome.toLowerCase())){
                 prodTemp.add(p);
             }
         }

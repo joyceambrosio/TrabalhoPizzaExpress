@@ -26,8 +26,9 @@ import view.ViewMenu;
 public class PresenterPedido {
 
     private ViewMenu menu;
+    private static PresenterPedido instancia;
 
-    public PresenterPedido(ViewMenu menu) {
+    private PresenterPedido(ViewMenu menu) {
         this.menu = menu;
 
         proximaEtapa();
@@ -42,6 +43,7 @@ public class PresenterPedido {
         configuraMenu();
         excluirPedido();
         modificarPedido();
+        buscaPedido();
 
         try {
             populaMenuPedidos();
@@ -50,6 +52,15 @@ public class PresenterPedido {
         }
     }
 
+    public static PresenterPedido getinstancia(ViewMenu menu) {
+        if(instancia == null){
+            return instancia =  new PresenterPedido(menu);
+        }
+        
+        return instancia;
+    }
+    
+    
     public void novoPedido() {
         menu.getjButtonNovoPedido().addActionListener(new ActionListener() {
             @Override
@@ -269,8 +280,7 @@ public class PresenterPedido {
             String end = p.getCliente().getEndereco().getEnderecoCompleto();
             String status = p.getStatusPedido();
             String entregador;
-           
-         
+
             if (p.getEntregador() == null) {
                 entregador = "Casa";
             } else {
@@ -298,6 +308,56 @@ public class PresenterPedido {
                         Logger.getLogger(PresenterPedido.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
+            }
+        });
+
+    }
+
+    public void buscaPedido() {
+        menu.getjButtonPesquisarPedido().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                if (menu.getjTextFielBuscaPedido().getText().equals("")) {
+                    try {
+                        populaMenuPedidos();
+                        menu.getjCheckBoxProducao().setSelected(false);
+                        menu.getjCheckBoxEntrega().setSelected(false);
+                        menu.getjCheckBoxConcluidos().setSelected(false);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(PresenterPedido.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                } else {
+                    Object colunas[] = {"ID", "Nome", "Endereço", "Etapa", "Entregador", "Total"};
+                    DefaultTableModel tabela = new DefaultTableModel(colunas, 0);
+
+                    menu.getjTablePedido().setModel(tabela);
+
+                    menu.getjCheckBoxAbertos().setSelected(true);
+                    menu.getjCheckBoxProducao().setSelected(true);
+                    menu.getjCheckBoxEntrega().setSelected(true);
+                    menu.getjCheckBoxConcluidos().setSelected(true);
+                    ArrayList<Pedido> pfiltro = Pedidos.getInstancia().pesquisaPedido(menu.getjTextFielBuscaPedido().getText());
+
+                    for (Pedido p : pfiltro) {
+                        System.out.println("Nome: " +p.getCliente().getNome());
+                        Pedido id = p;
+                        String nome = p.getCliente().getNome();
+                        String end = p.getCliente().getEndereco().getEnderecoCompleto();
+                        String status = p.getStatusPedido();
+                        String entregador;
+
+                        if (p.getEntregador() == null) {
+                            entregador = "Casa";
+                        } else {
+                            entregador = p.getEntregador().getNome();
+                        }
+                        double total = p.getTotalPedido();
+                        tabela.addRow(new Object[]{id, nome, end, status, entregador, total});
+                    }
+
+                }
+
             }
         });
 

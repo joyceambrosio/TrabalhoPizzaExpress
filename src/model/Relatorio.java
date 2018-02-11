@@ -13,12 +13,12 @@ public class Relatorio {
 
     
     //alterar aqui
-    private int mes;
-    private int ano;
+    private String mes;
+    private String ano;
     private String semana;
     private Administrador adm;
 
-    public Relatorio(int mes, int ano) {
+    public Relatorio(String mes, String ano) {
         this.mes = mes;
         this.ano = ano;
      
@@ -28,8 +28,7 @@ public class Relatorio {
     }
 
     public void gererRelatorio(String semana, int mes, int ano) {
-        // System.out.println("Relatório referente a semana "+semana+" do mês: " + mes + " ano:" + ano);
-        // System.out.println("Em construção.... aguarde em breve");
+
     }
 
 }

@@ -8,6 +8,8 @@ package colections;
 import dao.DaoPedido;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.Cliente;
 import model.Pedido;
 import model.PedidoProduto;
@@ -92,5 +94,20 @@ public class Pedidos {
 
         dao.updPedido(p);
         setPedidos();
+    }
+    
+    public ArrayList<Pedido> pesquisaPedido(String pesquisa){
+        ArrayList<Pedido> pedidoTemp = new ArrayList<>();
+        try {
+            for(Pedido p : getPedidos()){
+                if(p.getCliente().getNome().toLowerCase().contains(pesquisa.toLowerCase())){
+                    pedidoTemp.add(p);
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Pedidos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return pedidoTemp;
     }
 }

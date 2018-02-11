@@ -88,9 +88,7 @@ public class ViewMenu extends javax.swing.JFrame {
         jSeparator4 = new javax.swing.JSeparator();
         jPanelRelatorios = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        jFormattedTextFieldDataInicio = new javax.swing.JFormattedTextField();
         jLabel6 = new javax.swing.JLabel();
-        jFormattedTextFieldDataFim = new javax.swing.JFormattedTextField();
         jButtonPesquisarRelatório = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTableRelatório = new javax.swing.JTable();
@@ -98,6 +96,8 @@ public class ViewMenu extends javax.swing.JFrame {
         jButtonGerarRelatorio = new javax.swing.JButton();
         jComboBoxEmitirRelatorio = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
+        jFormattedTextFieldDataInicio = new javax.swing.JFormattedTextField();
+        jFormattedTextFieldDataFim = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -593,21 +593,7 @@ public class ViewMenu extends javax.swing.JFrame {
 
         jLabel5.setText("Data de início:");
 
-        jFormattedTextFieldDataInicio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
-        jFormattedTextFieldDataInicio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextFieldDataInicioActionPerformed(evt);
-            }
-        });
-
         jLabel6.setText("Data Fim:");
-
-        jFormattedTextFieldDataFim.setText("      /     /");
-        jFormattedTextFieldDataFim.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextFieldDataFimActionPerformed(evt);
-            }
-        });
 
         jButtonPesquisarRelatório.setBackground(new java.awt.Color(51, 51, 51));
         jButtonPesquisarRelatório.setForeground(new java.awt.Color(255, 255, 255));
@@ -642,9 +628,19 @@ public class ViewMenu extends javax.swing.JFrame {
             }
         });
 
-        jComboBoxEmitirRelatorio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jLabel8.setText("Relatório");
+
+        try {
+            jFormattedTextFieldDataInicio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        try {
+            jFormattedTextFieldDataFim.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         javax.swing.GroupLayout jPanelRelatoriosLayout = new javax.swing.GroupLayout(jPanelRelatorios);
         jPanelRelatorios.setLayout(jPanelRelatoriosLayout);
@@ -656,24 +652,24 @@ public class ViewMenu extends javax.swing.JFrame {
                         .addGap(19, 19, 19)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jFormattedTextFieldDataInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jFormattedTextFieldDataInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(44, 44, 44)
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jFormattedTextFieldDataFim, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jFormattedTextFieldDataFim, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(jButtonPesquisarRelatório, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(106, 106, 106)
+                        .addGap(61, 61, 61)
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBoxEmitirRelatorio, 0, 228, Short.MAX_VALUE)
+                        .addComponent(jComboBoxEmitirRelatorio, 0, 259, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonGerarRelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanelRelatoriosLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane4))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelRelatoriosLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap()
                         .addComponent(jButtonEnviarRelatorioEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -683,16 +679,16 @@ public class ViewMenu extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanelRelatoriosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jFormattedTextFieldDataInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
-                    .addComponent(jFormattedTextFieldDataFim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonPesquisarRelatório, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonGerarRelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBoxEmitirRelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8))
+                    .addComponent(jLabel8)
+                    .addComponent(jFormattedTextFieldDataInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jFormattedTextFieldDataFim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
+                .addGap(80, 80, 80)
                 .addComponent(jButtonEnviarRelatorioEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -742,14 +738,6 @@ public class ViewMenu extends javax.swing.JFrame {
     private void jTextFieldBuscarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldBuscarFuncionarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldBuscarFuncionarioActionPerformed
-
-    private void jFormattedTextFieldDataInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextFieldDataInicioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextFieldDataInicioActionPerformed
-
-    private void jFormattedTextFieldDataFimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextFieldDataFimActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextFieldDataFimActionPerformed
 
     private void jButtonEtapaProxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEtapaProxActionPerformed
         // TODO add your handling code here:
@@ -883,9 +871,6 @@ public class ViewMenu extends javax.swing.JFrame {
         return jFormattedTextFieldDataFim;
     }
 
-    public JFormattedTextField getjFormattedTextFieldDataInicio() {
-        return jFormattedTextFieldDataInicio;
-    }
 
     public JPanel getjPanelCliente() {
         return jPanelCliente;
@@ -930,6 +915,11 @@ public class ViewMenu extends javax.swing.JFrame {
     public JTable getjTableRelatório() {
         return jTableRelatório;
     }
+
+    public JFormattedTextField getjFormattedTextFieldDataInicio() {
+        return jFormattedTextFieldDataInicio;
+    }
+    
 
     public JTextField getjTextFielBuscaPedido() {
         return jTextFielBuscaPedido;

@@ -121,7 +121,7 @@ public class Funcionarios {
     public ArrayList<Funcionario> pesquisa(String nome){
         ArrayList<Funcionario> funcTemp = new ArrayList<>();
         for(Funcionario f: funcionarios){
-            if(f.getNome().contains(nome)){
+            if(f.getNome().toLowerCase().contains(nome.toLowerCase()) ){
                 funcTemp.add(f);
             }
         }

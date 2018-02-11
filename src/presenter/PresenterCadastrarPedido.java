@@ -226,6 +226,11 @@ public class PresenterCadastrarPedido {
                     }
 
                     JOptionPane.showMessageDialog(view, "Pedido cadastrado com sucesso");
+                    try {
+                        PresenterMenu.getInstancia().populaMenuPedidos();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(PresenterCadastrarPedido.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     instancia = null;
                     view.dispose();
                 }
