@@ -102,14 +102,9 @@ public class Pizza extends Produto {
         System.out.println("Pizza: " + " nome = " + nome + ", preco = " + preco);
     }
 
-    //Testar
     @Override
     public String toString() {
-//        String ingrediente = "";
-//        for (Insumo i : ingredientes){
-//            ingrediente = ingrediente + "\n" + i.toString();
-//        }
-        return "Pizza{" + ", receita=" + receita + ", categoria=" + categoria + '}';
+        return nome + ": R$" + preco;
     }
 
 }

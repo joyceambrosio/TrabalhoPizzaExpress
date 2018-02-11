@@ -105,7 +105,7 @@ public class DaoPedido {
                 statement.close();
             }
             p.setProdutos(produtos);
-    
+
         }
 
     }
@@ -156,7 +156,7 @@ public class DaoPedido {
                 statement.setInt(1, pedido.getId());
                 statement.setInt(2, p.getProduto().getId());
                 statement.setInt(3, p.getQuantidade());
-        
+
                 statement.execute();
 
                 resultSet = statement.getResultSet();
@@ -165,7 +165,49 @@ public class DaoPedido {
             } catch (Exception e) {
             }
         }
+    }
 
+    public int addPedido(Pedido pedido) throws SQLException {
+
+        conexao = ConexaoBDMySQL.getInstancia();
+        System.out.println("id e nome: " + pedido.getCliente().getId() + "  " + pedido.getCliente().getNome());
+
+        try (CallableStatement statement = conexao.getConexao().prepareCall("{call addPedido(?, ?)}")) {
+
+            statement.setInt(1, pedido.getCliente().getId());
+            if (pedido.getEntregador() == null) {
+                statement.setNull(4, java.sql.Types.INTEGER);
+            } else {
+                statement.setInt(2, pedido.getEntregador().getId());
+            }
+            statement.execute();
+
+            resultSet = statement.getResultSet();
+
+            if (resultSet.next()) {
+                idPedido = resultSet.getInt(1);
+            }
+            statement.close();
+        }
+
+        pedido.setId(idPedido);
+
+        for (PedidoProduto p : pedido.getProdutos()) {
+
+            try (CallableStatement statement = conexao.getConexao().prepareCall("{call addPedidoProduto(?, ?, ?)}")) {
+
+                statement.setInt(1, idPedido);
+                statement.setInt(2, p.getProduto().getId());
+                statement.setInt(3, p.getQuantidade());
+
+                statement.execute();
+
+                resultSet = statement.getResultSet();
+
+                statement.close();
+            }
+        }
+        return idPedido;
     }
 
 }

@@ -32,6 +32,13 @@ public class Pedido {
         setStatusPedido(status);
     }
 
+    public Pedido(Cliente cliente, Funcionario entregador, ArrayList<PedidoProduto> produtos, String statusPedido) {
+        setCliente(cliente);
+        alterarEntregador(entregador);
+        setProdutos(produtos);
+        setStatusPedido(statusPedido);
+    }
+
     public Pedido(int id, Cliente cliente, Funcionario entregador, ArrayList<PedidoProduto> produtos, String statusPedido, double total) {
         setId(id);
         setCliente(cliente);
@@ -150,7 +157,7 @@ public class Pedido {
 
     @Override
     public String toString() {
-        return "Pedido{" + "id=" + id + ", cliente=" + cliente + ", entregador=" + entregador + ", produtos=" + produtos + ", statusPedido=" + statusPedido + '}';
+        return "" + id;
     }
 
 }

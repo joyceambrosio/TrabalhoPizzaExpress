@@ -102,10 +102,10 @@ CALL addComidaIngrediente(10, 10, "gramas", "100");
 
 CALL addCliente("Joyce Ambrosio", "Rua Pref. Antonio Lemos Jr", 217, "Colina", "Alegre", "ES", "29500-000", "Prox Fabrica de Manilha");
 CALL addCliente("Natalia Soares", "Avenida esqueci", 217, "Colina", "Guacui", "ES","29540-000", "Ai");
-CALL addCliente("Enzo Satori", "Avenida esqueci", 217, "Colina", "Alegre", "ES", "29540-000", "Perto da ufes");
-CALL addCliente("Enzo Valentines", "Avenida esqueci", 217, "Guararema", "Alegre","ES","29540-000", "Rua sem fim");
-CALL addCliente("Valentina de Jesus", "Avenida esqueci", 217, "Guararema", "Alegre", "ES","29540-000", " ");
-CALL addCliente("Valentina", "Avenida esqueci", 217, "Guararema", "Alegre", "ES","29540-000", " ");
+CALL addCliente("Enzo Vasconcelos", "Avenida esqueci", 217, "Colina", "Alegre", "ES", "29540-000", "Perto da ufes");
+CALL addCliente("Erick Ambrosio", "Avenida esqueci", 217, "Guararema", "Alegre","ES","29540-000", "Rua sem fim");
+CALL addCliente("Caio Soares", "Avenida esqueci", 217, "Guararema", "Alegre", "ES","29540-000", " ");
+CALL addCliente("Valentina Guimaraes", "Avenida esqueci", 217, "Guararema", "Alegre", "ES","29540-000", " ");
 
 
 CALL addCargo("Administrador", 1200.00, 0);
@@ -118,8 +118,29 @@ CALL addFuncionario(2, "Joyce", "Joy", "123");
 CALL addFuncionario(3, "Natalia", "NatyCristal", "123");
 CALL addFuncionario(4, "Carlos Alberto", "Carlos", "123");
 
+CALL addPedido(1, 3);
 CALL addPedido(2, 3);
+CALL addPedido(3, 3);
+CALL addPedido(4, 3);
+CALL addPedido(5, 3);
+
+CALL addPedido(6, null);
+CALL addPedido(6, 3);
+CALL addPedido(6, 3);
+CALL addPedido(6, 3);
+CALL addPedido(6, null);
+
+CALL addPedido(6, 3);
+CALL addPedido(6, null);
+CALL addPedido(6, 3);
+CALL addPedido(2, 3);
+CALL addPedido(4, 3);
+
+CALL addPedido(4, 3);
+CALL addPedido(5, 3);
+CALL addPedido(6, null);
 CALL addPedido(1, null);
+CALL addPedido(2, 3);
 
 
 CALL addPedidoProduto(1, 1, 1);
@@ -128,6 +149,34 @@ CALL addPedidoProduto(2, 2, 2);
 CALL addPedidoProduto(2, 3, 1);
 CALL addPedidoProduto(2, 4, 1);
 CALL updPedidoProduto(2, 4, 6);
+
+CALL addPedidoProduto(3, 1, 1);
+CALL addPedidoProduto(3, 3, 1);
+CALL addPedidoProduto(3, 2, 2);
+CALL addPedidoProduto(4, 3, 1);
+CALL addPedidoProduto(4, 4, 1);
+CALL updPedidoProduto(4, 4, 6);
+
+CALL addPedidoProduto(5, 1, 1);
+CALL addPedidoProduto(6, 3, 1);
+CALL addPedidoProduto(7, 2, 2);
+CALL addPedidoProduto(7, 3, 1);
+CALL addPedidoProduto(8, 4, 1);
+CALL updPedidoProduto(8, 4, 6);
+
+CALL addPedidoProduto(9, 1, 1);
+CALL addPedidoProduto(10, 3, 1);
+CALL addPedidoProduto(11, 2, 2);
+CALL addPedidoProduto(12, 3, 1);
+CALL addPedidoProduto(13, 4, 1);
+CALL updPedidoProduto(15, 4, 6);
+
+CALL addPedidoProduto(15, 1, 1);
+CALL addPedidoProduto(16, 3, 1);
+CALL addPedidoProduto(17, 2, 2);
+CALL addPedidoProduto(18, 3, 1);
+CALL addPedidoProduto(19, 4, 1);
+CALL updPedidoProduto(20, 4, 6);
 
 -- select * from Produto;
 -- 

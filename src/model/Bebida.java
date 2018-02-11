@@ -63,7 +63,6 @@ public class Bebida extends Produto {
 
     @Override
     public String toString() {
-        return "Bebida{" + "categoria=" + categoria + '}';
+        return nome + ": R$" + preco;
     }
-
 }

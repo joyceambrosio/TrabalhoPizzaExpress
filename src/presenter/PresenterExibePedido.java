@@ -24,7 +24,7 @@ import model.Funcionario;
 import model.Pedido;
 import model.PedidoProduto;
 import model.Produto;
-import view.CadastrarPedido;
+import view.viewCadastrarPedido;
 
 /**
  *
@@ -32,11 +32,11 @@ import view.CadastrarPedido;
  */
 public class PresenterExibePedido {
 
-    private CadastrarPedido view;
+    private viewCadastrarPedido view;
     Pedido pedido;
 
     public PresenterExibePedido(Pedido p) {
-        view = new CadastrarPedido();
+        view = new viewCadastrarPedido();
         this.pedido = p;
         fechar();
         configuraExibicao();
@@ -59,7 +59,7 @@ public class PresenterExibePedido {
         view.getjButtonAdicionar().setEnabled(false);
 
         view.getjButtonRemoverProduto().setEnabled(false);
-        view.getjTextFieldQuantidade().setEnabled(false);
+        view.getjSpinnerQuantidade().setEnabled(false);
     }
 
     public void populaCliente() {

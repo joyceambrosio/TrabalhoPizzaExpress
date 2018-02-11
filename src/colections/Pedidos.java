@@ -17,35 +17,35 @@ import model.Produto;
  * @author Natalia
  */
 public class Pedidos {
-
+    
     private static Pedidos instancia = null;
     private static ArrayList<Pedido> pedidos = new ArrayList<>();
-
+    
     private Pedidos() {
-
+        
     }
-
+    
     public static Pedidos getInstancia() {
         if (instancia == null) {
             return new Pedidos();
         }
         return instancia;
     }
-
+    
     public ArrayList<Pedido> getPedidos() throws SQLException {
         DaoPedido dao = new DaoPedido();
         return dao.getPedidos();
     }
     
-    public void setPedidos() throws SQLException{
+    public void setPedidos() throws SQLException {
         DaoPedido dao = new DaoPedido();
-        this.pedidos  = dao.getPedidos();
+        this.pedidos = dao.getPedidos();
     }
-
+    
     public ArrayList<Pedido> getLista() {
         return pedidos;
     }
-
+    
     public Pedido getPedidoById(int id) throws SQLException {
         setPedidos();
         for (Pedido p : pedidos) {
@@ -55,16 +55,18 @@ public class Pedidos {
         }
         return null;
     }
-
+    
     private boolean isPedido(Pedido pedido) {
         return pedidos.indexOf(pedido) != -1;
-
+        
     }
-
-    public boolean add(Pedido pedido) {
+    
+    public boolean add(Pedido pedido) throws SQLException {
+        DaoPedido dao = new DaoPedido();
+        dao.addPedido(pedido);
         return pedidos.add(pedido);
     }
-
+    
     public boolean remove(Pedido pedido) {
         if (isPedido(pedido)) {
             pedidos.remove(pedido);
@@ -73,13 +75,13 @@ public class Pedidos {
             return false;
         }
     }
-
+    
     public void imprimeLista() {
         for (Pedido p : pedidos) {
             System.out.println(p.toString());;
         }
     }
-
+    
     public void updatePedido(Pedido p) throws SQLException {
         DaoPedido dao = new DaoPedido();
         dao.updPedido(p);

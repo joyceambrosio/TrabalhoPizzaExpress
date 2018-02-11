@@ -11,7 +11,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.net.URL;
 import model.Pedido;
-import view.CadastrarPedido;
+import view.viewCadastrarPedido;
 
 /**
  *
@@ -19,13 +19,13 @@ import view.CadastrarPedido;
  */
 public class PresenterModificarPedido {
 
-    private CadastrarPedido view;
+    private viewCadastrarPedido view;
     private static PresenterModificarPedido instancia;
     private Pedido pedido;
 
     public PresenterModificarPedido(Pedido p) {
         this.pedido = p;
-        view = new CadastrarPedido();
+        view = new viewCadastrarPedido();
         
         
         

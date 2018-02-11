@@ -81,7 +81,6 @@ public class PresenterPedido {
 
     public void proximaEtapa() {
         menu.getjButtonEtapaProx().addActionListener(new ActionListener() {
-            @Override
             public void actionPerformed(ActionEvent e) {
                 int linha = menu.getjTablePedido().getSelectedRow();
 
@@ -89,9 +88,9 @@ public class PresenterPedido {
                     JOptionPane.showMessageDialog(menu, "Selecione um pedido para alterar seu status");
                 }
                 if (linha >= 0) {
-                    int idP = (int) menu.getjTablePedido().getValueAt(linha, 0);
+               
+                    Pedido p = (Pedido) menu.getjTablePedido().getValueAt(linha, 0);
                     try {
-                        Pedido p = Pedidos.getInstancia().getPedidoById(idP);
                         
                         if (p.nextStatusPedido()) {
                             Pedidos.getInstancia().updatePedido(p);
@@ -121,9 +120,10 @@ public class PresenterPedido {
                     JOptionPane.showMessageDialog(menu, "Selecione um pedido para alterar seu status");
                 }
                 if (linha >= 0) {
-                    int idP = (int) menu.getjTablePedido().getValueAt(linha, 0);
+               
+                    Pedido p = (Pedido) menu.getjTablePedido().getValueAt(linha, 0);
                     try {
-                        Pedido p = Pedidos.getInstancia().getPedidoById(idP);
+                        
                         if (p.lastStatusPedido()) {
                             Pedidos.getInstancia().updatePedido(p);
                             populaMenuPedidos();
@@ -232,7 +232,7 @@ public class PresenterPedido {
             }
         }
         for (Pedido p : pfiltro) {
-            int id = p.getId();
+            Pedido id = p;
             String nome = p.getCliente().getNome();
             String end = p.getCliente().getEndereco().getEnderecoCompleto();
             String status = p.getStatusPedido();

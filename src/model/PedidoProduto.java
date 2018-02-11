@@ -40,4 +40,9 @@ public class PedidoProduto {
         return quantidade;
     }
 
+    @Override
+    public String toString() {
+        return "" + produto.getNome();
+    }
+  
 }
