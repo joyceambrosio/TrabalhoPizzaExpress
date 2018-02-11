@@ -108,7 +108,6 @@ CALL addCliente("Valentina de Jesus", "Avenida esqueci", 217, "Guararema", "Aleg
 CALL addCliente("Valentina", "Avenida esqueci", 217, "Guararema", "Alegre", "ES","29540-000", " ");
 
 
-select * from cargo;
 CALL addCargo("Administrador", 1200.00, 0);
 CALL addCargo("Atendente", 1200.00, 0);
 CALL addCargo("Cozinheiro", 1800.00, 0);
@@ -121,7 +120,7 @@ CALL addFuncionario(4, "Carlos Alberto", "Carlos", "123");
 
 CALL addPedido(2, 3);
 CALL addPedido(1, null);
-select * from pedido;
+
 
 CALL addPedidoProduto(1, 1, 1);
 CALL addPedidoProduto(1, 3, 1);
@@ -144,18 +143,4 @@ CALL updPedidoProduto(2, 4, 6);
 -- 
 -- 
 
-INSERT INTO 
-Pedido (idCliente)
-VALUES (1);
 
-INSERT INTO 
-PedidoProduto (idPedido, idProduto, quantidade)
-VALUES (1, 1, 2);
-
-INSERT INTO 
-PedidoProduto (idPedido, idProduto, quantidade)
-VALUES (1, 2, 4);
-
-UPDATE PedidoProduto
-SET quantidade = 1
-WHERE idProduto = 1 AND  idPedido = 1;

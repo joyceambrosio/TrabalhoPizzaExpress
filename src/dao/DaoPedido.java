@@ -7,6 +7,7 @@ package dao;
 
 import colections.Clientes;
 import colections.Funcionarios;
+import colections.Produtos;
 import conexaoBanco.ConexaoBDMySQL;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
@@ -16,6 +17,8 @@ import model.Cliente;
 import model.Funcionario;
 import model.Insumo;
 import model.Pedido;
+import model.PedidoProduto;
+import model.Pizza;
 import model.Produto;
 
 /**
@@ -29,8 +32,7 @@ public class DaoPedido {
     private int idPedido;
     private ArrayList<Integer> ids;
     private ArrayList<Pedido> pedidos;
-    private ArrayList<Produto> produtos = new ArrayList<>();
-    private ArrayList<Insumo> ingredientes = null;
+    private ArrayList<PedidoProduto> produtos = new ArrayList<>();
 
     private Cliente cliente;
     private Funcionario funcionario;
@@ -51,9 +53,9 @@ public class DaoPedido {
                 int idCliente = resultSet.getInt(2);
                 String nome = resultSet.getString(3);
                 int idFuncionario = resultSet.getInt(4);
-                
+
                 if (resultSet.wasNull()) {
-                    funcionario = Funcionarios.getInstancia().getFuncionarioByID(1);
+                    funcionario = null;
                 } else {
                     funcionario = Funcionarios.getInstancia().getFuncionarioByID(idFuncionario);
                 }
@@ -65,16 +67,104 @@ public class DaoPedido {
                 Cliente cliente = Clientes.getInstancia().getClienteById(idCliente);
 
                 Pedido pedido = new Pedido(idPedido, cliente, funcionario, status);
-
-                System.out.println(pedido);
+                pedido.setTotalPedido(total);
 
                 pedidos.add(pedido);
 
             }
             statement.close();
         }
-
+        getPedidosProdutos();
         return pedidos;
+
+    }
+
+    public void getPedidosProdutos() throws SQLException {
+        conexao = ConexaoBDMySQL.getInstancia();
+
+        for (Pedido p : pedidos) {
+
+            produtos = new ArrayList<>();
+
+            try (CallableStatement statement = conexao.getConexao().prepareCall("{call getPedidoProdutos(?)}")) {
+
+                statement.setInt(1, p.getId());
+                statement.execute();
+
+                resultSet = statement.getResultSet();
+
+                while (resultSet.next()) {
+                    int idProduto = resultSet.getInt(1);
+                    int quantidade = resultSet.getInt(2);
+
+                    Produto produto = Produtos.getInstancia().getProdutosbyID(idProduto);
+                    PedidoProduto pedidoProduto = new PedidoProduto(produto, quantidade);
+                    produtos.add(pedidoProduto);
+                }
+
+                statement.close();
+            }
+            p.setProdutos(produtos);
+    
+        }
+
+    }
+
+    public void delPedido(Pedido pedido) throws SQLException {
+        conexao = ConexaoBDMySQL.getInstancia();
+        try (CallableStatement statement = conexao.getConexao().prepareCall("{call delPedido(?)}")) {
+            statement.setInt(1, pedido.getId());
+            statement.execute();
+            resultSet = statement.getResultSet();
+            statement.close();
+        }
+    }
+
+    public void updPedido(Pedido pedido) throws SQLException {
+        conexao = ConexaoBDMySQL.getInstancia();
+
+        try (CallableStatement statement = conexao.getConexao().prepareCall("{call updPedido(?, ?, ?, ?)}")) {
+
+            statement.setInt(1, pedido.getId());
+            if (pedido.getEntregador() == null) {
+
+                statement.setNull(2, java.sql.Types.INTEGER);
+            } else {
+                statement.setInt(2, pedido.getEntregador().getId());
+            }
+            statement.setInt(3, pedido.getCliente().getId());
+            statement.setString(4, pedido.getStatusPedido());
+
+            statement.execute();
+
+            resultSet = statement.getResultSet();
+
+            statement.close();
+
+        }
+
+        try (CallableStatement statement = conexao.getConexao().prepareCall("{delPedidoProdutos(?)}")) {
+            statement.setInt(1, pedido.getId());
+
+        } catch (Exception e) {
+        }
+
+        for (PedidoProduto p : pedido.getProdutos()) {
+
+            try (CallableStatement statement = conexao.getConexao().prepareCall("{call addPedidoProduto(?, ?, ?)}")) {
+
+                statement.setInt(1, pedido.getId());
+                statement.setInt(2, p.getProduto().getId());
+                statement.setInt(3, p.getQuantidade());
+        
+                statement.execute();
+
+                resultSet = statement.getResultSet();
+
+                statement.close();
+            } catch (Exception e) {
+            }
+        }
 
     }
 

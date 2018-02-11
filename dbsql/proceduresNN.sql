@@ -660,20 +660,34 @@ BEGIN
 	PedidoProduto (idPedido, idProduto, quantidade)
 	VALUES (idPedidoIN, idProdutoIN, quantidadeIN);
 
-	SELECT LAST_INSERT_ID();
 END;
 //
 DELIMITER ;
 
-DROP PROCEDURE IF EXISTS delPedidoProduto;
+DROP PROCEDURE IF EXISTS getPedidoProdutos;
 DELIMITER //
-CREATE PROCEDURE delPedidoProduto(
-	IN idPedidoIN INT,
-	IN idProdutoIN INT
+CREATE PROCEDURE getPedidoProdutos(
+	IN idPedidoIN INT
+)
+	BEGIN
+		SELECT 
+	    idProduto,
+	    quantidade
+	FROM
+	    pedidoProduto
+	WHERE idPedido = idPedidoIN;
+END;
+//
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS delPedidoProdutos;
+DELIMITER //
+CREATE PROCEDURE delPedidoProdutos(
+	IN idPedidoIN INT
 )
 BEGIN
 	DELETE FROM PedidoProduto
-	WHERE idPedido = idPedidoIN AND idProduto = idProdutoIN;
+	WHERE idPedido = idPedidoIN;
 END;
 //
 DELIMITER ;

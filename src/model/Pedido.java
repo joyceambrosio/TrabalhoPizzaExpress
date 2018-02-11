@@ -5,6 +5,7 @@
  */
 package model;
 
+import dao.DaoPedido;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 
@@ -17,7 +18,7 @@ public class Pedido {
     private int id;
     private Cliente cliente;
     private Funcionario entregador;
-    private ArrayList<Produto> produtos;
+    private ArrayList<PedidoProduto> produtos;
     private String statusPedido;
     private double totalPedido;
 
@@ -31,7 +32,7 @@ public class Pedido {
         setStatusPedido(status);
     }
 
-    public Pedido(int id, Cliente cliente, Funcionario entregador, ArrayList<Produto> produtos, String statusPedido, double total) {
+    public Pedido(int id, Cliente cliente, Funcionario entregador, ArrayList<PedidoProduto> produtos, String statusPedido, double total) {
         setId(id);
         setCliente(cliente);
         alterarEntregador(entregador);
@@ -56,10 +57,6 @@ public class Pedido {
         return id;
     }
 
-    public int getIdPedido() {
-        return this.id;
-    }
-
     public void setEntregador(Funcionario entregador) {
         this.entregador = entregador;
     }
@@ -68,12 +65,9 @@ public class Pedido {
         produtos.remove(produto);
     }
 
-    public void alterarProduto(Produto produto, int i) {
-        produtos.set(i, produto);
-    }
-
     //Aberto > Em Produção > Em  Entrega > Concluido
     public boolean nextStatusPedido() {
+
         if (this.statusPedido.equals(" ")) {
             setStatusPedido("Aberto");
             return true;
@@ -91,8 +85,10 @@ public class Pedido {
     }
 
     public boolean lastStatusPedido() {
+
         if (this.statusPedido.equals(" ")) {
             setStatusPedido("Aberto");
+
             return true;
         } else if (this.statusPedido.equals("Concluído")) {
             setStatusPedido("Em entrega");
@@ -134,11 +130,11 @@ public class Pedido {
         }
     }
 
-    public ArrayList<Produto> getProdutos() {
+    public ArrayList<PedidoProduto> getProdutos() {
         return produtos;
     }
 
-    public void setProdutos(ArrayList<Produto> produtos) {
+    public void setProdutos(ArrayList<PedidoProduto> produtos) {
         if (produtos != null) {
             this.produtos = produtos;
         }

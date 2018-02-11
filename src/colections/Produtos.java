@@ -30,6 +30,12 @@ public class Produtos {
         return instancia;
     }
 
+    public void setProdutos() throws SQLException {
+        DaoProduto dao = new DaoProduto();
+        produtos = dao.getProdutos();
+
+    }
+
     public ArrayList<Produto> getProdutos() throws SQLException {
         DaoProduto dao = new DaoProduto();
         return produtos = dao.getProdutos();
@@ -61,7 +67,8 @@ public class Produtos {
         return null;
     }
 
-    public Produto getProdutosbyID(int id) {
+    public Produto getProdutosbyID(int id) throws SQLException {
+        setProdutos();
         for (Produto p : produtos) {
             if (p.getId() == id && !p.getCategoria().equals("Insumo")) {
                 return p;
@@ -70,7 +77,8 @@ public class Produtos {
         return null;
     }
 
-    public Produto getInsumosbyID(int id) {
+    public Produto getInsumosbyID(int id) throws SQLException {
+        setProdutos();
         for (Produto p : produtos) {
             if (p.getId() == id && p.getCategoria().equals("Insumo")) {
                 return p;
@@ -80,7 +88,7 @@ public class Produtos {
     }
 
     public boolean remove(Produto produto) throws SQLException {
-        DaoProduto dao = new DaoProduto();   
+        DaoProduto dao = new DaoProduto();
         if (isProduto(produto)) {
             dao.removeProduto(produto);
             return true;

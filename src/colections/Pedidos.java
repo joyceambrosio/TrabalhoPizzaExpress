@@ -36,14 +36,20 @@ public class Pedidos {
         DaoPedido dao = new DaoPedido();
         return dao.getPedidos();
     }
+    
+    public void setPedidos() throws SQLException{
+        DaoPedido dao = new DaoPedido();
+        this.pedidos  = dao.getPedidos();
+    }
 
     public ArrayList<Pedido> getLista() {
         return pedidos;
     }
 
-    public Pedido getPedidoById(int id) {
+    public Pedido getPedidoById(int id) throws SQLException {
+        setPedidos();
         for (Pedido p : pedidos) {
-            if (p.getIdPedido() == id) {
+            if (p.getId() == id) {
                 return p;
             }
         }
@@ -72,5 +78,10 @@ public class Pedidos {
         for (Pedido p : pedidos) {
             System.out.println(p.toString());;
         }
+    }
+
+    public void updatePedido(Pedido p) throws SQLException {
+        DaoPedido dao = new DaoPedido();
+        dao.updPedido(p);
     }
 }

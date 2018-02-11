@@ -80,8 +80,14 @@ public class PresenterCliente {
                     JOptionPane.showMessageDialog(menu, "Selecione um cliente para realizar as modificações");
                 } else if (linha >= 0) {
 
+                    
                     int idCliente = Integer.parseInt(menu.getjTableCliente().getValueAt(linha, 0).toString());
-                    Cliente c = Clientes.getInstancia().getClienteById(idCliente);
+                    Cliente c = null;
+                    try {
+                        c = Clientes.getInstancia().getClienteById(idCliente);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(PresenterCliente.class.getName()).log(Level.SEVERE, null, ex);
+                    }
 
                     if (c != null) {
                         PresenterModificarCliente presenterModificaCliente = PresenterModificarCliente.getInstancia(c);

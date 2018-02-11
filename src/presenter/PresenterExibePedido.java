@@ -22,6 +22,7 @@ import javax.swing.table.DefaultTableModel;
 import model.Cliente;
 import model.Funcionario;
 import model.Pedido;
+import model.PedidoProduto;
 import model.Produto;
 import view.CadastrarPedido;
 
@@ -88,13 +89,13 @@ public class PresenterExibePedido {
     }
 
     public void populaTabelaPedido() {
-        Object colunas[] = {"Produto", "Quantidade", "Valor", "Total"};
+        Object colunas[] = {"ID", "Produto", "Quantidade", "Valor", "Total"};
         DefaultTableModel tabela = new DefaultTableModel(colunas, 0);
         view.getjTableProdutos().setModel(tabela);
 
         if (pedido.getProdutos() != null) {
-            for (Produto p : pedido.getProdutos()) {
-                tabela.addRow(new Object[]{p.getNome(), p.getPreco()});
+            for (PedidoProduto p : pedido.getProdutos()) {
+                tabela.addRow(new Object[]{p.getProduto().getId(), p.getProduto().getNome(), p.getProduto().getPreco(), p.getQuantidade()});
             }
         }
     }

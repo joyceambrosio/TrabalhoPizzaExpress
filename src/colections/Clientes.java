@@ -23,17 +23,22 @@ public class Clientes {
 
     }
 
-    public static Clientes getInstancia() {
+    public static Clientes getInstancia() throws SQLException {
         if (instancia == null) {
             return new Clientes();
         }
+        
         return instancia;
     }
 
     public Iterable<Cliente> getClientes() throws SQLException {
         DaoCliente dao = new DaoCliente();
-         return clientes = dao.getClientes();
-       
+        return clientes = dao.getClientes();
+    }
+
+    public void setClietnes() throws SQLException {
+        DaoCliente dao = new DaoCliente();
+        clientes = dao.getClientes();
     }
 
     public ArrayList<Cliente> getLista() {
@@ -45,7 +50,8 @@ public class Clientes {
         return dao.getClienteByNome(nome);
     }
 
-    public Cliente getClienteById(int id) {
+    public Cliente getClienteById(int id) throws SQLException {
+        setClietnes();
         for (Cliente c : clientes) {
             if (c.getId() == id) {
                 return c;
@@ -87,7 +93,7 @@ public class Clientes {
 
     public boolean add(Cliente cliente) throws SQLException {
         DaoCliente dao = new DaoCliente();
-        
+
         ArrayList<Integer> idsCliente = dao.addCliente(cliente);
 
         cliente.setId(idsCliente.get(0));

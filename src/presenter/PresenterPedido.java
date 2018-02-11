@@ -6,6 +6,7 @@
 package presenter;
 
 import colections.Pedidos;
+import com.sun.javafx.geom.PickRay;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -58,11 +59,10 @@ public class PresenterPedido {
         });
 
     }
-    
-      public void configuraMenu() {
+
+    public void configuraMenu() {
         menu.getjCheckBoxAbertos().setSelected(true);
     }
-
 
     public void detalhesPedido() {
         menu.getjButtonDetalhesPedido().addActionListener(new ActionListener() {
@@ -88,6 +88,25 @@ public class PresenterPedido {
                 if (linha == -1) {
                     JOptionPane.showMessageDialog(menu, "Selecione um pedido para alterar seu status");
                 }
+                if (linha >= 0) {
+                    int idP = (int) menu.getjTablePedido().getValueAt(linha, 0);
+                    try {
+                        Pedido p = Pedidos.getInstancia().getPedidoById(idP);
+                        
+                        if (p.nextStatusPedido()) {
+                            Pedidos.getInstancia().updatePedido(p);
+                            populaMenuPedidos();
+                            JOptionPane.showMessageDialog(menu, "Etapa modificada");
+                        } else {
+                            JOptionPane.showMessageDialog(menu, "Não é possível alterar um pedido nesse status");
+                        }
+
+                    } catch (SQLException ex) {
+                        Logger.getLogger(PresenterPedido.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                }
+
             }
         });
     }
@@ -96,28 +115,28 @@ public class PresenterPedido {
         menu.getjButtonEtapaAnterior().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-//                int linha = view.getjTablePedido().getSelectedRow();
-//
-//                if (linha == -1) {
-//                    JOptionPane.showMessageDialog(view, "Selecione um pedido para alterar seu status");
-//                }
-//                if (linha >= 0) {
-//                    String nome = view.getjTablePedido().getValueAt(linha, 0).toString();
-//                    Cliente c = Clientes.getInstancia().getClienteByNome(nome);
-//                    String situacao = view.getjTablePedido().getValueAt(linha, 2).toString();
-//                    for (Pedido p : Pedidos.getInstancia().getLista()) {
-//                        if (p.getCliente().equals(c) && p.getStatusPedido().equals(situacao)) {
-//
-//                            if (p.lastStatusPedido()) {
-//                                populaMenuPedidos();
-//                                JOptionPane.showMessageDialog(view, "Etapa modificada");
-//                            } else {
-//                                JOptionPane.showMessageDialog(view, "Não é possível alterar um pedido nesse status");
-//                            }
-//
-//                        }
-//                    }
-//                }
+                int linha = menu.getjTablePedido().getSelectedRow();
+
+                if (linha == -1) {
+                    JOptionPane.showMessageDialog(menu, "Selecione um pedido para alterar seu status");
+                }
+                if (linha >= 0) {
+                    int idP = (int) menu.getjTablePedido().getValueAt(linha, 0);
+                    try {
+                        Pedido p = Pedidos.getInstancia().getPedidoById(idP);
+                        if (p.lastStatusPedido()) {
+                            Pedidos.getInstancia().updatePedido(p);
+                            populaMenuPedidos();
+                            JOptionPane.showMessageDialog(menu, "Etapa modificada");
+                        } else {
+                            JOptionPane.showMessageDialog(menu, "Não é possível alterar um pedido nesse status");
+                        }
+
+                    } catch (SQLException ex) {
+                        Logger.getLogger(PresenterPedido.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                }
 
             }
         });
@@ -177,7 +196,7 @@ public class PresenterPedido {
 
     public void populaMenuPedidos() throws SQLException {
 
-        Object colunas[] = {"Nome", "Endereço", "Etapa", "Entregador", "Total"};
+        Object colunas[] = {"ID", "Nome", "Endereço", "Etapa", "Entregador", "Total"};
         DefaultTableModel tabela = new DefaultTableModel(colunas, 0);
 
         menu.getjTablePedido().setModel(tabela);
@@ -213,7 +232,7 @@ public class PresenterPedido {
             }
         }
         for (Pedido p : pfiltro) {
-
+            int id = p.getId();
             String nome = p.getCliente().getNome();
             String end = p.getCliente().getEndereco().getEnderecoCompleto();
             String status = p.getStatusPedido();
@@ -223,10 +242,9 @@ public class PresenterPedido {
                 entregador = "Casa";
             } else {
                 entregador = p.getEntregador().getNome();
-
             }
             double total = p.getTotalPedido();
-            tabela.addRow(new Object[]{nome, end, status, entregador, total});
+            tabela.addRow(new Object[]{id, nome, end, status, entregador, total});
         }
     }
 }

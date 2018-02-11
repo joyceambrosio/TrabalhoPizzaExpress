@@ -74,7 +74,7 @@ public class PresenterCadastrarPedido {
         return instancia;
     }
 
-    public void populaCliente() {
+    public void populaCliente() throws SQLException {
         DefaultComboBoxModel clienteComboBox = new DefaultComboBoxModel();
         view.getjComboBoxClientes().setModel(clienteComboBox);
         clienteComboBox.addElement("Selecione um Cliente");
