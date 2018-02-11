@@ -57,7 +57,7 @@ public class viewCadastrarPedido extends javax.swing.JFrame {
         jLabelAvisosCliente = new javax.swing.JLabel();
         jLabelAvisosProduto = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
         jComboBoxClientes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
