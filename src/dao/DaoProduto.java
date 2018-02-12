@@ -14,6 +14,7 @@ import conexaoBanco.*;
 import model.Insumo;
 import model.Pizza;
 import model.Produto;
+import presenter.exceptions.BancoException;
 
 /**
  *
@@ -28,7 +29,7 @@ public class DaoProduto {
     private ArrayList<Produto> produtos = new ArrayList<>();
     private ArrayList<Insumo> ingredientes = null;
 
-    public boolean addProduto(Produto produto) throws SQLException {
+    public boolean addProduto(Produto produto) throws Exception {
 
         if (produto.getCategoria().equals("Insumo")) {
             addInsumo((Insumo) produto);
@@ -48,10 +49,11 @@ public class DaoProduto {
             return true;
         }
 
-        return false;
+        throw new Exception("O produto não satisfaz nenhuma categoria");
+
     }
 
-    public boolean removeProduto(Produto produto) throws SQLException {
+    public boolean removeProduto(Produto produto) throws Exception {
         if (produto.getCategoria().equals("Insumo")) {
             delInsumo((Insumo) produto);
             return true;
@@ -67,10 +69,10 @@ public class DaoProduto {
             return true;
         }
 
-        return false;
+        throw new Exception("O produto não satisfaz nenhuma categoria");
     }
 
-    public boolean updateProduto(Produto produto) throws SQLException {
+    public boolean updateProduto(Produto produto) throws Exception {
 
         if (produto.getCategoria().equals("Insumo")) {
             updInsumo((Insumo) produto);
@@ -87,10 +89,10 @@ public class DaoProduto {
             return true;
         }
 
-        return false;
+        throw new Exception("O produto não satisfaz nenhuma categoria");
     }
 
-    public void addInsumo(Insumo insumo) throws SQLException {
+    public void addInsumo(Insumo insumo) throws Exception {
 
         conexao = ConexaoBDMySQL.getInstancia();
 
@@ -103,10 +105,10 @@ public class DaoProduto {
             }
             statement.close();
         }
-
+        throw new Exception("Não foi possível adicionar. Verifique o banco");
     }
 
-    public int addBebida(Bebida bebida) throws SQLException {
+    public int addBebida(Bebida bebida) throws SQLException, Exception {
 
         conexao = ConexaoBDMySQL.getInstancia();
 
@@ -123,9 +125,11 @@ public class DaoProduto {
                 idComida = resultSet.getInt(1);
             }
             statement.close();
+
+        } catch  {
+            throw new Exception("Não foi possível adicionar. Verifique o banco");
         }
         return idComida;
-
     }
 
     public int addComida(Pizza produto) throws SQLException {

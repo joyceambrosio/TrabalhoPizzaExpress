@@ -198,6 +198,7 @@ public class PresenterCadastarProduto {
                     JOptionPane.showMessageDialog(null, "Ocorreu um erro");
                 }
             } catch (SQLException e) {
+                
             }
         }
     }
