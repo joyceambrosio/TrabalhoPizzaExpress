@@ -5,6 +5,8 @@
  */
 package model;
 
+import dao.DaoPedido;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 /**
@@ -13,48 +15,101 @@ import java.util.ArrayList;
  */
 public class Pedido {
 
+    private int id;
     private Cliente cliente;
     private Funcionario entregador;
-    private ArrayList<Produto> produtos;
+    private ArrayList<PedidoProduto> produtos;
     private String statusPedido;
-    //atributo estático em pedido
-    private static int numTotalPedido;
+    private double totalPedido;
 
-    public Pedido(Cliente cliente, Funcionario entregador, ArrayList<Produto> produtos, String statusPedido) {
+    public Pedido() {
+    }
+
+    public Pedido(int id, Cliente cliente, Funcionario entregador, String status) {
+        setId(id);
+        setCliente(cliente);
+        alterarEntregador(entregador);
+        setStatusPedido(status);
+    }
+
+    public Pedido(Cliente cliente, Funcionario entregador, ArrayList<PedidoProduto> produtos, String statusPedido) {
         setCliente(cliente);
         alterarEntregador(entregador);
         setProdutos(produtos);
         setStatusPedido(statusPedido);
     }
 
-    public Pedido(Cliente cliente, Funcionario entregador) {
+    public Pedido(int id, Cliente cliente, Funcionario entregador, ArrayList<PedidoProduto> produtos, String statusPedido, double total) {
+        setId(id);
         setCliente(cliente);
         alterarEntregador(entregador);
+        setProdutos(produtos);
+        setTotalPedido(totalPedido);
+        setStatusPedido(statusPedido);
     }
 
-    public Pedido() {
+    public void setTotalPedido(double totalPedido) {
+        this.totalPedido = totalPedido;
     }
 
-    public static int getNumTotalPedido() {
-        return numTotalPedido;
+    public double getTotalPedido() {
+        return totalPedido;
     }
 
-    public static void setNumTotalPedido(int numTotalPedido) {
-        Pedido.numTotalPedido = numTotalPedido;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    
-    public void addProduto(Produto produto) {
-        produtos.add(produto);
-        numTotalPedido ++;
+    public int getId() {
+        return id;
+    }
+
+    public void setEntregador(Funcionario entregador) {
+        this.entregador = entregador;
     }
 
     public void removerProduto(Produto produto) {
         produtos.remove(produto);
     }
 
-    public void alterarProduto(Produto produto, int i) {
-        produtos.set(i, produto);
+    //Aberto > Em Produção > Em  Entrega > Concluido
+    public boolean nextStatusPedido() {
+
+        if (this.statusPedido.equals(" ")) {
+            setStatusPedido("Aberto");
+            return true;
+        } else if (this.statusPedido.equals("Aberto")) {
+            setStatusPedido("Em produção");
+            return true;
+        } else if (this.statusPedido.equals("Em produção")) {
+            setStatusPedido("Em entrega");
+            return true;
+        } else if (this.statusPedido.equals("Em entrega")) {
+            setStatusPedido("Concluído");
+            return true;
+        }
+        return false;
+    }
+
+    public boolean lastStatusPedido() {
+
+        if (this.statusPedido.equals(" ")) {
+            setStatusPedido("Aberto");
+
+            return true;
+        } else if (this.statusPedido.equals("Concluído")) {
+            setStatusPedido("Em entrega");
+            return true;
+        } else if (this.statusPedido.equals("Em entrega")) {
+            setStatusPedido("Em produção");
+            return true;
+        } else if (this.statusPedido.equals("Em produção")) {
+            setStatusPedido("Aberto");
+            return true;
+        } else if (this.statusPedido.equals("Aberto")) {
+            return false;
+        }
+        return false;
     }
 
     public void statusDoPedido() {
@@ -71,10 +126,6 @@ public class Pedido {
         }
     }
 
-    //método estático para verificar a quantidade de número de pedidos
-    public static void consultarNumeroTotalDePedidos(){
-        System.out.println(numTotalPedido);
-    }
     public Funcionario getEntregador() {
         return entregador;
     }
@@ -86,11 +137,11 @@ public class Pedido {
         }
     }
 
-    public ArrayList<Produto> getProdutos() {
+    public ArrayList<PedidoProduto> getProdutos() {
         return produtos;
     }
 
-    public void setProdutos(ArrayList<Produto> produtos) {
+    public void setProdutos(ArrayList<PedidoProduto> produtos) {
         if (produtos != null) {
             this.produtos = produtos;
         }
@@ -101,9 +152,12 @@ public class Pedido {
     }
 
     public void setStatusPedido(String statusPedido) {
-        if (!statusPedido.equals(" ")) {
-            this.statusPedido = statusPedido;
-        }
+        this.statusPedido = statusPedido;
+    }
+
+    @Override
+    public String toString() {
+        return "" + id;
     }
 
 }

@@ -11,27 +11,24 @@ package model;
  */
 public class Atendente extends Funcionario {
 
-    public Atendente(String nomeUsuario, String senha, Cargo cargo, String nome) {
-        super(nomeUsuario, senha, cargo, nome);
+    public Atendente(int id, String nome, String nomeUsuario, String senha, Cargo cargo) {
+        super(id, nome, nomeUsuario, senha, cargo);
     }
 
-    public Atendente() {
-    }
-
-    public Atendente(String nomeUsuario, String senha) {
-        super(nomeUsuario, senha);
+    public Atendente(String nome, String nomeUsuario, String senha, Cargo cargo) {
+        super(nome, nomeUsuario, senha, cargo);
     }
 
     @Override
     public void imprimeInformacoesFuncionario() {
-        System.out.println("Nome Funcionario: " + super.getNome()+ " Usuário: " + getNomeUsuario() + " Senha: " + super.getSenha()+
-                "\nCargo: " + super.getCargo().getCargo()+ " Salário: " + super.getCargo().getSalario()+" Comissão: Não comissionado" );
-        
+        System.out.println("Nome Funcionario: " + super.getNome() + " Usuário: " + getNomeUsuario() + " Senha: " + super.getSenha()
+                + "\nCargo: " + super.getCargo().getCargo() + " Salário: " + super.getCargo().getSalario() + " Comissão: Não comissionado");
+
     }
 
     @Override
     public String toString() {
-        return this.getNome() + " " +  this.getNomeUsuario() + " " + this.cargo;
+        return this.getNome();
     }
-    
+
 }

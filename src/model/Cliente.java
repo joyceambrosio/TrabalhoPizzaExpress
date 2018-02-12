@@ -11,6 +11,8 @@ package model;
  */
 public class Cliente {
 
+    private static int uniqueId = 0;
+    private int id;
     private String nome;
     private Endereco endereco;
     private boolean status;
@@ -18,6 +20,14 @@ public class Cliente {
 
     public Cliente() {
 
+    }
+
+    public Cliente(int idCliente, String nome, Endereco endereco, boolean status, int numeroCompra) {
+        this.id = idCliente;
+        setNome(nome);
+        setEndereco(endereco);
+        setStatus(status);
+        setNumeroCompra(numeroCompra);
     }
 
     public Cliente(String nome, Endereco endereco, boolean status, int numeroCompra) {
@@ -30,6 +40,14 @@ public class Cliente {
     public Cliente(String nome, Endereco endereco) {
         setNome(nome);
         setEndereco(endereco);
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return this.id;
     }
 
     public String getNome() {
@@ -68,6 +86,11 @@ public class Cliente {
 
     public void setNumeroCompra(int numeroCompra) {
         this.numeroCompra = numeroCompra;
+    }
+
+    @Override
+    public String toString() {
+        return this.nome;
     }
 
 }

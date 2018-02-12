@@ -5,11 +5,18 @@
  */
 package presenter;
 
+import colections.Funcionarios;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import view.Login;
-import view.Menu;
+import model.Funcionario;
+import view.ViewLogin;
 
 /**
  *
@@ -17,12 +24,20 @@ import view.Menu;
  */
 public class PresenterLogin {
 
-    private Login view;
+    private ViewLogin view;
 
-    public PresenterLogin(Login view) {
+    public PresenterLogin(ViewLogin view) {
         this.view = view;
 
         validarLogin();
+
+        URL caminhoImagem = this.getClass().getClassLoader().getResource("icones/PizzaIcone.png");
+        Image iconeTitulo = Toolkit.getDefaultToolkit().getImage(caminhoImagem);
+        view.setIconImage(iconeTitulo);
+
+        //Tirar isso depois
+        view.getjTextFieldNomeUsuario().setText("Administrador");
+        view.getjPasswordFieldSenha().setText("123456789");
 
         view.setLocationRelativeTo(null);
         view.setVisible(true);
@@ -32,23 +47,39 @@ public class PresenterLogin {
         view.getjButtonEntrar().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (view.getjTextFieldNomeUsuario().getText().equals("")) {
-                    JOptionPane.showMessageDialog(view, "Por favor, informar o login do usuário.");
-                } else if (view.getjPasswordFieldSenha().getText().equals("")) {
-                    JOptionPane.showMessageDialog(view, "Por favor, informar a senha.");
+
+                String usuario = view.getjTextFieldNomeUsuario().getText();
+                String senha = view.getjPasswordFieldSenha().getText();
+
+                if (usuario.equals("") || senha.equals("")) {
+                    if (usuario.equals("")) {
+                        JOptionPane.showMessageDialog(view, "Por favor, informar o login do usuário.");
+                    }
+                    if (senha.equals("")) {
+                        JOptionPane.showMessageDialog(view, "Por favor, informar a senha.");
+                    }
                 } else {
-                    JOptionPane.showMessageDialog(view, "Login ou senha estão incorretos.");
-                    
-                }
+                    try {
+                        if (Funcionarios.getInstancia().funcionarioValido(usuario, senha)) {
+                            //verifica login e senha e chama a tela main
+                            Funcionario funcionario = Funcionarios.getInstancia().getFuncionario(usuario);
 
-//Controle de acesso
-                    view.setVisible(false);
-                    view.dispose();
+                            view.setVisible(false);
+                            view.dispose();
+                            PresenterMenu.getInstancia(funcionario.getCargo().getCargo());
+                            
 
-                    PresenterMenu menu = new PresenterMenu(new Menu());
+                        } else {
+                            JOptionPane.showMessageDialog(view, "Login ou senha estão incorretos.");
+                        }
+
+                    } catch (SQLException ex) {
+                        Logger.getLogger(PresenterLogin.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
             }
-        );
+
+        });
 
     }
 

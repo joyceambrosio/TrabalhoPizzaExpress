@@ -11,19 +11,14 @@ package model;
  */
 public class Entregador extends Funcionario {
 
-    public Entregador(String nomeUsuario, String senha, Cargo cargo, String nome) {
-        super(nomeUsuario, senha, cargo, nome);
+    public Entregador(int id, String nome, String nomeUsuario, String senha, Cargo cargo) {
+        super(id, nome, nomeUsuario, senha, cargo);
     }
 
-    public Entregador() {
+    public Entregador(String nome, String nomeUsuario, String senha, Cargo cargo) {
+        super(nome, nomeUsuario, senha, cargo);
     }
 
-    public Entregador(String nomeUsuario, String senha) {
-        super(nomeUsuario, senha);
-    }
-
-    
-    
     @Override
     public void imprimeInformacoesFuncionario() {
         System.out.println("Nome Funcionario: " + super.getNome() + " Usuário: " + getNomeUsuario() + " Senha: " + super.getSenha()
@@ -33,7 +28,7 @@ public class Entregador extends Funcionario {
 
     @Override
     public String toString() {
-        return this.getNome() + " " +  this.getNomeUsuario() + " " + this.cargo;
+        return this.getNome();
     }
 
 }

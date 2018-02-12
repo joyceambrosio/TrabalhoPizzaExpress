@@ -11,28 +11,39 @@ package model;
  */
 public abstract class Funcionario {
 
+    protected int id;
     protected String nome;
     protected String nomeUsuario;
     protected String senha;
     protected Cargo cargo;
     protected Pedido pedido;
 
-    public Funcionario(String nomeUsuario, String senha, Cargo cargo, String nome) {
-        setNomeUsuario(nomeUsuario);
-        setSenha(senha);
-        setCargo(cargo);
+    public Funcionario(int id, String nome, String nomeUsuario, String senha, Cargo cargo) {
+        this.id = id;
+        this.nome = nome;
+        this.nomeUsuario = nomeUsuario;
+        this.senha = senha;
+        this.cargo = cargo;
+        this.pedido = pedido;
     }
 
-    public Funcionario() {
+    public Funcionario(String nome, String nomeUsuario, String senha, Cargo cargo) {
+        this.nome = nome;
+        this.nomeUsuario = nomeUsuario;
+        this.senha = senha;
+        this.cargo = cargo;
     }
 
-    public Funcionario(String nomeUsuario, String senha) {
-        setNomeUsuario(nomeUsuario);
-        setSenha(senha);
+    public int getId() {
+        return id;
     }
 
     public String getNomeUsuario() {
         return nomeUsuario;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setNomeUsuario(String nomeUsuario) {
@@ -82,7 +93,9 @@ public abstract class Funcionario {
     }
 
     @Override
-    public abstract String toString();
-    
+    public String toString() {
+        return this.nome;
+    }
+
     public abstract void imprimeInformacoesFuncionario();
 }
