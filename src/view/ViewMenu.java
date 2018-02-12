@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
@@ -89,7 +90,6 @@ public class ViewMenu extends javax.swing.JFrame {
         jPanelRelatorios = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jButtonPesquisarRelatório = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTableRelatório = new javax.swing.JTable();
         jButtonEnviarRelatorioEmail = new javax.swing.JButton();
@@ -98,6 +98,12 @@ public class ViewMenu extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jFormattedTextFieldDataInicio = new javax.swing.JFormattedTextField();
         jFormattedTextFieldDataFim = new javax.swing.JFormattedTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jLabelTotalLucro = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabelTotalDeVendas = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabelSalarios = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -595,11 +601,6 @@ public class ViewMenu extends javax.swing.JFrame {
 
         jLabel6.setText("Data Fim:");
 
-        jButtonPesquisarRelatório.setBackground(new java.awt.Color(51, 51, 51));
-        jButtonPesquisarRelatório.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonPesquisarRelatório.setText("Pesquisar");
-        jButtonPesquisarRelatório.setBorder(null);
-
         jTableRelatório.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -628,6 +629,8 @@ public class ViewMenu extends javax.swing.JFrame {
             }
         });
 
+        jComboBoxEmitirRelatorio.setToolTipText("");
+
         jLabel8.setText("Relatório");
 
         try {
@@ -641,6 +644,12 @@ public class ViewMenu extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+
+        jLabel9.setText("Total de Lucro:");
+
+        jLabel10.setText("Total de vendas:");
+
+        jLabel11.setText("Total salários/Comissão:");
 
         javax.swing.GroupLayout jPanelRelatoriosLayout = new javax.swing.GroupLayout(jPanelRelatorios);
         jPanelRelatorios.setLayout(jPanelRelatoriosLayout);
@@ -657,20 +666,33 @@ public class ViewMenu extends javax.swing.JFrame {
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jFormattedTextFieldDataFim, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButtonPesquisarRelatório, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(61, 61, 61)
+                        .addGap(149, 149, 149)
                         .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jComboBoxEmitirRelatorio, 0, 259, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(45, 45, 45)
                         .addComponent(jButtonGerarRelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanelRelatoriosLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane4))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelRelatoriosLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButtonEnviarRelatorioEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonEnviarRelatorioEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelRelatoriosLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanelRelatoriosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel11))
+                        .addGroup(jPanelRelatoriosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelRelatoriosLayout.createSequentialGroup()
+                                .addGap(69, 69, 69)
+                                .addComponent(jLabelTotalLucro))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelRelatoriosLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanelRelatoriosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabelTotalDeVendas, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabelSalarios, javax.swing.GroupLayout.Alignment.TRAILING))))))
                 .addContainerGap())
         );
         jPanelRelatoriosLayout.setVerticalGroup(
@@ -680,15 +702,26 @@ public class ViewMenu extends javax.swing.JFrame {
                 .addGroup(jPanelRelatoriosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jLabel6)
-                    .addComponent(jButtonPesquisarRelatório, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonGerarRelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBoxEmitirRelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8)
                     .addComponent(jFormattedTextFieldDataInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jFormattedTextFieldDataFim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
-                .addGap(80, 80, 80)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE)
+                .addGap(8, 8, 8)
+                .addGroup(jPanelRelatoriosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(jLabelSalarios))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelRelatoriosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(jLabelTotalDeVendas))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelRelatoriosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabelTotalLucro))
+                .addGap(18, 18, 18)
                 .addComponent(jButtonEnviarRelatorioEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -835,6 +868,15 @@ public class ViewMenu extends javax.swing.JFrame {
         return jButtonPesquisarFuncionario;
     }
 
+    public JLabel getjLabelTotalDeVendas() {
+        return jLabelTotalDeVendas;
+    }
+
+    public JLabel getjLabelTotalLucro() {
+        return jLabelTotalLucro;
+    }
+
+    
     public JButton getjButtonPesquisarPedido() {
         return jButtonPesquisarPedido;
     }
@@ -843,9 +885,7 @@ public class ViewMenu extends javax.swing.JFrame {
         return jButtonPesquisarProduto;
     }
 
-    public JButton getjButtonPesquisarRelatório() {
-        return jButtonPesquisarRelatório;
-    }
+   
 
     public JCheckBox getjCheckBox1() {
         return jCheckBoxAbertos;
@@ -886,6 +926,11 @@ public class ViewMenu extends javax.swing.JFrame {
     public JPanel getjPanelProduto() {
         return jPanelProduto;
     }
+
+    public JLabel getjLabelSalarios() {
+        return jLabelSalarios;
+    }
+    
 
     public JPanel getjPanelRelatorios() {
         return jPanelRelatorios;
@@ -977,7 +1022,6 @@ public class ViewMenu extends javax.swing.JFrame {
     private javax.swing.JButton jButtonPesquisarFuncionario;
     private javax.swing.JButton jButtonPesquisarPedido;
     private javax.swing.JButton jButtonPesquisarProduto;
-    private javax.swing.JButton jButtonPesquisarRelatório;
     private javax.swing.JCheckBox jCheckBoxAbertos;
     private javax.swing.JCheckBox jCheckBoxConcluido;
     private javax.swing.JCheckBox jCheckBoxEntrega;
@@ -986,6 +1030,8 @@ public class ViewMenu extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField jFormattedTextFieldDataFim;
     private javax.swing.JFormattedTextField jFormattedTextFieldDataInicio;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -993,6 +1039,10 @@ public class ViewMenu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabelSalarios;
+    private javax.swing.JLabel jLabelTotalDeVendas;
+    private javax.swing.JLabel jLabelTotalLucro;
     private javax.swing.JPanel jPanelCliente;
     private javax.swing.JPanel jPanelFuncionario;
     private javax.swing.JPanel jPanelPedido;

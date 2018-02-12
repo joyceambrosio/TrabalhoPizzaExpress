@@ -73,7 +73,7 @@ public final class PresenterMenu {
     }
 
     private PresenterMenu(ViewMenu viewMenu) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+   
     }
 
     public void instanciarAbas(String cargo) {

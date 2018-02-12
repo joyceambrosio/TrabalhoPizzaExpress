@@ -67,6 +67,7 @@ public class PresenterLogin {
                             view.setVisible(false);
                             view.dispose();
                             PresenterMenu.getInstancia(funcionario.getCargo().getCargo());
+                            
 
                         } else {
                             JOptionPane.showMessageDialog(view, "Login ou senha estão incorretos.");
