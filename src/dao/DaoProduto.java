@@ -126,8 +126,6 @@ public class DaoProduto {
             }
             statement.close();
 
-        } catch  {
-            throw new Exception("Não foi possível adicionar. Verifique o banco");
         }
         return idComida;
     }
