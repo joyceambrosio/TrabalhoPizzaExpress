@@ -17,6 +17,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.Pedido;
 import model.SalarioComissao;
+import servicos.VerificaEmail;
 import view.ViewMenu;
 
 /**
@@ -35,6 +36,7 @@ public class PresenterRelatorio {
         view = menu;
         configuraTela();
         pesquisar();
+        enviarEmail();
 
     }
 
@@ -64,6 +66,22 @@ public class PresenterRelatorio {
         }
 
         return ano + "-" + mes + "-" + dia;
+    }
+
+    public void enviarEmail() {
+        view.getjButtonEnviarRelatorioEmail().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String email = JOptionPane.showInputDialog(null, "Informe o email");
+                VerificaEmail ve = new VerificaEmail();
+                if (ve.verifica(email)){
+                    JOptionPane.showMessageDialog(null, "Email enviado com sucesso");
+                }else {
+                    JOptionPane.showMessageDialog(null, "O email não é válido. Insira um email válido");
+                }
+
+            }
+        });
     }
 
     public void pesquisar() {
